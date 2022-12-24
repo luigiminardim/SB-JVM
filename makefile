@@ -1,3 +1,9 @@
+# build: Builds binary
+# run: Runs binary
+# test: Runs tests
+# clean: Removes object files
+# reset: Removes object files and binary
+
 TARGET = build/sb.exe
 
 CC = g++
