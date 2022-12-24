@@ -1,0 +1,23 @@
+name: Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone code
+      uses: actions/checkout@v2
+    - name: Test
+      run: make test
+
+  check-build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone code
+      uses: actions/checkout@v2
+    - name: Test
+      run: make build
