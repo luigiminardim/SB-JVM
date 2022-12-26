@@ -47,3 +47,27 @@ Este projeto utiliza o Catch2 para testes unitários. Para mais informações so
 o Catch2, acesse o [repositório oficial](https://github.com/catchorg/Catch2).
 Caso seja necessário adicionar arquivos com dados necessários para os testes,
 você pode adicioná-los dentro da pasta `assets`.
+
+### Análise Estática
+
+#### Requisitos
+
+- cppcheck 2.7 ou maior
+
+#### Instalação
+
+Em sistemas Linux:
+
+```
+sudo apt install cppcheck
+```
+
+Em sistemas Windows o seguinte [link](https://github.com/danmar/cppcheck/releases/download/2.9/cppcheck-2.9-x64-Setup.msi) disponibiliza instalador.
+
+#### Utilização
+
+Para realizar uma análise estática basta executar:
+
+```
+make lint
+```
