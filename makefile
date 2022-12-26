@@ -3,6 +3,7 @@
 # test: Runs tests
 # clean: Removes object files
 # reset: Removes object files and binary
+# lint: Runs static analysis
 
 TARGET = build/sb.exe
 
@@ -13,6 +14,9 @@ OBJECTS = $(patsubst src/%,build/objs/%,$(SOURCES:%.c=%.o))
 
 TEST_SOURCES = $(filter-out src/main.c,$(SOURCES)) $(wildcard test/*.test.c)
 TEST_OBJECTS = $(addprefix build/objs/, $(notdir $(TEST_SOURCES:%.c=%.o)))
+
+CPPCHECK = cppcheck
+CPPCHECK_TARGET = ./src/*
 
 # Commands
 
@@ -34,6 +38,9 @@ clean:
 reset: clean
 	rm -f build/*.exe
 
+.PHONY: lint
+lint:
+	@$(CPPCHECK) --enable=all --std=c99 --suppress=missingIncludeSystem $(CPPCHECK_TARGET)
 
 # Build Rules
 
