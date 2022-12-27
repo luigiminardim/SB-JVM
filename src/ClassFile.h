@@ -18,6 +18,8 @@ typedef struct ClassFile
   u2 interfaces_count;
   u2 *interfaces;
   u2 fields_count;
+  u2 fields_count;
+  FieldInfo* fields[];
 } ClassFile;
 
 ClassFile ClassFile_read(FILE *fp);
