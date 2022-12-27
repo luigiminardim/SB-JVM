@@ -1,3 +1,4 @@
+#include "Field.h"
 #include "ClassFile.h"
 #include "java-bytes.h"
 #include <stdio.h>  // sprintf
@@ -10,6 +11,7 @@ ClassFile ClassFile_read(FILE *fp)
   c.minor_version = u2_read(fp);
   c.major_version = u2_read(fp);
   c.constant_pool_count = u2_read(fp);
+<<<<<<< HEAD
   c.constant_pool = ConstantPool_read(fp, c.constant_pool_count);
   c.access_flags = u2_read(fp);
   c.this_class = u2_read(fp);
@@ -21,6 +23,10 @@ ClassFile ClassFile_read(FILE *fp)
     c.interfaces[i] = u2_read(fp);
   }
   c.fields_count = u2_read(fp);
+=======
+  c.fields_count = u2_read(fp);
+  c.fields = FieldInfo_read(fp, c.fields_count);
+>>>>>>> aa79d09 (feat: :sparkles: Adicionar leitura de fields em ClassFile_read)
   return c;
 }
 
