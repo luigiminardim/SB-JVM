@@ -21,3 +21,13 @@ jobs:
       uses: actions/checkout@v2
     - name: Test
       run: make build
+
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Clone code
+      uses: actions/checkout@v2
+    - name: Install CPPCheck
+      run: sudo apt install cppcheck --yes
+    - name: Lint
+      run: make lint

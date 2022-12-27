@@ -11,6 +11,7 @@ arquivo.
 
 - g++ 11.3.0
 - make 4.3
+- cppcheck 2.7 ou maior
 
 ## Como executar
 
@@ -50,24 +51,22 @@ você pode adicioná-los dentro da pasta `assets`.
 
 ### Análise Estática
 
-#### Requisitos
-
-- cppcheck 2.7 ou maior
-
 #### Instalação
 
 Em sistemas Linux:
 
-```
+```sh
 sudo apt install cppcheck
 ```
 
-Em sistemas Windows o seguinte [link](https://github.com/danmar/cppcheck/releases/download/2.9/cppcheck-2.9-x64-Setup.msi) disponibiliza instalador.
+Em sistemas Windows o seguinte
+[link](https://github.com/danmar/cppcheck/releases/download/2.9/cppcheck-2.9-x64-Setup.msi)
+disponibiliza instalador.
 
 #### Utilização
 
 Para realizar uma análise estática basta executar:
 
-```
+```sh
 make lint
 ```
