@@ -10,7 +10,7 @@ FieldInfo* FieldInfo_read(FILE *fp, u2 fields_count){
     FieldInfo* f;
 
     // itera sobre os fields
-    for(f=fields; f<fields+fields_count-1; f++){
+    for(f=fields; f<fields+fields_count; f++){
         f->access_flags = u2_read(fp);
         f->name_index = u2_read(fp);
         f->descriptor_index = u2_read(fp);
