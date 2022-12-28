@@ -20,3 +20,14 @@ FieldInfo* FieldInfo_read(FILE *fp, u2 fields_count){
 
     return fields;
 }
+
+void FieldInfo_release(FieldInfo* field_info, u2 fields_count){
+    
+    FieldInfo* f;
+
+    for(f=field_info; f<field_info+fields_count; f++){
+        // AttributeInfo_release(f->attributes)
+    }
+    
+    free(field_info);
+}
