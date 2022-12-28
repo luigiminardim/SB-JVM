@@ -22,7 +22,7 @@ ClassFile ClassFile_read(FILE *fp)
     c.interfaces[i] = u2_read(fp);
   }
   c.fields_count = u2_read(fp);
-  c.fields = FieldInfo_read(fp, c.fields_count);
+  c.fields = FieldInfo_read(fp, c.fields_count, c.constant_pool);
   return c;
 }
 
