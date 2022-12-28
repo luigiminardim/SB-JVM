@@ -58,6 +58,7 @@ char *ClassFile_to_string(ClassFile c)
 
 void ClassFile_free(ClassFile c)
 {
+  FieldInfo_free(c.fields, c.fields_count);
   ConstantPool_free(c.constant_pool);
   free(c.interfaces);
 }
