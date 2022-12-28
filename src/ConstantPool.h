@@ -101,3 +101,5 @@ typedef CpInfo *ConstantPool;
 ConstantPool ConstantPool_read(FILE *fp, u2 constant_pool_count);
 
 char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count);
+
+void ConstantPool_free(ConstantPool cp);

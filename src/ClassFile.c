@@ -22,3 +22,8 @@ char *ClassFile_to_string(ClassFile c)
   free(constant_pool_string);
   return class_file_string;
 }
+
+void ClassFile_free(ClassFile c)
+{
+  ConstantPool_free(c.constant_pool);
+}

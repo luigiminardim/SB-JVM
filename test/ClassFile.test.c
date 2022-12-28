@@ -12,6 +12,7 @@ TEST_CASE("ClassFile_read")
     REQUIRE(c.minor_version == 0);
     REQUIRE(c.major_version == 52);
   }
+  ClassFile_free(c);
   fclose(fp);
 }
 
@@ -22,5 +23,6 @@ TEST_CASE("ClassFile_to_string")
   char *s = ClassFile_to_string(c);
   printf("\nClassFile_to_string:\n%s\n\n", s);
   free(s);
+  ClassFile_free(c);
   fclose(fp);
 }

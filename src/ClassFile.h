@@ -17,3 +17,5 @@ typedef struct ClassFile
 ClassFile ClassFile_read(FILE *fp);
 
 char *ClassFile_to_string(ClassFile c);
+
+void ClassFile_free(ClassFile c);
