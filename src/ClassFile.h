@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "java-bytes.h"
 #include "ConstantPool.h"
+#include "Field.h"
 
 typedef struct ClassFile
 {
