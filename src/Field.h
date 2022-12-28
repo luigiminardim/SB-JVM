@@ -13,5 +13,5 @@ typedef struct FieldInfo {
 } FieldInfo;
 
 FieldInfo* FieldInfo_read(FILE *fp, u2 fields_count);
-void FieldInfo_release(FieldInfo* field_info, u2 fields_count);
+void FieldInfo_free(FieldInfo* field_info, u2 fields_count);
 char* FieldInfo_to_string(FieldInfo field_info);

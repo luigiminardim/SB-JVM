@@ -21,7 +21,7 @@ FieldInfo* FieldInfo_read(FILE *fp, u2 fields_count){
     return fields;
 }
 
-void FieldInfo_release(FieldInfo* field_info, u2 fields_count){
+void FieldInfo_free(FieldInfo* field_info, u2 fields_count){
     
     FieldInfo* f;
 
