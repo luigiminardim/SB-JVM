@@ -74,7 +74,6 @@ SourceFileAttribute SourceFileAttribute_read(FILE *fp){
 AttributeInfo *AttributeInfo_read(FILE *fp, u2 attributes_count, ConstantPool constant_pool)
 {
   AttributeInfo *attributes = (AttributeInfo *)malloc(attributes_count * sizeof(AttributeInfo));
-  printf("attributes_count: %d\n", attributes_count);
   for (AttributeInfo *attribute = attributes; attribute < attributes + attributes_count; attribute++)
   {
     attribute->attribute_name_index = u2_read(fp);
@@ -114,7 +113,7 @@ AttributeInfo *AttributeInfo_read(FILE *fp, u2 attributes_count, ConstantPool co
     //}
     else
     {
-      // Pular x bytes caso seja atributo que não implementamos
+      // Pular attribute_length bytes caso seja atributo que não implementamos
       printf("Unknown attribute type: %s", type);
       exit(1);
     }
