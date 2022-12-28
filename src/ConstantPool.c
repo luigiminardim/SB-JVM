@@ -323,3 +323,8 @@ char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count)
   }
   return cp_string;
 }
+
+
+void ConstantPool_free(ConstantPool cp) {
+  free(cp);
+}
