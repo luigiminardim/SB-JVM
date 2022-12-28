@@ -12,6 +12,12 @@ typedef struct ClassFile
   u2 major_version;
   u2 constant_pool_count;
   ConstantPool constant_pool;
+  u2 access_flags;
+  u2 this_class;
+  u2 super_class;
+  u2 interfaces_count;
+  u2 *interfaces;
+  u2 fields_count;
 } ClassFile;
 
 ClassFile ClassFile_read(FILE *fp);
