@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <string.h> // strcmp
 #include "AttributeInfo.h"
 
 // ConstantValueAttribute //////////////////////////////////////////////////////////////////////////
@@ -41,7 +42,7 @@ CodeAttribute CodeAttribute_read(FILE *fp, ConstantPool constant_pool) {
   code_attribute.exception_table = ExceptionTable_read(fp, code_attribute.exception_table_length);
   
   code_attribute.attributes_count = u2_read(fp);
-  AttributeInfo_read(fp, code_attribute.attributes_count, constant_pool);
+  code_attribute.attributes = AttributeInfo_read(fp, code_attribute.attributes_count, constant_pool);
 
   return code_attribute;
 }
@@ -62,7 +63,7 @@ ExceptionsAttribute ExceptionsAttribute_read(FILE *fp){
 
 // SourceFileAttribute /////////////////////////////////////////////////////////////////////////////
 
-SourceFileAttribute SourceFileAttribute_read(fp){
+SourceFileAttribute SourceFileAttribute_read(FILE *fp){
   SourceFileAttribute source_file_attribute;
   source_file_attribute.sourcefile_index = u2_read(fp);
   return source_file_attribute;
