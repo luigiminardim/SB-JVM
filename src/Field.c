@@ -23,14 +23,14 @@ FieldInfo *FieldInfo_read(FILE *fp, u2 fields_count, ConstantPool constant_pool)
   return fields;
 }
 
-void FieldInfo_free(FieldInfo *field_info, u2 fields_count)
+void FieldInfo_free(FieldInfo *field_info, u2 fields_count, ConstantPool constant_pool)
 {
 
   FieldInfo *f;
 
   for (f = field_info; f < field_info + fields_count; f++)
   {
-    // AttributeInfo_release(f->attributes)
+    AttributeInfo_free(f->attributes, f->attributes_count, constant_pool);
   }
 
   free(field_info);
