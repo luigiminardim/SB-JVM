@@ -1,3 +1,4 @@
+#include "Method.h"
 #include "Field.h"
 #include "ClassFile.h"
 #include "java-bytes.h"
@@ -23,6 +24,10 @@ ClassFile ClassFile_read(FILE *fp)
   }
   c.fields_count = u2_read(fp);
   c.fields = FieldInfo_read(fp, c.fields_count, c.constant_pool);
+  c.methods_count = u2_read(fp);
+  c.methods = MethodInfo_read(fp, c.methods_count, c.constant_pool);
+  c.attributes_count = u2_read(fp);
+  c.attributes = AttributeInfo_read(fp, c.attributes_count, c.constant_pool);
   return c;
 }
 
@@ -58,7 +63,9 @@ char *ClassFile_to_string(ClassFile c)
 
 void ClassFile_free(ClassFile c)
 {
+  AttributeInfo_free(c.attributes, c.attributes_count, c.constant_pool);
+  MethodInfo_free(c.methods, c.methods_count, c.constant_pool);
   FieldInfo_free(c.fields, c.fields_count, c.constant_pool);
-  ConstantPool_free(c.constant_pool);
   free(c.interfaces);
+  ConstantPool_free(c.constant_pool);
 }
