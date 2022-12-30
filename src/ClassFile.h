@@ -5,6 +5,7 @@
 #include "java-bytes.h"
 #include "ConstantPool.h"
 #include "Field.h"
+#include "Method.h"
 
 typedef struct ClassFile
 {
@@ -20,6 +21,10 @@ typedef struct ClassFile
   u2 *interfaces;
   u2 fields_count;
   FieldInfo* fields;
+  u2 methods_count;
+  MethodInfo* methods;
+  u2 attributes_count;
+  AttributeInfo* attributes;
 } ClassFile;
 
 ClassFile ClassFile_read(FILE *fp);
