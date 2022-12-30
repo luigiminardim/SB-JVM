@@ -114,8 +114,9 @@ AttributeInfo *AttributeInfo_read(FILE *fp, u2 attributes_count, ConstantPool co
     else
     {
       // Pular attribute_length bytes caso seja atributo que não implementamos
-      printf("Unknown attribute type: %s", type);
-      exit(1);
+      for (u4 i = attribute->attribute_length; i>0; i--){
+        u1_read(fp);
+      }
     }
   }
 
@@ -129,6 +130,7 @@ void AttributeInfo_free(AttributeInfo* attributes, u2 attributes_count, Constant
     if (!strcmp(type, "Code")){
       free(attribute->code.exception_table);
       free(attribute->code.code);
+      AttributeInfo_free(attribute->code.attributes, attribute->code.attributes_count, constant_pool);
     } else if (!strcmp(type, "Exceptions")){
       free(attribute->exceptions.exception_index_table);
     } else {
