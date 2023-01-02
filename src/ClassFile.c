@@ -55,9 +55,16 @@ char *ClassFile_to_string(ClassFile c)
   char *class_file_string = (char *)malloc(1000000);
   char *constant_pool_string = ConstantPool_to_string(c.constant_pool, c.constant_pool_count);
   char *interfaces_string = ClassFile_intefarces_to_string(c);
-  sprintf(class_file_string, "{\"__cls\":\"ClassFile\",\"magic_number\":\"0x%X\",\"minor_version\":%d,\"major_version\":%d,\"constant_pool_count\":%d,\"constant_pool\":%s,\"access_flags\":%d,\"this_class\":\"#%d\",\"super_class\":\"#%d\",\"interfaces_count\":%d,\"interfaces\":%s,\"fields_count\":%d}", c.magic_number, c.minor_version, c.major_version, c.constant_pool_count, constant_pool_string, c.access_flags, c.this_class, c.super_class, c.interfaces_count, interfaces_string, c.fields_count);
+  char *fields_string = FieldInfo_to_string(c.fields, c.fields_count, c.constant_pool);
+  snprintf(
+      class_file_string, 1000000,
+      "{\"__cls\":\"ClassFile\",\"magic_number\":\"0x%X\",\"minor_version\":%d,\"major_version\":%d,\"constant_pool_count\":%d,\"constant_pool\":%s,\"access_flags\":%d,\"this_class\":\"#%d\",\"super_class\":\"#%d\",\"interfaces_count\":%d,\"interfaces\":%s,\"fields_count\":%d,\"fields\":%s,\"methods_count\":%d}",
+      c.magic_number, c.minor_version, c.major_version, c.constant_pool_count, constant_pool_string,
+      c.access_flags, c.this_class, c.super_class, c.interfaces_count, interfaces_string,
+      c.fields_count, fields_string, c.methods_count);
   free(constant_pool_string);
   free(interfaces_string);
+  free(fields_string);
   return class_file_string;
 }
 

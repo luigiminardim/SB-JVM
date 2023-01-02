@@ -6,10 +6,8 @@
 
 FieldInfo *FieldInfo_read(FILE *fp, u2 fields_count, ConstantPool constant_pool)
 {
-
   FieldInfo *fields = (FieldInfo *)malloc(fields_count * sizeof(FieldInfo));
   FieldInfo *f;
-
   // itera sobre os fields
   for (f = fields; f < fields + fields_count; f++)
   {
@@ -19,19 +17,42 @@ FieldInfo *FieldInfo_read(FILE *fp, u2 fields_count, ConstantPool constant_pool)
     f->attributes_count = u2_read(fp);
     f->attributes = AttributeInfo_read(fp, f->attributes_count, constant_pool);
   }
-
   return fields;
 }
 
-void FieldInfo_free(FieldInfo *field_info, u2 fields_count, ConstantPool constant_pool)
+void FieldInfo_free(FieldInfo *field_infos, u2 fields_count, ConstantPool constant_pool)
 {
-
   FieldInfo *f;
-
-  for (f = field_info; f < field_info + fields_count; f++)
+  for (f = field_infos; f < field_infos + fields_count; f++)
   {
     AttributeInfo_free(f->attributes, f->attributes_count, constant_pool);
   }
+  free(field_infos);
+}
 
-  free(field_info);
+char *FieldInfo_to_string(FieldInfo *field_infos, u2 fields_count, ConstantPool constant_pool)
+{
+  char *str = (char *)malloc(65536 * sizeof(char));
+  if (fields_count == 0)
+  {
+    snprintf(str, 65536, "[]");
+    return str;
+  }
+  snprintf(str, 65536, "[");
+  for (FieldInfo *field_info = field_infos; field_info < field_infos + fields_count; field_info++)
+  {
+    char *attribute_info_str = AttributeInfo_to_string(
+        field_info->attributes, field_info->attributes_count, constant_pool);
+    char separator = field_info == field_infos + fields_count - 1 ? ']' : ',';
+    char *str_temp = (char *)malloc(65536 * sizeof(char));
+    snprintf(
+        str_temp, 65536,
+        "%s{\"__cls\":\"FieldInfo\",\"access_flags\": \"0x%X\",\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\",\"attributes_count\":%d,\"attributes\":%s}%c",
+        str, field_info->access_flags, field_info->name_index, field_info->descriptor_index,
+        field_info->attributes_count, attribute_info_str, separator);
+    free(attribute_info_str);
+    free(str);
+    str = str_temp;
+  }
+  return str;
 }
