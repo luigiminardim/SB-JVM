@@ -10,8 +10,6 @@ typedef struct ConstantValueAttribute
   u2 constantvalue_index;
 } ConstantValueAttribute;
 
-ConstantValueAttribute ConstantValueAttribute_read(FILE *fp);
-
 typedef struct ExceptionTable
 {
   u2 start_pc;
@@ -19,8 +17,6 @@ typedef struct ExceptionTable
   u2 handler_pc;
   u2 catch_type;
 } ExceptionTable;
-
-ExceptionTable* ExceptionTable_read(FILE *fp, u2 exception_table_length);
 
 typedef struct CodeAttribute
 {
@@ -34,27 +30,21 @@ typedef struct CodeAttribute
   AttributeInfo *attributes;
 } CodeAttribute;
 
-CodeAttribute CodeAttribute_read(FILE *fp, ConstantPool constant_pool);
-
 typedef struct ExceptionsAttribute
 {
   u2 number_of_exceptions;
   u2 *exception_index_table;
 } ExceptionsAttribute;
 
-ExceptionsAttribute ExceptionsAttribute_read(FILE *fp);
-
-// @todo Maybe implement this later
-// typedef struct InnerClassesAttribute
-// {
-//   u2 number_of_classes;
-//   InnerClass *classes;
-// } InnerClassesAttribute;
-
 typedef struct SourceFileAttribute
 {
   u2 sourcefile_index;
 } SourceFileAttribute;
+
+typedef struct UnknownAttribute
+{
+  u1 *info;
+} UnknownAttribute;
 
 typedef struct AttributeInfo
 {
@@ -65,14 +55,13 @@ typedef struct AttributeInfo
     ConstantValueAttribute constant_value;
     CodeAttribute code;
     ExceptionsAttribute exceptions;
-    // InnerClassesAttribute inner_classes; @todo Maybe implement this later
     SourceFileAttribute source_file;
+    UnknownAttribute unknown;
   };
 } AttributeInfo;
 
-AttributeInfo* AttributeInfo_read(FILE *fp, u2 attributes_count, ConstantPool constant_pool);
+AttributeInfo *AttributeInfo_read(FILE *fp, u2 attributes_count, ConstantPool constant_pool);
 
-void AttributeInfo_free(AttributeInfo* attributes, u2 attributes_count, ConstantPool constant_pool);
+void AttributeInfo_free(AttributeInfo *attributes, u2 attributes_count, ConstantPool constant_pool);
 
-char* AttributeInfo_to_string(AttributeInfo *attribute_info);
-
+char *AttributeInfo_to_string(AttributeInfo *attribute_infos, u2 attributes_count, ConstantPool constant_pool);
