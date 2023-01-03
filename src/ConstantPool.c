@@ -325,6 +325,15 @@ char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count)
 }
 
 
-void ConstantPool_free(ConstantPool cp) {
+void ConstantPool_free(ConstantPool cp, u2 constant_pool_count) {
+
+  for (int i = 1; i < constant_pool_count; i++)
+  {
+    if (cp[i].tag == CONSTANT_UTF8){
+      free(cp[i].constant_utf8_info.bytes);
+    } else if (cp[i].tag == CONSTANT_LONG || cp[i].tag == CONSTANT_DOUBLE){
+      i++;
+    }
+  }
   free(cp);
 }

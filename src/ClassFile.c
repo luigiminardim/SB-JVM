@@ -79,5 +79,5 @@ void ClassFile_free(ClassFile c)
   MethodInfo_free(c.methods, c.methods_count, c.constant_pool);
   FieldInfo_free(c.fields, c.fields_count, c.constant_pool);
   free(c.interfaces);
-  ConstantPool_free(c.constant_pool);
+  ConstantPool_free(c.constant_pool, c.constant_pool_count);
 }
