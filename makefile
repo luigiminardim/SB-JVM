@@ -18,6 +18,8 @@ TEST_OBJECTS = $(addprefix build/objs/, $(notdir $(TEST_SOURCES:%.c=%.o)))
 CPPCHECK = cppcheck
 CPPCHECK_TARGET = ./src/*
 
+VALGRIND = valgrind --leak-check=full --track-origins=yes -s
+
 # Commands
 
 build: $(TARGET)
@@ -41,6 +43,10 @@ reset: clean
 .PHONY: lint
 lint:
 	@$(CPPCHECK) --enable=all --std=c99 --suppress=missingIncludeSystem $(CPPCHECK_TARGET)
+
+.PHONY: valgrind
+valgrind:
+	@$(VALGRIND) $(TARGET) $(VAR)
 
 # Build Rules
 
