@@ -79,6 +79,7 @@ TEST_CASE("ConstantPool_read")
     REQUIRE(cp_info.constant_name_and_type_info.descriptor_index == 40);
   }
   fclose(fp);
+  ClassFile_free(c);
 }
 
 TEST_CASE("ConstantPool_to_string")
@@ -89,4 +90,5 @@ TEST_CASE("ConstantPool_to_string")
   printf("\nConstantPool_to_string:\n%s\n\n", s);
   free(s);
   fclose(fp);
+  ClassFile_free(c);
 }
