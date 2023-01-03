@@ -30,7 +30,7 @@ run: $(TARGET)
 
 .PHONY: test
 test: build/test.exe
-	./build/test.exe
+	@$(VALGRIND) ./build/test.exe
 
 .PHONY: clean
 clean:
