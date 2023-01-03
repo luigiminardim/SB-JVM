@@ -95,7 +95,7 @@ char *CodeAttribute_code_to_string(u1 *code, u4 code_lenght)
     char separator = (code_entry == code + code_lenght - 1) ? ']' : ',';
     snprintf(
         str_temp, 2048,
-        "%s0x%X%c",
+        "%s\"0x%X\"%c",
         str, *code_entry, separator);
     free(str);
     str = str_temp;
@@ -105,7 +105,7 @@ char *CodeAttribute_code_to_string(u1 *code, u4 code_lenght)
 
 char *CodeAttribute_to_string(CodeAttribute code_attribute, ConstantPool constant_pool)
 {
-  char *str = (char *)malloc(256 * sizeof(char));
+  char *str = (char *)malloc(2048 * sizeof(char));
   char *exception_table_str = ExceptionTable_to_string(
       code_attribute.exception_table,
       code_attribute.exception_table_length);
@@ -116,8 +116,8 @@ char *CodeAttribute_to_string(CodeAttribute code_attribute, ConstantPool constan
       code_attribute.attributes,
       code_attribute.attributes_count,
       constant_pool);
-  snprintf(str, 256,
-           "\"max_stack\":\"%d\",\"max_locals\":\"%d\",\"code_length\":\"%d\",\"code\":\"%s\",\"exception_table_length\":\"%d\",\"exception_table\":\"%s\",\"attributes_count\":\"%d\",\"attributes\":\"%s\"}",
+  snprintf(str, 2048,
+           "\"max_stack\":%d,\"max_locals\":%d,\"code_length\":%d,\"code\":%s,\"exception_table_length\":%d,\"exception_table\":%s,\"attributes_count\":%d,\"attributes\":%s",
            code_attribute.max_stack, code_attribute.max_locals, code_attribute.code_length,
            instructions_str, code_attribute.exception_table_length, exception_table_str,
            code_attribute.attributes_count, attributes_str);
@@ -182,7 +182,7 @@ SourceFileAttribute SourceFileAttribute_read(FILE *fp)
 char *SourceFileAttribute_to_string(SourceFileAttribute source_file_attribute)
 {
   char *str = (char *)malloc(256 * sizeof(char));
-  snprintf(str, 256, "\"sourcefile_index\":\"%d\"", source_file_attribute.sourcefile_index);
+  snprintf(str, 256, "\"sourcefile_index\":\"#%d\"", source_file_attribute.sourcefile_index);
   return str;
 }
 
@@ -201,21 +201,23 @@ UnknownAttribute UnknownAttribute_read(FILE *fp, u4 attribute_length)
 
 char *UnknownAttribute_to_string(UnknownAttribute unknown_attribute, u4 attribute_length)
 {
-  char *str = (char *)malloc(2048 * sizeof(char));
-  snprintf(str, 2048, "\"info\":[");
-  if (unknown_attribute.info == 0)
+  char *str = (char *)malloc(65536 * sizeof(char));
+  if (attribute_length == 0)
   {
-    strcat(str, "]");
+    snprintf(str, 65536, "\"info\":[]");
+    return str;
   }
+  snprintf(str, 65536, "\"info\":[");
   for (u1 *info = unknown_attribute.info; info < unknown_attribute.info + attribute_length; info++)
   {
-    char str_temp[2048];
+    char *str_temp = (char *)malloc(65536 * sizeof(char));
     char separator = (info == unknown_attribute.info + attribute_length - 1) ? ']' : ',';
     snprintf(
-        str_temp, 2048,
+        str_temp, 65536,
         "%s\"0x%X\"%c",
         str, *info, separator);
-    strcat(str, str_temp);
+    free(str);
+    str = str_temp;
   }
   return str;
 }
@@ -318,10 +320,11 @@ char *AttributeInfo_to_string(
       str_union = UnknownAttribute_to_string(attribute->unknown, attribute->attribute_length);
     }
     char separator = attribute == attribute_infos + attributes_count - 1 ? ']' : ',';
-    snprintf(str_temp, 65536,
-             "%s{\"attribute_name_index\":\"#%d\",\"attribute_lenght\":%d,%s}%c",
-             str, attribute->attribute_name_index, attribute->attribute_length, str_union,
-             separator);
+    snprintf(
+        str_temp, 65536,
+        "%s{\"attribute_name_index\":\"#%d\",\"attribute_lenght\":%d,%s}%c",
+        str, attribute->attribute_name_index, attribute->attribute_length, str_union,
+        separator);
     free(str_union);
     free(str);
     str = str_temp;
