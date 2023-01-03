@@ -274,9 +274,17 @@ void AttributeInfo_free(AttributeInfo *attributes, u2 attributes_count, Constant
     {
       free(attribute->exceptions.exception_index_table);
     }
-    else
+    else if (!strcmp(type, "ConstantValue"))
     {
       continue;
+    }
+    else if (!strcmp(type, "SourceFile"))
+    {
+      continue;
+    }
+    else
+    {
+      free(attribute->unknown.info);
     }
   }
   free(attributes);
