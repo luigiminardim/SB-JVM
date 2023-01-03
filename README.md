@@ -12,6 +12,7 @@ arquivo.
 - g++ 11.3.0
 - make 4.3
 - cppcheck 2.7 ou maior
+- valgrind 3.19.0 ou maior
 
 ## Como executar
 
@@ -57,6 +58,7 @@ Em sistemas Linux:
 
 ```sh
 sudo apt install cppcheck
+sudo apt install valgrind
 ```
 
 Em sistemas Windows o seguinte
