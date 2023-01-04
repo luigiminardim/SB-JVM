@@ -52,7 +52,7 @@ o Catch2, acesse o [repositório oficial](https://github.com/catchorg/Catch2).
 Caso seja necessário adicionar arquivos com dados necessários para os testes,
 você pode adicioná-los dentro da pasta `assets`.
 
-### Análise Estática
+### Análise Estática e Dinâmica
 
 #### Instalação
 
@@ -74,4 +74,10 @@ Para realizar uma análise estática basta executar:
 
 ```sh
 make lint
+```
+
+Para realizar uma análise dinâmica basta executar:
+
+```sh
+make valgrind file="path para .class"
 ```
