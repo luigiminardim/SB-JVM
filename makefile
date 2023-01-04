@@ -26,7 +26,7 @@ build: $(TARGET)
 
 .PHONY: run
 run: $(TARGET)
-	./$(TARGET) $(VAR)
+	@./$(TARGET) $(file) | json_reformat
 
 .PHONY: test
 test: build/test.exe
@@ -46,7 +46,7 @@ lint:
 
 .PHONY: valgrind
 valgrind:
-	@$(VALGRIND) $(TARGET) $(VAR)
+	@$(VALGRIND) $(TARGET) $(file)
 
 # Build Rules
 
