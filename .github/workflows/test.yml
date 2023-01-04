@@ -11,6 +11,10 @@ jobs:
     steps:
     - name: Clone code
       uses: actions/checkout@v2
+    - name: Install Valgrind
+      run: sudo apt install valgrind --yes
+    - name: Install json_reformat
+      run: sudo apt install yajl-tools --yes
     - name: Test
       run: make test
 
