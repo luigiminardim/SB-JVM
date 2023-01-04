@@ -13,6 +13,7 @@ arquivo.
 - make 4.3
 - cppcheck 2.7 ou maior
 - valgrind 3.19.0 ou maior
+- yajl-tools
 
 ## Como executar
 
@@ -26,10 +27,11 @@ formato JSON.
 ### Exemplo
 
 ```bash
-make
-./build/sb.exe ./assets/test-class/SimpleClass.class
-
-> {__cls:"Class",magic_number:CAFEBABE ...
+make run file="assets/test-class/SimpleClass.class"
+> {
+    "__cls": "ClassFile",
+    "magic_number": "0xCAFEBABE",
+    ...
 ```
 
 ## Como contribuir
@@ -59,6 +61,7 @@ Em sistemas Linux:
 ```sh
 sudo apt install cppcheck
 sudo apt install valgrind
+sudo apt install yajl-tools
 ```
 
 Em sistemas Windows o seguinte
