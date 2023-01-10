@@ -15,7 +15,7 @@ ConstantMethodrefInfo ConstantMethodrefInfo_read(FILE *fp)
 char *ConstantMethodrefInfo_to_string(ConstantMethodrefInfo cfi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantMethodrefInfo\",\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cfi.class_index, cfi.name_and_type_index);
+  sprintf(s, "{\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cfi.class_index, cfi.name_and_type_index);
   return s;
 };
 
@@ -32,7 +32,7 @@ ConstantFieldrefInfo ConstantFieldrefInfo_read(FILE *fp)
 char *ConstantFieldrefInfo_to_string(ConstantFieldrefInfo cfi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantFieldrefInfo\",\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cfi.class_index, cfi.name_and_type_index);
+  sprintf(s, "{\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cfi.class_index, cfi.name_and_type_index);
   return s;
 };
 
@@ -51,7 +51,7 @@ ConstantFloatInfo ConstantFloatInfo_read(FILE *fp)
 char *ConstantFloatInfo_to_string(ConstantFloatInfo cfi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantFloatInfo\",\"bytes\":%f}", cfi.bytes);
+  sprintf(s, "{\"bytes\":%f}", cfi.bytes);
   return s;
 };
 
@@ -69,7 +69,7 @@ ConstantLongInfo ConstantLongInfo_read(FILE *fp)
 char *ConstantLongInfo_to_string(ConstantLongInfo cfi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantLongInfo\",\"bytes\":%ld}", cfi.bytes);
+  sprintf(s, "{\"bytes\":%ld}", cfi.bytes);
   return s;
 };
 
@@ -89,7 +89,7 @@ ConstantDoubleInfo ConstantDoubleInfo_read(FILE *fp)
 char *ConstantDoubleInfo_to_string(ConstantDoubleInfo cfi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantDoubleInfo\",\"bytes\":%f}", cfi.bytes);
+  sprintf(s, "{\"bytes\":%f}", cfi.bytes);
   return s;
 };
 
@@ -105,7 +105,7 @@ ConstantStringInfo ConstantStringInfo_read(FILE *fp)
 char *ConstantStringInfo_to_string(ConstantStringInfo csi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantStringInfo\",\"string_index\":\"#%d\"}", csi.string_index);
+  sprintf(s, "{\"string_index\":\"#%d\"}", csi.string_index);
   return s;
 };
 
@@ -121,7 +121,7 @@ ConstantClassInfo ConstantClassInfo_read(FILE *fp)
 char *ConstantClassInfo_to_string(ConstantClassInfo cci)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantClassInfo\",\"name_index\":\"#%d\"}", cci.name_index);
+  sprintf(s, "{\"name_index\":\"#%d\"}", cci.name_index);
   return s;
 };
 
@@ -138,7 +138,7 @@ ConstantInterfaceMethodrefInfo ConstantInterfaceMethodrefInfo_read(FILE *fp)
 char *ConstantInterfaceMethodrefInfo_to_string(ConstantInterfaceMethodrefInfo cimi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantInterfaceMethodrefInfo\",\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cimi.class_index, cimi.name_and_type_index);
+  sprintf(s, "{\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cimi.class_index, cimi.name_and_type_index);
   return s;
 };
 
@@ -157,7 +157,7 @@ ConstantUtf8Info ConstantUtf8Info_read(FILE *fp)
 char *ConstantUtf8Info_to_string(ConstantUtf8Info cui)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantUtf8Info\",\"length\":%d,\"bytes\":\"%s\"}", cui.length, cui.bytes);
+  sprintf(s, "{\"length\":%d,\"bytes\":\"%s\"}", cui.length, cui.bytes);
   return s;
 };
 
@@ -173,7 +173,7 @@ ConstantIntegerInfo ConstantIntegerInfo_read(FILE *fp)
 char *ConstantIntegerInfo_to_string(ConstantIntegerInfo cii)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantIntegerInfo\",\"bytes\":%d}", cii.bytes);
+  sprintf(s, "{\"bytes\":%d}", cii.bytes);
   return s;
 };
 
@@ -190,7 +190,7 @@ ConstantNameAndTypeInfo ConstantNameAndTypeInfo_read(FILE *fp)
 char *ConstantNameAndTypeInfo_to_string(ConstantNameAndTypeInfo cti)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"__cls\":\"ConstantNameAndTypeInfo\",\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\"}", cti.name_index, cti.descriptor_index);
+  sprintf(s, "{\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\"}", cti.name_index, cti.descriptor_index);
   return s;
 };
 
@@ -306,7 +306,7 @@ ConstantPool ConstantPool_read(FILE *fp, u2 constant_pool_count)
 char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count)
 {
   char *cp_string = (char *)malloc(1000000);
-  snprintf(cp_string, 1000000, "{\"__cls\":\"ConstantPool\",");
+  snprintf(cp_string, 1000000, "{");
   for (int i = 1; i < constant_pool_count; i++)
   {
     char *ci_string = CpInfo_to_string(cp[i]);
@@ -324,14 +324,17 @@ char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count)
   return cp_string;
 }
 
-
-void ConstantPool_free(ConstantPool cp, u2 constant_pool_count) {
+void ConstantPool_free(ConstantPool cp, u2 constant_pool_count)
+{
 
   for (int i = 1; i < constant_pool_count; i++)
   {
-    if (cp[i].tag == CONSTANT_UTF8){
+    if (cp[i].tag == CONSTANT_UTF8)
+    {
       free(cp[i].constant_utf8_info.bytes);
-    } else if (cp[i].tag == CONSTANT_LONG || cp[i].tag == CONSTANT_DOUBLE){
+    }
+    else if (cp[i].tag == CONSTANT_LONG || cp[i].tag == CONSTANT_DOUBLE)
+    {
       i++;
     }
   }
