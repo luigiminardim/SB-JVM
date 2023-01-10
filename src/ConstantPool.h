@@ -104,4 +104,6 @@ ConstantPool ConstantPool_read(FILE *fp, u2 constant_pool_count);
 
 char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count);
 
+char *ConstantPool_get_utf8(ConstantPool cp, u2 index);
+
 void ConstantPool_free(ConstantPool cp, u2 constant_pool_count);

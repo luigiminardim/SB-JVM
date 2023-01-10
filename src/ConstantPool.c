@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "ConstantPool.h"
+#include <string.h>
 
-// ConstantMethodrefInfo ///////////////////////////////////////////////////////////////////////////
-
+// ConstantMethodrefInfo ///////////////////////////////////////////////////////
 ConstantMethodrefInfo ConstantMethodrefInfo_read(FILE *fp)
 {
   ConstantMethodrefInfo cfi;
@@ -12,15 +12,33 @@ ConstantMethodrefInfo ConstantMethodrefInfo_read(FILE *fp)
   return cfi;
 };
 
-char *ConstantMethodrefInfo_to_string(ConstantMethodrefInfo cfi)
+char *ConstantMethodrefInfo_get_utf8(ConstantMethodrefInfo cfi, ConstantPool cp)
+{
+  char *class_string = ConstantPool_get_utf8(cp, cfi.class_index);
+  char *name_and_type_string = ConstantPool_get_utf8(cp, cfi.name_and_type_index);
+  char *s = (char *)malloc(256);
+  snprintf(s, 256, "%s.%s", class_string, name_and_type_string);
+  free(class_string);
+  free(name_and_type_string);
+  return s;
+}
+
+char *ConstantMethodrefInfo_to_string(ConstantMethodrefInfo cfi, ConstantPool cp)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cfi.class_index, cfi.name_and_type_index);
+  char *class_string = ConstantPool_get_utf8(cp, cfi.class_index);
+  char *name_and_type_string = ConstantPool_get_utf8(cp, cfi.name_and_type_index);
+  snprintf(
+      s, 256,
+      "{\"class_index\":\"#%d // %s \",\"name_and_type_index\":\"#%d // %s\"}",
+      cfi.class_index, class_string, cfi.name_and_type_index,
+      name_and_type_string);
+  free(class_string);
+  free(name_and_type_string);
   return s;
 };
 
-// ConstantFieldrefInfo ////////////////////////////////////////////////////////////////////////////
-
+// ConstantFieldrefInfo ////////////////////////////////////////////////////////
 ConstantFieldrefInfo ConstantFieldrefInfo_read(FILE *fp)
 {
   ConstantFieldrefInfo cfi;
@@ -29,15 +47,37 @@ ConstantFieldrefInfo ConstantFieldrefInfo_read(FILE *fp)
   return cfi;
 };
 
-char *ConstantFieldrefInfo_to_string(ConstantFieldrefInfo cfi)
+char *ConstantFieldrefInfo_get_utf8(ConstantFieldrefInfo cfi, ConstantPool cp)
+{
+  char *class_string = ConstantPool_get_utf8(cp, cfi.class_index);
+  char *name_and_type_string = ConstantPool_get_utf8(
+      cp, cfi.name_and_type_index);
+  char *s = (char *)malloc(256);
+  snprintf(
+      s, 256,
+      "%s.%s", class_string, name_and_type_string);
+  free(class_string);
+  free(name_and_type_string);
+  return s;
+}
+
+char *ConstantFieldrefInfo_to_string(ConstantFieldrefInfo cfi, ConstantPool cp)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cfi.class_index, cfi.name_and_type_index);
+  char *class_string = ConstantPool_get_utf8(cp, cfi.class_index);
+  char *name_and_type_string = ConstantPool_get_utf8(
+      cp, cfi.name_and_type_index);
+  snprintf(
+      s, 256,
+      "{\"class_index\":\"#%d // %s\",\"name_and_type_index\":\"#%d // %s\"}",
+      cfi.class_index, class_string, cfi.name_and_type_index,
+      name_and_type_string);
+  free(class_string);
+  free(name_and_type_string);
   return s;
 };
 
-// ConstantFloatInfo ///////////////////////////////////////////////////////////////////////////////
-
+// ConstantFloatInfo ///////////////////////////////////////////////////////////
 ConstantFloatInfo ConstantFloatInfo_read(FILE *fp)
 {
   ConstantFloatInfo cfi;
@@ -48,15 +88,21 @@ ConstantFloatInfo ConstantFloatInfo_read(FILE *fp)
   return cfi;
 };
 
+char *ConstantFloatInfo_get_utf8(ConstantFloatInfo cfi)
+{
+  char *s = (char *)malloc(256);
+  sprintf(s, "%f", cfi.bytes);
+  return s;
+}
+
 char *ConstantFloatInfo_to_string(ConstantFloatInfo cfi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"bytes\":%f}", cfi.bytes);
+  sprintf(s, "{\"float\":%f}", cfi.bytes);
   return s;
 };
 
-// ConstantLongInfo ////////////////////////////////////////////////////////////////////////////////
-
+// ConstantLongInfo ////////////////////////////////////////////////////////////
 ConstantLongInfo ConstantLongInfo_read(FILE *fp)
 {
   ConstantLongInfo cfi;
@@ -66,15 +112,21 @@ ConstantLongInfo ConstantLongInfo_read(FILE *fp)
   return cfi;
 };
 
-char *ConstantLongInfo_to_string(ConstantLongInfo cfi)
+char *ConstantLongInfo_get_utf8(ConstantLongInfo cfi)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"bytes\":%ld}", cfi.bytes);
+  sprintf(s, "%ld", cfi.bytes);
   return s;
 };
 
-// ConstantDoubleInfo //////////////////////////////////////////////////////////////////////////////
+char *ConstantLongInfo_to_string(ConstantLongInfo cfi)
+{
+  char *s = (char *)malloc(256);
+  sprintf(s, "{\"long\":%ld}", cfi.bytes);
+  return s;
+};
 
+// ConstantDoubleInfo //////////////////////////////////////////////////////////
 ConstantDoubleInfo ConstantDoubleInfo_read(FILE *fp)
 {
   ConstantDoubleInfo cfi;
@@ -86,6 +138,13 @@ ConstantDoubleInfo ConstantDoubleInfo_read(FILE *fp)
   return cfi;
 };
 
+char *ConstantDoubleInfo_get_utf8(ConstantDoubleInfo cfi)
+{
+  char *s = (char *)malloc(256);
+  sprintf(s, "%f", cfi.bytes);
+  return s;
+}
+
 char *ConstantDoubleInfo_to_string(ConstantDoubleInfo cfi)
 {
   char *s = (char *)malloc(256);
@@ -93,8 +152,7 @@ char *ConstantDoubleInfo_to_string(ConstantDoubleInfo cfi)
   return s;
 };
 
-// ConstantStringInfo //////////////////////////////////////////////////////////////////////////////
-
+// ConstantStringInfo //////////////////////////////////////////////////////////
 ConstantStringInfo ConstantStringInfo_read(FILE *fp)
 {
   ConstantStringInfo csi;
@@ -102,15 +160,21 @@ ConstantStringInfo ConstantStringInfo_read(FILE *fp)
   return csi;
 };
 
-char *ConstantStringInfo_to_string(ConstantStringInfo csi)
+char *ConstantStringInfo_get_utf8(ConstantStringInfo csi, ConstantPool cp)
+{
+  return ConstantPool_get_utf8(cp, csi.string_index);
+}
+
+char *ConstantStringInfo_to_string(ConstantStringInfo csi, ConstantPool cp)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"string_index\":\"#%d\"}", csi.string_index);
+  char *utf8 = ConstantPool_get_utf8(cp, csi.string_index);
+  sprintf(s, "{\"string_index\":\"#%d // %s\"}", csi.string_index, utf8);
+  free(utf8);
   return s;
 };
 
-// ConstantClassInfo ///////////////////////////////////////////////////////////////////////////////
-
+// ConstantClassInfo ///////////////////////////////////////////////////////////
 ConstantClassInfo ConstantClassInfo_read(FILE *fp)
 {
   ConstantClassInfo cci;
@@ -118,15 +182,21 @@ ConstantClassInfo ConstantClassInfo_read(FILE *fp)
   return cci;
 };
 
-char *ConstantClassInfo_to_string(ConstantClassInfo cci)
+char *ConstantClassInfo_to_string(ConstantClassInfo cci, ConstantPool cp)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"name_index\":\"#%d\"}", cci.name_index);
+  char *name_utf8 = ConstantPool_get_utf8(cp, cci.name_index);
+  sprintf(s, "{\"name_index\":\"#%d // %s\"}", cci.name_index, name_utf8);
+  free(name_utf8);
   return s;
 };
 
-// ConstantInterfaceMethodrefInfo //////////////////////////////////////////////////////////////////
+char *ConstantClassInfo_get_utf8(ConstantClassInfo cci, ConstantPool cp)
+{
+  return ConstantPool_get_utf8(cp, cci.name_index);
+}
 
+// ConstantInterfaceMethodrefInfo //////////////////////////////////////////////
 ConstantInterfaceMethodrefInfo ConstantInterfaceMethodrefInfo_read(FILE *fp)
 {
   ConstantInterfaceMethodrefInfo cimi;
@@ -135,15 +205,37 @@ ConstantInterfaceMethodrefInfo ConstantInterfaceMethodrefInfo_read(FILE *fp)
   return cimi;
 };
 
-char *ConstantInterfaceMethodrefInfo_to_string(ConstantInterfaceMethodrefInfo cimi)
+char *ConstantInterfaceMethodrefInfo_get_utf8(
+    ConstantInterfaceMethodrefInfo cimi, ConstantPool cp)
+{
+  char *class_utf8 = ConstantPool_get_utf8(cp, cimi.class_index);
+  char *name_and_type_utf8 = ConstantPool_get_utf8(
+      cp, cimi.name_and_type_index);
+  char *s = (char *)malloc(256);
+  sprintf(s, "%s.%s", class_utf8, name_and_type_utf8);
+  free(class_utf8);
+  free(name_and_type_utf8);
+  return s;
+}
+
+char *ConstantInterfaceMethodrefInfo_to_string(
+    ConstantInterfaceMethodrefInfo cimi, ConstantPool cp)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"class_index\":\"#%d\",\"name_and_type_index\":\"#%d\"}", cimi.class_index, cimi.name_and_type_index);
+  char *class_string = ConstantPool_get_utf8(cp, cimi.class_index);
+  char *name_and_type_string = ConstantPool_get_utf8(
+      cp, cimi.name_and_type_index);
+  snprintf(
+      s, 256,
+      "{\"class_index\":\"#%d // %s\",\"name_and_type_index\":\"#%d // %s\"}",
+      cimi.class_index, class_string, cimi.name_and_type_index,
+      name_and_type_string);
+  free(class_string);
+  free(name_and_type_string);
   return s;
 };
 
-// ConstantUtf8Info ////////////////////////////////////////////////////////////////////////////////
-
+// ConstantUtf8Info ////////////////////////////////////////////////////////////
 ConstantUtf8Info ConstantUtf8Info_read(FILE *fp)
 {
   ConstantUtf8Info cui;
@@ -161,8 +253,14 @@ char *ConstantUtf8Info_to_string(ConstantUtf8Info cui)
   return s;
 };
 
-// ConstantIntegerInfo /////////////////////////////////////////////////////////////////////////////
+char *ConstantUtf8Info_get_utf8(ConstantUtf8Info cui, ConstantPool cp)
+{
+  char *s = (char *)malloc(cui.length + 1);
+  strcpy(s, cui.bytes);
+  return s;
+}
 
+// ConstantIntegerInfo /////////////////////////////////////////////////////////
 ConstantIntegerInfo ConstantIntegerInfo_read(FILE *fp)
 {
   ConstantIntegerInfo cii;
@@ -170,15 +268,21 @@ ConstantIntegerInfo ConstantIntegerInfo_read(FILE *fp)
   return cii;
 };
 
-char *ConstantIntegerInfo_to_string(ConstantIntegerInfo cii)
+char *ConstantIntegerInfo_get_utf8(ConstantIntegerInfo cii)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"bytes\":%d}", cii.bytes);
+  sprintf(s, "%d", cii.bytes);
   return s;
 };
 
-// ConstantNameAndTypeInfo /////////////////////////////////////////////////////////////////////////
+char *ConstantIntegerInfo_to_string(ConstantIntegerInfo cii)
+{
+  char *s = (char *)malloc(256);
+  sprintf(s, "{\"integer\":%d}", cii.bytes);
+  return s;
+};
 
+// ConstantNameAndTypeInfo /////////////////////////////////////////////////////
 ConstantNameAndTypeInfo ConstantNameAndTypeInfo_read(FILE *fp)
 {
   ConstantNameAndTypeInfo cti;
@@ -187,15 +291,34 @@ ConstantNameAndTypeInfo ConstantNameAndTypeInfo_read(FILE *fp)
   return cti;
 };
 
-char *ConstantNameAndTypeInfo_to_string(ConstantNameAndTypeInfo cti)
+char *ConstantNameAndTypeInfo_get_utf8(
+    ConstantNameAndTypeInfo cti, ConstantPool cp)
 {
   char *s = (char *)malloc(256);
-  sprintf(s, "{\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\"}", cti.name_index, cti.descriptor_index);
+  char *name_utf8 = ConstantPool_get_utf8(cp, cti.name_index);
+  char *descriptor_utf8 = ConstantPool_get_utf8(cp, cti.descriptor_index);
+  sprintf(s, "%s:%s", name_utf8, descriptor_utf8);
+  free(name_utf8);
+  free(descriptor_utf8);
   return s;
 };
 
-// CpInfo //////////////////////////////////////////////////////////////////////////////////////////
+char *ConstantNameAndTypeInfo_to_string(
+    ConstantNameAndTypeInfo cti, ConstantPool cp)
+{
+  char *s = (char *)malloc(256);
+  char *name_utf8 = ConstantPool_get_utf8(cp, cti.name_index);
+  char *descriptor_utf8 = ConstantPool_get_utf8(cp, cti.descriptor_index);
+  snprintf(
+      s, 256,
+      "{\"name_index\":\"#%d // %s\",\"descriptor_index\":\"#%d // %s\"}",
+      cti.name_index, name_utf8, cti.descriptor_index, descriptor_utf8);
+  free(name_utf8);
+  free(descriptor_utf8);
+  return s;
+};
 
+// CpInfo //////////////////////////////////////////////////////////////////////
 CpInfo CpInfo_read(FILE *fp)
 {
   CpInfo ci;
@@ -224,7 +347,8 @@ CpInfo CpInfo_read(FILE *fp)
     ci.constant_class_info = ConstantClassInfo_read(fp);
     break;
   case CONSTANT_INTERFACE_METHOD_REF:
-    ci.constant_interface_methodref_info = ConstantInterfaceMethodrefInfo_read(fp);
+    ci.constant_interface_methodref_info =
+        ConstantInterfaceMethodrefInfo_read(fp);
     break;
   case CONSTANT_UTF8:
     ci.constant_utf8_info = ConstantUtf8Info_read(fp);
@@ -241,16 +365,16 @@ CpInfo CpInfo_read(FILE *fp)
   return ci;
 }
 
-char *CpInfo_to_string(CpInfo ci)
+char *CpInfo_to_string(CpInfo ci, ConstantPool cp)
 {
   char *s;
   switch (ci.tag)
   {
   case CONSTANT_METHODREF:
-    s = ConstantMethodrefInfo_to_string(ci.constant_methodref_info);
+    s = ConstantMethodrefInfo_to_string(ci.constant_methodref_info, cp);
     break;
   case CONSTANT_FIELDREF:
-    s = ConstantFieldrefInfo_to_string(ci.constant_fieldref_info);
+    s = ConstantFieldrefInfo_to_string(ci.constant_fieldref_info, cp);
     break;
   case CONSTANT_FLOAT:
     s = ConstantFloatInfo_to_string(ci.constant_float_info);
@@ -262,13 +386,14 @@ char *CpInfo_to_string(CpInfo ci)
     s = ConstantDoubleInfo_to_string(ci.constant_double_info);
     break;
   case CONSTANT_STRING:
-    s = ConstantStringInfo_to_string(ci.constant_string_info);
+    s = ConstantStringInfo_to_string(ci.constant_string_info, cp);
     break;
   case CONSTANT_CLASS:
-    s = ConstantClassInfo_to_string(ci.constant_class_info);
+    s = ConstantClassInfo_to_string(ci.constant_class_info, cp);
     break;
   case CONSTANT_INTERFACE_METHOD_REF:
-    s = ConstantInterfaceMethodrefInfo_to_string(ci.constant_interface_methodref_info);
+    s = ConstantInterfaceMethodrefInfo_to_string(
+        ci.constant_interface_methodref_info, cp);
     break;
   case CONSTANT_UTF8:
     s = ConstantUtf8Info_to_string(ci.constant_utf8_info);
@@ -277,7 +402,7 @@ char *CpInfo_to_string(CpInfo ci)
     s = ConstantIntegerInfo_to_string(ci.constant_integer_info);
     break;
   case CONSTANT_NAME_AND_TYPE:
-    s = ConstantNameAndTypeInfo_to_string(ci.constant_name_and_type_info);
+    s = ConstantNameAndTypeInfo_to_string(ci.constant_name_and_type_info, cp);
     break;
   default:
     s = (char *)malloc(256);
@@ -287,8 +412,7 @@ char *CpInfo_to_string(CpInfo ci)
   return s;
 }
 
-// ConstantPool ////////////////////////////////////////////////////////////////////////////////////
-
+// ConstantPool ////////////////////////////////////////////////////////////////
 ConstantPool ConstantPool_read(FILE *fp, u2 constant_pool_count)
 {
   ConstantPool cp = (CpInfo *)malloc((constant_pool_count + 1) * sizeof(CpInfo));
@@ -309,7 +433,7 @@ char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count)
   snprintf(cp_string, 1000000, "{");
   for (int i = 1; i < constant_pool_count; i++)
   {
-    char *ci_string = CpInfo_to_string(cp[i]);
+    char *ci_string = CpInfo_to_string(cp[i], cp);
     char *final_string = (char *)malloc(1000000);
     char comma_string = i == constant_pool_count - 1 ? '}' : ',';
     snprintf(final_string, 1000000, "%s\"#%d\":%s%c", cp_string, i, ci_string, comma_string);
@@ -322,6 +446,54 @@ char *ConstantPool_to_string(ConstantPool cp, u2 constant_pool_count)
     }
   }
   return cp_string;
+}
+
+char *ConstantPool_get_utf8(ConstantPool cp, u2 index)
+{
+  CpInfo ci = cp[index];
+  char *utf8;
+  switch (ci.tag)
+  {
+  case CONSTANT_METHODREF:
+    utf8 = ConstantMethodrefInfo_get_utf8(ci.constant_methodref_info, cp);
+    break;
+  case CONSTANT_FIELDREF:
+    utf8 = ConstantFieldrefInfo_get_utf8(ci.constant_fieldref_info, cp);
+    break;
+  case CONSTANT_FLOAT:
+    utf8 = ConstantFloatInfo_get_utf8(ci.constant_float_info);
+    break;
+  case CONSTANT_LONG:
+    utf8 = ConstantLongInfo_get_utf8(ci.constant_long_info);
+    break;
+  case CONSTANT_DOUBLE:
+    utf8 = ConstantDoubleInfo_get_utf8(ci.constant_double_info);
+    break;
+  case CONSTANT_STRING:
+    utf8 = ConstantStringInfo_get_utf8(ci.constant_string_info, cp);
+    break;
+  case CONSTANT_CLASS:
+    utf8 = ConstantClassInfo_get_utf8(ci.constant_class_info, cp);
+    break;
+  case CONSTANT_INTERFACE_METHOD_REF:
+    utf8 = ConstantInterfaceMethodrefInfo_get_utf8(
+        ci.constant_interface_methodref_info, cp);
+    break;
+  case CONSTANT_UTF8:
+    utf8 = ConstantUtf8Info_get_utf8(ci.constant_utf8_info, cp);
+    break;
+  case CONSTANT_INTEGER:
+    utf8 = ConstantIntegerInfo_get_utf8(ci.constant_integer_info);
+    break;
+  case CONSTANT_NAME_AND_TYPE:
+    utf8 = ConstantNameAndTypeInfo_get_utf8(ci.constant_name_and_type_info, cp);
+    break;
+  default:
+    utf8 = (char *)malloc(16);
+    snprintf(utf8, 16, "null");
+    break;
+  }
+  return utf8;
 }
 
 void ConstantPool_free(ConstantPool cp, u2 constant_pool_count)
