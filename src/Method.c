@@ -43,12 +43,21 @@ char *MethodInfo_to_string(MethodInfo *method_infos, u2 methods_count, ConstantP
     char *attributes_str = AttributeInfo_to_string(
         method_info->attributes, method_info->attributes_count, constant_pool);
     char comma = method_info == method_infos + methods_count - 1 ? ']' : ',';
+    char *name_utf8 = ConstantPool_get_utf8(
+        constant_pool, method_info->name_index);
+    char *descriptor_utf8 = ConstantPool_get_utf8(
+        constant_pool, method_info->descriptor_index);
     snprintf(
         tmp, 65536,
-        "%s{\"access_flags\":\"0x%X\",\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\", \"attributes_count\":%d,\"attributes\":%s}%c",
+        "%s{\"access_flags\":\"0x%X\",\"name_index\":\"#%d // %s\","
+        "\"descriptor_index\":\"#%d // %s\", \"attributes_count\":%d,"
+        "\"attributes\":%s}%c",
         methods_string, method_info->access_flags, method_info->name_index,
-        method_info->descriptor_index, method_info->attributes_count, attributes_str, comma);
+        name_utf8, method_info->descriptor_index, descriptor_utf8,
+        method_info->attributes_count, attributes_str, comma);
     free(attributes_str);
+    free(name_utf8);
+    free(descriptor_utf8);
     free(methods_string);
     methods_string = tmp;
   }

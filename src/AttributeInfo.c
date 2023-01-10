@@ -11,13 +11,17 @@ ConstantValueAttribute ConstantValueAttribute_read(FILE *fp)
   return constant_value_attribute;
 }
 
-char *ConstantValueAttribute_to_string(ConstantValueAttribute constant_value_attribute, ConstantPool constant_pool)
+char *ConstantValueAttribute_to_string(
+    ConstantValueAttribute constant_value_attribute, ConstantPool constant_pool)
 {
   char *str = (char *)malloc(100 * sizeof(char));
+  char *constant_value_utf8 = ConstantPool_get_utf8(
+      constant_pool, constant_value_attribute.constantvalue_index);
   snprintf(
       str, 100,
-      "\"constantvalue_index\":\"#%d\"",
-      constant_value_attribute.constantvalue_index);
+      "\"constantvalue_index\":\"#%d // %s\"",
+      constant_value_attribute.constantvalue_index, constant_value_utf8);
+  free(constant_value_utf8);
   return str;
 }
 
@@ -179,10 +183,18 @@ SourceFileAttribute SourceFileAttribute_read(FILE *fp)
   return source_file_attribute;
 }
 
-char *SourceFileAttribute_to_string(SourceFileAttribute source_file_attribute)
+char *SourceFileAttribute_to_string(
+    SourceFileAttribute source_file_attribute,
+    ConstantPool constant_pool)
 {
   char *str = (char *)malloc(256 * sizeof(char));
-  snprintf(str, 256, "\"sourcefile_index\":\"#%d\"", source_file_attribute.sourcefile_index);
+  char *sourcefile_utf8 = ConstantPool_get_utf8(
+      constant_pool, source_file_attribute.sourcefile_index);
+  snprintf(
+      str, 256,
+      "\"sourcefile_index\":\"#%d // %s\"",
+      source_file_attribute.sourcefile_index, sourcefile_utf8);
+  free(sourcefile_utf8);
   return str;
 }
 
@@ -321,19 +333,23 @@ char *AttributeInfo_to_string(
     }
     else if (!strcmp(type, "SourceFile"))
     {
-      str_union = SourceFileAttribute_to_string(attribute->source_file);
+      str_union = SourceFileAttribute_to_string(
+          attribute->source_file, constant_pool);
     }
     else
     {
       str_union = UnknownAttribute_to_string(attribute->unknown, attribute->attribute_length);
     }
     char separator = attribute == attribute_infos + attributes_count - 1 ? ']' : ',';
+    char *attribute_name_utf8 = ConstantPool_get_utf8(
+        constant_pool, attribute->attribute_name_index);
     snprintf(
         str_temp, 65536,
-        "%s{\"attribute_name_index\":\"#%d\",\"attribute_lenght\":%d,%s}%c",
-        str, attribute->attribute_name_index, attribute->attribute_length, str_union,
-        separator);
+        "%s{\"attribute_name_index\":\"#%d // %s\",\"attribute_lenght\":%d,%s}%c",
+        str, attribute->attribute_name_index, attribute_name_utf8,
+        attribute->attribute_length, str_union, separator);
     free(str_union);
+    free(attribute_name_utf8);
     free(str);
     str = str_temp;
   }

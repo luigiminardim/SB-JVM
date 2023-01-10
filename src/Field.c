@@ -45,11 +45,20 @@ char *FieldInfo_to_string(FieldInfo *field_infos, u2 fields_count, ConstantPool 
         field_info->attributes, field_info->attributes_count, constant_pool);
     char separator = field_info == field_infos + fields_count - 1 ? ']' : ',';
     char *str_temp = (char *)malloc(65536 * sizeof(char));
+    char *name_utf8 = ConstantPool_get_utf8(
+        constant_pool, field_info->name_index);
+    char *descriptor_utf8 = ConstantPool_get_utf8(
+        constant_pool, field_info->descriptor_index);
     snprintf(
         str_temp, 65536,
-        "%s{\"access_flags\": \"0x%X\",\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\",\"attributes_count\":%d,\"attributes\":%s}%c",
-        str, field_info->access_flags, field_info->name_index, field_info->descriptor_index,
-        field_info->attributes_count, attribute_info_str, separator);
+        "%s{\"access_flags\": \"0x%X\",\"name_index\":\"#%d // %s\","
+        "\"descriptor_index\":\"#%d // %s\",\"attributes_count\":%d,"
+        "\"attributes\":%s}%c",
+        str, field_info->access_flags, field_info->name_index, name_utf8,
+        field_info->descriptor_index, descriptor_utf8, field_info->attributes_count,
+        attribute_info_str, separator);
+    free(name_utf8);
+    free(descriptor_utf8);
     free(attribute_info_str);
     free(str);
     str = str_temp;
