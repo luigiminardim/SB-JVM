@@ -47,7 +47,7 @@ char *FieldInfo_to_string(FieldInfo *field_infos, u2 fields_count, ConstantPool 
     char *str_temp = (char *)malloc(65536 * sizeof(char));
     snprintf(
         str_temp, 65536,
-        "%s{\"__cls\":\"FieldInfo\",\"access_flags\": \"0x%X\",\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\",\"attributes_count\":%d,\"attributes\":%s}%c",
+        "%s{\"access_flags\": \"0x%X\",\"name_index\":\"#%d\",\"descriptor_index\":\"#%d\",\"attributes_count\":%d,\"attributes\":%s}%c",
         str, field_info->access_flags, field_info->name_index, field_info->descriptor_index,
         field_info->attributes_count, attribute_info_str, separator);
     free(attribute_info_str);
