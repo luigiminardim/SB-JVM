@@ -4,6 +4,7 @@
 #include "java-bytes.h"
 #include <stdio.h>  // sprintf
 #include <stdlib.h> // malloc
+#include <string.h> // strcpy
 
 ClassFile ClassFile_read(FILE *fp)
 {
@@ -31,6 +32,74 @@ ClassFile ClassFile_read(FILE *fp)
   return c;
 }
 
+char *ClassFile_major_version_to_string(u2 major_version)
+{
+  char *version_string = (char *)malloc(100);
+  switch (major_version)
+  {
+  case 45:
+    strcpy(version_string, "1.1");
+    break;
+  case 46:
+    strcpy(version_string, "1.2");
+    break;
+  case 47:
+    strcpy(version_string, "1.3");
+    break;
+  case 48:
+    strcpy(version_string, "1.4");
+    break;
+  case 49:
+    strcpy(version_string, "1.5");
+    break;
+  case 50:
+    strcpy(version_string, "1.6");
+    break;
+  case 51:
+    strcpy(version_string, "1.7");
+    break;
+  case 52:
+    strcpy(version_string, "1.8");
+    break;
+  case 53:
+    strcpy(version_string, "1.9");
+    break;
+  case 54:
+    strcpy(version_string, "1.10");
+    break;
+  case 55:
+    strcpy(version_string, "1.11");
+    break;
+  case 56:
+    strcpy(version_string, "1.12");
+    break;
+  case 57:
+    strcpy(version_string, "1.13");
+    break;
+  case 58:
+    strcpy(version_string, "1.14");
+    break;
+  case 59:
+    strcpy(version_string, "1.15");
+    break;
+  case 60:
+    strcpy(version_string, "1.16");
+    break;
+  case 61:
+    strcpy(version_string, "1.17");
+    break;
+  case 62:
+    strcpy(version_string, "1.18");
+    break;
+  case 63:
+    strcpy(version_string, "1.19");
+    break;
+  default:
+    strcpy(version_string, "unknown");
+  }
+  return version_string;
+}
+
 char *ClassFile_intefarces_to_string(ClassFile c)
 {
   char *interfaces_string = (char *)malloc(1000);
@@ -53,18 +122,31 @@ char *ClassFile_intefarces_to_string(ClassFile c)
 char *ClassFile_to_string(ClassFile c)
 {
   char *class_file_string = (char *)malloc(1000000);
-  char *constant_pool_string = ConstantPool_to_string(c.constant_pool, c.constant_pool_count);
+  char *major_version_string = ClassFile_major_version_to_string(
+      c.major_version);
+  char *constant_pool_string = ConstantPool_to_string(
+      c.constant_pool, c.constant_pool_count);
   char *interfaces_string = ClassFile_intefarces_to_string(c);
-  char *fields_string = FieldInfo_to_string(c.fields, c.fields_count, c.constant_pool);
-  char *methods_string = MethodInfo_to_string(c.methods, c.methods_count, c.constant_pool);
-  char *attributes_string = AttributeInfo_to_string(c.attributes, c.attributes_count, c.constant_pool);
+  char *fields_string = FieldInfo_to_string(
+      c.fields, c.fields_count, c.constant_pool);
+  char *methods_string = MethodInfo_to_string(
+      c.methods, c.methods_count, c.constant_pool);
+  char *attributes_string = AttributeInfo_to_string(
+      c.attributes, c.attributes_count, c.constant_pool);
   snprintf(
       class_file_string, 1000000,
-      "{\"__cls\":\"ClassFile\",\"magic_number\":\"0x%X\",\"minor_version\":%d,\"major_version\":%d,\"constant_pool_count\":%d,\"constant_pool\":%s,\"access_flags\":%d,\"this_class\":\"#%d\",\"super_class\":\"#%d\",\"interfaces_count\":%d,\"interfaces\":%s,\"fields_count\":%d,\"fields\":%s,\"methods_count\":%d,\"methods\":%s,\"attributes_count\":%d,\"attributes\":%s}",
-      c.magic_number, c.minor_version, c.major_version, c.constant_pool_count, constant_pool_string,
-      c.access_flags, c.this_class, c.super_class, c.interfaces_count, interfaces_string,
-      c.fields_count, fields_string, c.methods_count, methods_string, c.attributes_count,
+      "{\"magic_number\":\"0x%X\",\"minor_version\":%d,"
+      "\"major_version\":\"%d [%s]\",\"constant_pool_count\":%d,"
+      "\"constant_pool\":%s,\"access_flags\":%d,\"this_class\":\"#%d\","
+      "\"super_class\":\"#%d\",\"interfaces_count\":%d,\"interfaces\":%s,"
+      "\"fields_count\":%d,\"fields\":%s,\"methods_count\":%d,\"methods\":%s,"
+      "\"attributes_count\":%d,\"attributes\":%s}",
+      c.magic_number, c.minor_version, c.major_version, major_version_string,
+      c.constant_pool_count, constant_pool_string, c.access_flags, c.this_class,
+      c.super_class, c.interfaces_count, interfaces_string, c.fields_count,
+      fields_string, c.methods_count, methods_string, c.attributes_count,
       attributes_string);
+  free(major_version_string);
   free(constant_pool_string);
   free(interfaces_string);
   free(fields_string);
