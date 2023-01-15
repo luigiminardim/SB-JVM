@@ -100,6 +100,30 @@ char *ClassFile_major_version_to_string(u2 major_version)
   return version_string;
 }
 
+char *ClassFile_access_flags_to_string(u2 access_flags)
+{
+  const char *acc_public_string = access_flags & 0x0001 ? "public " : "";
+  const char *acc_final_string = access_flags & 0x0010 ? "final " : "";
+  const char *acc_super_string = access_flags & 0x0020 ? "super " : "";
+  const char *acc_interface_string = access_flags & 0x0200 ? "interface " : "";
+  const char *acc_abstract_string = access_flags & 0x0400 ? "abstract " : "";
+  const char *acc_synthetic_string = access_flags & 0x1000 ? "synthetic " : "";
+  const char *acc_annotation_string = access_flags & 0x2000 ? "annotation " : "";
+  const char *acc_enum_string = access_flags & 0x4000 ? "enum " : "";
+  char *access_flags_string = (char *)malloc(1024);
+  snprintf(
+      access_flags_string, 1024,
+      "%s%s%s%s%s%s%s%s",
+      acc_public_string, acc_final_string, acc_super_string,
+      acc_interface_string, acc_abstract_string, acc_synthetic_string,
+      acc_annotation_string, acc_enum_string);
+  if (strlen(access_flags_string) > 0)
+  {
+    access_flags_string[strlen(access_flags_string) - 1] = '\0'; // remove last space
+  }
+  return access_flags_string;
+}
+
 char *ClassFile_intefarces_to_string(ClassFile c)
 {
   char *interfaces_string = (char *)malloc(1000);
@@ -131,8 +155,10 @@ char *ClassFile_to_string(ClassFile c)
       c.major_version);
   char *constant_pool_string = ConstantPool_to_string(
       c.constant_pool, c.constant_pool_count);
+  char *access_flags_string = ClassFile_access_flags_to_string(c.access_flags);
   char *this_class_utf8 = ConstantPool_get_utf8(c.constant_pool, c.this_class);
-  char *super_class_utf8 = ConstantPool_get_utf8(c.constant_pool, c.super_class);
+  char *super_class_utf8 = ConstantPool_get_utf8(
+      c.constant_pool, c.super_class);
   char *interfaces_string = ClassFile_intefarces_to_string(c);
   char *fields_string = FieldInfo_to_string(
       c.fields, c.fields_count, c.constant_pool);
@@ -144,17 +170,21 @@ char *ClassFile_to_string(ClassFile c)
       class_file_string, 1000000,
       "{\"magic_number\":\"0x%X\",\"minor_version\":%d,"
       "\"major_version\":\"%d [%s]\",\"constant_pool_count\":%d,"
-      "\"constant_pool\":%s,\"access_flags\":%d,\"this_class\":\"#%d // %s\","
+      "\"constant_pool\":%s,\"access_flags\":\"0x%04X [%s]\","
+      "\"this_class\":\"#%d // %s\","
       "\"super_class\":\"#%d // %s\",\"interfaces_count\":%d,\"interfaces\":%s,"
       "\"fields_count\":%d,\"fields\":%s,\"methods_count\":%d,\"methods\":%s,"
       "\"attributes_count\":%d,\"attributes\":%s}",
-      c.magic_number, c.minor_version, c.major_version, major_version_string,
-      c.constant_pool_count, constant_pool_string, c.access_flags, c.this_class,
-      this_class_utf8, c.super_class, super_class_utf8, c.interfaces_count,
-      interfaces_string, c.fields_count, fields_string, c.methods_count,
-      methods_string, c.attributes_count, attributes_string);
+      c.magic_number, c.minor_version,
+      c.major_version, major_version_string, c.constant_pool_count,
+      constant_pool_string, c.access_flags, access_flags_string,
+      c.this_class, this_class_utf8,
+      c.super_class, super_class_utf8, c.interfaces_count, interfaces_string,
+      c.fields_count, fields_string, c.methods_count, methods_string,
+      c.attributes_count, attributes_string);
   free(major_version_string);
   free(constant_pool_string);
+  free(access_flags_string);
   free(this_class_utf8);
   free(super_class_utf8);
   free(interfaces_string);
