@@ -1,39 +1,44 @@
 #include <stdlib.h> // malloc, free
 #include <stdio.h>  // snprintf
+#include <string.h> // strcpy
 #include "Code.h"
-
-int Code_is_0_operands(Code code_entry)
-{
-  switch (code_entry.opcode)
-  {
-  case OPCODE_NOP:
-  case OPCODE_ACONST_NULL:
-  case OPCODE_ICONST_M1:
-  case OPCODE_ICONST_0:
-  case OPCODE_ICONST_1:
-  case OPCODE_ICONST_2:
-  case OPCODE_ICONST_3:
-  case OPCODE_ICONST_4:
-  case OPCODE_ICONST_5:
-  case OPCODE_LCONST_0:
-  case OPCODE_LCONST_1:
-  case OPCODE_FCONST_0:
-  case OPCODE_FCONST_1:
-  case OPCODE_FCONST_2:
-  case OPCODE_DCONST_0:
-  case OPCODE_DCONST_1:
-    return 1;
-  default:
-    return 0;
-  }
-}
 
 Code *Code_Parse(u1 *bytes, u4 code_length)
 {
   Code *code = (Code *)malloc(sizeof(Code) * code_length);
-  for (u4 i = 0; i < code_length; i++)
+  for (u4 pc = 0; pc < code_length; pc++)
   {
-    code[i].opcode = (Opcode)bytes[i];
+    code[pc].opcode = (Opcode)bytes[pc];
+    switch (code[pc].opcode)
+    {
+    // case: 0 operands
+    case OPCODE_NOP:
+    case OPCODE_ACONST_NULL:
+    case OPCODE_ICONST_M1:
+    case OPCODE_ICONST_0:
+    case OPCODE_ICONST_1:
+    case OPCODE_ICONST_2:
+    case OPCODE_ICONST_3:
+    case OPCODE_ICONST_4:
+    case OPCODE_ICONST_5:
+    case OPCODE_LCONST_0:
+    case OPCODE_LCONST_1:
+    case OPCODE_FCONST_0:
+    case OPCODE_FCONST_1:
+    case OPCODE_FCONST_2:
+    case OPCODE_DCONST_0:
+    case OPCODE_DCONST_1:
+    {
+      break;
+    }
+    // case 1 byte operands
+    case OPCODE_BIPUSH:
+    {
+      code[pc]._1byte_operands.byte = (int8_t)bytes[pc + 1];
+      pc++;
+      break;
+    }
+    }
   }
   return code;
 }
@@ -43,67 +48,65 @@ void Code_Free(Code *code, u4 code_length)
   free(code);
 }
 
-char *Code_entry_to_string(Code code_entry)
+char *Code_0_opcodes_to_string(const char *mnemonic)
 {
-  char *final_str = (char *)malloc(2048 * sizeof(char));
-  const char *str;
+  char *str = (char *)malloc(32 * sizeof(char));
+  return strcpy(str, mnemonic);
+}
+
+char *Code_1byte_operands_to_string(const char *mnemonic, int8_t byte, u4 *pc)
+{
+  char *str = (char *)malloc(256 * sizeof(char));
+  snprintf(str, 32, "%s %hhd  ", mnemonic, byte);
+  (*pc)++;
+  return str;
+}
+
+char *Code_entry_to_string(Code code_entry, u4 *pc)
+{
   switch (code_entry.opcode)
   {
   case OPCODE_NOP:
-    str = "nop";
-    break;
+    return Code_0_opcodes_to_string("nop");
   case OPCODE_ACONST_NULL:
-    str = "aconst_null";
-    break;
+    return Code_0_opcodes_to_string("aconst_null");
   case OPCODE_ICONST_M1:
-    str = "iconst_m1";
-    break;
+    return Code_0_opcodes_to_string("iconst_m1");
   case OPCODE_ICONST_0:
-    str = "iconst_0";
-    break;
+    return Code_0_opcodes_to_string("iconst_0");
   case OPCODE_ICONST_1:
-    str = "iconst_1";
-    break;
+    return Code_0_opcodes_to_string("iconst_1");
   case OPCODE_ICONST_2:
-    str = "iconst_2";
-    break;
+    return Code_0_opcodes_to_string("iconst_2");
   case OPCODE_ICONST_3:
-    str = "iconst_3";
-    break;
+    return Code_0_opcodes_to_string("iconst_3");
   case OPCODE_ICONST_4:
-    str = "iconst_4";
-    break;
+    return Code_0_opcodes_to_string("iconst_4");
   case OPCODE_ICONST_5:
-    str = "iconst_5";
-    break;
+    return Code_0_opcodes_to_string("iconst_5");
   case OPCODE_LCONST_0:
-    str = "lconst_0";
-    break;
+    return Code_0_opcodes_to_string("lconst_0");
   case OPCODE_LCONST_1:
-    str = "lconst_1";
-    break;
+    return Code_0_opcodes_to_string("lconst_1");
   case OPCODE_FCONST_0:
-    str = "fconst_0";
-    break;
+    return Code_0_opcodes_to_string("fconst_0");
   case OPCODE_FCONST_1:
-    str = "fconst_1";
-    break;
+    return Code_0_opcodes_to_string("fconst_1");
   case OPCODE_FCONST_2:
-    str = "fconst_2";
-    break;
+    return Code_0_opcodes_to_string("fconst_2");
   case OPCODE_DCONST_0:
-    str = "dconst_0";
-    break;
+    return Code_0_opcodes_to_string("dconst_0");
   case OPCODE_DCONST_1:
-    str = "dconst_1";
-    break;
+    return Code_0_opcodes_to_string("dconst_1");
+  case OPCODE_BIPUSH:
+    return Code_1byte_operands_to_string(
+        "bipush", code_entry._1byte_operands.byte, pc);
   default:
-    snprintf(final_str, 2048, "\"0x%02X\"", code_entry.opcode);
+    char *final_str = (char *)malloc(2048 * sizeof(char));
+    snprintf(final_str, 2048, "0x%02X", code_entry.opcode);
     return final_str;
     break;
   }
-  snprintf(final_str, 2048, "\"%s\"", str);
-  return final_str;
 }
 
 char *Code_to_string(Code *code, u4 code_lenght)
@@ -119,14 +122,16 @@ char *Code_to_string(Code *code, u4 code_lenght)
   {
     char *str_temp = (char *)malloc(2048 * sizeof(char));
     char separator = (pc == code_lenght - 1) ? '}' : ',';
-    char *code_entry_str = Code_entry_to_string(code[pc]);
+    u4 pc_inc = 0;
+    char *code_entry_str = Code_entry_to_string(code[pc], &pc_inc);
     snprintf(
         str_temp, 2048,
-        "%s\"%d\":%s%c",
+        "%s\"%d\":\"%s\"%c",
         str, pc, code_entry_str, separator);
     free(code_entry_str);
     free(str);
     str = str_temp;
+    pc += pc_inc;
   }
   return str;
 }
