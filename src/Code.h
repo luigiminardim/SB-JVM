@@ -1,7 +1,11 @@
 #pragma once
 
+#include <stdint.h>
 #include "java-bytes.h"
 
+/**
+ * https://en.wikipedia.org/wiki/List_of_Java_bytecode_instructions
+ */
 enum Opcode
 {
   OPCODE_NOP = 0x00,
@@ -20,11 +24,19 @@ enum Opcode
   OPCODE_FCONST_2 = 0x0D,
   OPCODE_DCONST_0 = 0x0E,
   OPCODE_DCONST_1 = 0x0F,
+  OPCODE_BIPUSH = 0x10,
 };
 
 typedef struct
 {
   Opcode opcode;
+  union
+  {
+    struct
+    {
+      int8_t byte;
+    } _1byte_operands;
+  };
 } Code;
 
 Code *Code_Parse(u1 *bytes, u4 code_length);
