@@ -2,6 +2,7 @@
 
 #include "java-bytes.h"
 #include "ConstantPool.h"
+#include "Code.h"
 
 struct AttributeInfo;
 
@@ -23,7 +24,7 @@ typedef struct CodeAttribute
   u2 max_stack;
   u2 max_locals;
   u4 code_length;
-  u1 *code;
+  Code *code;
   u2 exception_table_length;
   ExceptionTable *exception_table;
   u2 attributes_count;

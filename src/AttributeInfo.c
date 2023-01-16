@@ -72,11 +72,15 @@ CodeAttribute CodeAttribute_read(FILE *fp, ConstantPool constant_pool)
   code_attribute.max_stack = u2_read(fp);
   code_attribute.max_locals = u2_read(fp);
   code_attribute.code_length = u4_read(fp);
-  code_attribute.code = (u1 *)malloc(code_attribute.code_length * sizeof(u1));
-  for (u1 *code = code_attribute.code; code < code_attribute.code + code_attribute.code_length; code++)
+  u1 *code_bytes = (u1 *)malloc(code_attribute.code_length * sizeof(u1));
+  for (u1 *code_entry = code_bytes;
+       code_entry < code_bytes + code_attribute.code_length;
+       code_entry++)
   {
-    *code = u1_read(fp);
+    *code_entry = u1_read(fp);
   }
+  code_attribute.code = Code_Parse(code_bytes, code_attribute.code_length);
+  free(code_bytes);
   code_attribute.exception_table_length = u2_read(fp);
   code_attribute.exception_table = ExceptionTable_read(fp, code_attribute.exception_table_length);
   code_attribute.attributes_count = u2_read(fp);
@@ -84,27 +88,14 @@ CodeAttribute CodeAttribute_read(FILE *fp, ConstantPool constant_pool)
   return code_attribute;
 }
 
-char *CodeAttribute_code_to_string(u1 *code, u4 code_lenght)
+void CodeAttribute_free(CodeAttribute code_attribute, ConstantPool constant_pool)
 {
-  char *str = (char *)malloc(2048 * sizeof(char));
-  if (code_lenght == 0)
-  {
-    snprintf(str, 2048, "[]");
-    return str;
-  }
-  snprintf(str, 2048, "[");
-  for (u1 *code_entry = code; code_entry < code + code_lenght; code_entry++)
-  {
-    char *str_temp = (char *)malloc(2048 * sizeof(char));
-    char separator = (code_entry == code + code_lenght - 1) ? ']' : ',';
-    snprintf(
-        str_temp, 2048,
-        "%s\"0x%X\"%c",
-        str, *code_entry, separator);
-    free(str);
-    str = str_temp;
-  }
-  return str;
+  Code_Free(code_attribute.code, code_attribute.code_length);
+  free(code_attribute.exception_table);
+  AttributeInfo_free(
+      code_attribute.attributes,
+      code_attribute.attributes_count,
+      constant_pool);
 }
 
 char *CodeAttribute_to_string(CodeAttribute code_attribute, ConstantPool constant_pool)
@@ -113,7 +104,7 @@ char *CodeAttribute_to_string(CodeAttribute code_attribute, ConstantPool constan
   char *exception_table_str = ExceptionTable_to_string(
       code_attribute.exception_table,
       code_attribute.exception_table_length);
-  char *instructions_str = CodeAttribute_code_to_string(
+  char *instructions_str = Code_to_string(
       code_attribute.code,
       code_attribute.code_length);
   char *attributes_str = AttributeInfo_to_string(
@@ -275,12 +266,7 @@ void AttributeInfo_free(AttributeInfo *attributes, u2 attributes_count, Constant
     char *type = constant_pool[attribute->attribute_name_index].constant_utf8_info.bytes;
     if (!strcmp(type, "Code"))
     {
-      free(attribute->code.exception_table);
-      free(attribute->code.code);
-      AttributeInfo_free(
-          attribute->code.attributes,
-          attribute->code.attributes_count,
-          constant_pool);
+      CodeAttribute_free(attribute->code, constant_pool);
     }
     else if (!strcmp(type, "Exceptions"))
     {
