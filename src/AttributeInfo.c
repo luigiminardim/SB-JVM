@@ -105,8 +105,7 @@ char *CodeAttribute_to_string(CodeAttribute code_attribute, ConstantPool constan
       code_attribute.exception_table,
       code_attribute.exception_table_length);
   char *instructions_str = Code_to_string(
-      code_attribute.code,
-      code_attribute.code_length);
+      code_attribute.code, code_attribute.code_length, constant_pool);
   char *attributes_str = AttributeInfo_to_string(
       code_attribute.attributes,
       code_attribute.attributes_count,
