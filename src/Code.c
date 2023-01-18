@@ -1,18 +1,50 @@
 #include <stdlib.h> // malloc, free
 #include <stdio.h>  // snprintf
-#include <string.h> // strcpy
+#include <string.h> // strcpy, strlen, strcpy, strcat
 #include "Code.h"
 
-Code Code__parse_1cp_index_operands(u1 *bytes, u4 *pc, Code code)
+int Code__parse_none_operands(
+    Code *code, const char *mnemonic, u1 *bytes, u4 pc)
 {
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_NONE;
+  return 0;
+}
+
+int Code__parse_byte_operands(
+    Code *code, const char *mnemonic, u1 *bytes, u4 pc)
+{
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_BYTE;
+  code->byte_operands.byte = bytes[pc + 1];
+  return 1;
+}
+
+int Code__parse_short_operands(
+    Code *code, const char *mnemonic, u1 *bytes, u4 pc)
+{
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_SHORT;
+  code->short_operands.short_ = bytes[pc + 1] << 8 | bytes[pc + 2];
+  return 2;
+}
+
+int Code__parse_cpindex_operands(Code *code, const char *mnemonic, u1 *bytes, u4 pc, int operands_num_bytes)
+{
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_CPINDEX;
+  code->cpindex_operands.operands_num_bytes = operands_num_bytes;
   u2 cp_index = 0;
-  for (int i = 0; i < code._1cp_index_operands.operands_num_bytes; i++)
+  for (int i = 1; i <= operands_num_bytes; i++)
   {
-    cp_index = cp_index << 8 | bytes[*pc + i + 1];
+    cp_index = cp_index << 8 | bytes[pc + i];
   }
-  code._1cp_index_operands.cp_index = cp_index;
-  *pc += code._1cp_index_operands.operands_num_bytes;
-  return code;
+  code->cpindex_operands.cpindex = cp_index;
+  return operands_num_bytes;
 }
 
 Code *Code_Parse(u1 *bytes, u4 code_length)
@@ -21,166 +53,416 @@ Code *Code_Parse(u1 *bytes, u4 code_length)
   for (u4 pc = 0; pc < code_length; pc++)
   {
     code[pc].opcode = (Opcode)bytes[pc];
+    int op_size;
     switch (code[pc].opcode)
     {
-    // case: 0 operands
     case OPCODE_NOP:
+      op_size = Code__parse_none_operands(&code[pc], "nop", bytes, pc);
+      break;
     case OPCODE_ACONST_NULL:
+      op_size = Code__parse_none_operands(&code[pc], "aconst_null", bytes, pc);
+      break;
     case OPCODE_ICONST_M1:
+      op_size = Code__parse_none_operands(&code[pc], "iconst_m1", bytes, pc);
+      break;
     case OPCODE_ICONST_0:
+      op_size = Code__parse_none_operands(&code[pc], "iconst_0", bytes, pc);
+      break;
     case OPCODE_ICONST_1:
+      op_size = Code__parse_none_operands(&code[pc], "iconst_1", bytes, pc);
+      break;
     case OPCODE_ICONST_2:
+      op_size = Code__parse_none_operands(&code[pc], "iconst_2", bytes, pc);
+      break;
     case OPCODE_ICONST_3:
+      op_size = Code__parse_none_operands(&code[pc], "iconst_3", bytes, pc);
+      break;
     case OPCODE_ICONST_4:
+      op_size = Code__parse_none_operands(&code[pc], "iconst_4", bytes, pc);
+      break;
     case OPCODE_ICONST_5:
+      op_size = Code__parse_none_operands(&code[pc], "iconst_5", bytes, pc);
+      break;
     case OPCODE_LCONST_0:
+      op_size = Code__parse_none_operands(&code[pc], "lconst_0", bytes, pc);
+      break;
     case OPCODE_LCONST_1:
+      op_size = Code__parse_none_operands(&code[pc], "lconst_1", bytes, pc);
+      break;
     case OPCODE_FCONST_0:
+      op_size = Code__parse_none_operands(&code[pc], "fconst_0", bytes, pc);
+      break;
     case OPCODE_FCONST_1:
+      op_size = Code__parse_none_operands(&code[pc], "fconst_1", bytes, pc);
+      break;
     case OPCODE_FCONST_2:
+      op_size = Code__parse_none_operands(&code[pc], "fconst_2", bytes, pc);
+      break;
     case OPCODE_DCONST_0:
+      op_size = Code__parse_none_operands(&code[pc], "dconst_0", bytes, pc);
+      break;
     case OPCODE_DCONST_1:
-    case OPCODE_ILOAD_0:
-    case OPCODE_ILOAD_1:
-    case OPCODE_ILOAD_2:
-    case OPCODE_ILOAD_3:
-    case OPCODE_LLOAD_0:
-    case OPCODE_LLOAD_1:
-    case OPCODE_LLOAD_2:
-    case OPCODE_LLOAD_3:
-    case OPCODE_FLOAD_0:
-    case OPCODE_FLOAD_1:
-    case OPCODE_FLOAD_2:
-    case OPCODE_FLOAD_3:
-    case OPCODE_DLOAD_0:
-    case OPCODE_DLOAD_1:
-    case OPCODE_DLOAD_2:
-    case OPCODE_DLOAD_3:
-    case OPCODE_ALOAD_0:
-    case OPCODE_ALOAD_1:
-    case OPCODE_ALOAD_2:
-    case OPCODE_ALOAD_3:
-    case OPCODE_IALOAD:
-    case OPCODE_LALOAD:
-    case OPCODE_FALOAD:
-    case OPCODE_DALOAD:
-    case OPCODE_AALOAD:
-    case OPCODE_BALOAD:
-    case OPCODE_CALOAD:
-    case OPCODE_SALOAD:
-    case OPCODE_ISTORE_0:
-    case OPCODE_ISTORE_1:
-    case OPCODE_ISTORE_2:
-    case OPCODE_ISTORE_3:
-    case OPCODE_LSTORE_0:
-    case OPCODE_LSTORE_1:
-    case OPCODE_LSTORE_2:
-    case OPCODE_LSTORE_3:
-    case OPCODE_FSTORE_0:
-    case OPCODE_FSTORE_1:
-    case OPCODE_FSTORE_2:
-    case OPCODE_FSTORE_3:
-    case OPCODE_DSTORE_0:
-    case OPCODE_DSTORE_1:
-    case OPCODE_DSTORE_2:
-    case OPCODE_DSTORE_3:
-    case OPCODE_ASTORE_0:
-    case OPCODE_ASTORE_1:
-    case OPCODE_ASTORE_2:
-    case OPCODE_ASTORE_3:
-    case OPCODE_IASTORE:
-    case OPCODE_LASTORE:
-    case OPCODE_FASTORE:
-    case OPCODE_DASTORE:
-    case OPCODE_AASTORE:
-    case OPCODE_BASTORE:
-    case OPCODE_CASTORE:
-    case OPCODE_SASTORE:
-    case OPCODE_POP:
-    case OPCODE_POP2:
-    case OPCODE_DUP:
-    case OPCODE_DUP_X1:
-    case OPCODE_DUP_X2:
-    case OPCODE_DUP2:
-    case OPCODE_DUP2_X1:
-    case OPCODE_DUP2_X2:
-    case OPCODE_SWAP:
-    case OPCODE_IADD:
-    case OPCODE_LADD:
-    case OPCODE_FADD:
-    case OPCODE_DADD:
-    case OPCODE_ISUB:
-    case OPCODE_LSUB:
-    case OPCODE_FSUB:
-    case OPCODE_DSUB:
-    case OPCODE_IMUL:
-    case OPCODE_LMUL:
-    case OPCODE_FMUL:
-    case OPCODE_DMUL:
-    case OPCODE_IDIV:
-    case OPCODE_LDIV:
-    case OPCODE_FDIV:
-    case OPCODE_DDIV:
-    case OPCODE_IREM:
-    case OPCODE_LREM:
-    case OPCODE_FREM:
-    case OPCODE_DREM:
-    case OPCODE_INEG:
-    case OPCODE_LNEG:
-    case OPCODE_FNEG:
-    case OPCODE_DNEG:
-    case OPCODE_ISHL:
-    case OPCODE_LSHL:
-    case OPCODE_ISHR:
-    case OPCODE_LSHR:
-    case OPCODE_IUSHR:
-    case OPCODE_LUSHR:
-    case OPCODE_IAND:
-    case OPCODE_LAND:
-    case OPCODE_IOR:
-    case OPCODE_LOR:
-    case OPCODE_IXOR:
-    case OPCODE_LXOR:
-    {
+      op_size = Code__parse_none_operands(&code[pc], "dconst_1", bytes, pc);
       break;
-    }
-    // case 1 byte operands
     case OPCODE_BIPUSH:
-    case OPCODE_ILOAD:
-    case OPCODE_LLOAD:
-    case OPCODE_FLOAD:
-    case OPCODE_DLOAD:
-    case OPCODE_ALOAD:
-    case OPCODE_ISTORE:
-    case OPCODE_LSTORE:
-    case OPCODE_FSTORE:
-    case OPCODE_DSTORE:
-    case OPCODE_ASTORE:
-    {
-      code[pc]._1byte_operands.byte = (int8_t)bytes[pc + 1];
-      pc++;
+      op_size = Code__parse_byte_operands(&code[pc], "bipush", bytes, pc);
       break;
-    }
-    // case 1 short operands
     case OPCODE_SIPUSH:
-    {
-      code[pc]._1short_operands.short_ = (int16_t)bytes[pc + 1] << 8 | bytes[pc + 2];
-      pc += 2;
+      op_size = Code__parse_short_operands(&code[pc], "sipush", bytes, pc);
+      break;
+    case OPCODE_LDC:
+      op_size = Code__parse_cpindex_operands(&code[pc], "ldc", bytes, pc, 1);
+      break;
+    case OPCODE_LDC_W:
+      op_size = Code__parse_cpindex_operands(&code[pc], "ldc_w", bytes, pc, 2);
+      break;
+    case OPCODE_LDC2_W:
+      op_size = Code__parse_cpindex_operands(&code[pc], "ldc2_w", bytes, pc, 2);
+      break;
+    case OPCODE_ILOAD:
+      op_size = Code__parse_byte_operands(&code[pc], "iload", bytes, pc);
+      break;
+    case OPCODE_LLOAD:
+      op_size = Code__parse_byte_operands(&code[pc], "lload", bytes, pc);
+      break;
+    case OPCODE_FLOAD:
+      op_size = Code__parse_byte_operands(&code[pc], "fload", bytes, pc);
+      break;
+    case OPCODE_DLOAD:
+      op_size = Code__parse_byte_operands(&code[pc], "dload", bytes, pc);
+      break;
+    case OPCODE_ALOAD:
+      op_size = Code__parse_byte_operands(&code[pc], "aload", bytes, pc);
+      break;
+    case OPCODE_ILOAD_0:
+      op_size = Code__parse_none_operands(&code[pc], "iload_0", bytes, pc);
+      break;
+    case OPCODE_ILOAD_1:
+      op_size = Code__parse_none_operands(&code[pc], "iload_1", bytes, pc);
+      break;
+    case OPCODE_ILOAD_2:
+      op_size = Code__parse_none_operands(&code[pc], "iload_2", bytes, pc);
+      break;
+    case OPCODE_ILOAD_3:
+      op_size = Code__parse_none_operands(&code[pc], "iload_3", bytes, pc);
+      break;
+    case OPCODE_LLOAD_0:
+      op_size = Code__parse_none_operands(&code[pc], "lload_0", bytes, pc);
+      break;
+    case OPCODE_LLOAD_1:
+      op_size = Code__parse_none_operands(&code[pc], "lload_1", bytes, pc);
+      break;
+    case OPCODE_LLOAD_2:
+      op_size = Code__parse_none_operands(&code[pc], "lload_2", bytes, pc);
+      break;
+    case OPCODE_LLOAD_3:
+      op_size = Code__parse_none_operands(&code[pc], "lload_3", bytes, pc);
+      break;
+    case OPCODE_FLOAD_0:
+      op_size = Code__parse_none_operands(&code[pc], "fload_0", bytes, pc);
+      break;
+    case OPCODE_FLOAD_1:
+      op_size = Code__parse_none_operands(&code[pc], "fload_1", bytes, pc);
+      break;
+    case OPCODE_FLOAD_2:
+      op_size = Code__parse_none_operands(&code[pc], "fload_2", bytes, pc);
+      break;
+    case OPCODE_FLOAD_3:
+      op_size = Code__parse_none_operands(&code[pc], "fload_3", bytes, pc);
+      break;
+    case OPCODE_DLOAD_0:
+      op_size = Code__parse_none_operands(&code[pc], "dload_0", bytes, pc);
+      break;
+    case OPCODE_DLOAD_1:
+      op_size = Code__parse_none_operands(&code[pc], "dload_1", bytes, pc);
+      break;
+    case OPCODE_DLOAD_2:
+      op_size = Code__parse_none_operands(&code[pc], "dload_2", bytes, pc);
+      break;
+    case OPCODE_DLOAD_3:
+      op_size = Code__parse_none_operands(&code[pc], "dload_3", bytes, pc);
+      break;
+    case OPCODE_ALOAD_0:
+      op_size = Code__parse_none_operands(&code[pc], "aload_0", bytes, pc);
+      break;
+    case OPCODE_ALOAD_1:
+      op_size = Code__parse_none_operands(&code[pc], "aload_1", bytes, pc);
+      break;
+    case OPCODE_ALOAD_2:
+      op_size = Code__parse_none_operands(&code[pc], "aload_2", bytes, pc);
+      break;
+    case OPCODE_ALOAD_3:
+      op_size = Code__parse_none_operands(&code[pc], "aload_3", bytes, pc);
+      break;
+    case OPCODE_IALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "iaload", bytes, pc);
+      break;
+    case OPCODE_LALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "laload", bytes, pc);
+      break;
+    case OPCODE_FALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "faload", bytes, pc);
+      break;
+    case OPCODE_DALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "daload", bytes, pc);
+      break;
+    case OPCODE_AALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "aaload", bytes, pc);
+      break;
+    case OPCODE_BALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "baload", bytes, pc);
+      break;
+    case OPCODE_CALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "caload", bytes, pc);
+      break;
+    case OPCODE_SALOAD:
+      op_size = Code__parse_none_operands(&code[pc], "saload", bytes, pc);
+      break;
+    case OPCODE_ISTORE:
+      op_size = Code__parse_byte_operands(&code[pc], "istore", bytes, pc);
+      break;
+    case OPCODE_LSTORE:
+      op_size = Code__parse_byte_operands(&code[pc], "lstore", bytes, pc);
+      break;
+    case OPCODE_FSTORE:
+      op_size = Code__parse_byte_operands(&code[pc], "fstore", bytes, pc);
+      break;
+    case OPCODE_DSTORE:
+      op_size = Code__parse_byte_operands(&code[pc], "dstore", bytes, pc);
+      break;
+    case OPCODE_ASTORE:
+      op_size = Code__parse_byte_operands(&code[pc], "astore", bytes, pc);
+      break;
+    case OPCODE_ISTORE_0:
+      op_size = Code__parse_none_operands(&code[pc], "istore_0", bytes, pc);
+      break;
+    case OPCODE_ISTORE_1:
+      op_size = Code__parse_none_operands(&code[pc], "istore_1", bytes, pc);
+      break;
+    case OPCODE_ISTORE_2:
+      op_size = Code__parse_none_operands(&code[pc], "istore_2", bytes, pc);
+      break;
+    case OPCODE_ISTORE_3:
+      op_size = Code__parse_none_operands(&code[pc], "istore_3", bytes, pc);
+      break;
+    case OPCODE_LSTORE_0:
+      op_size = Code__parse_none_operands(&code[pc], "lstore_0", bytes, pc);
+      break;
+    case OPCODE_LSTORE_1:
+      op_size = Code__parse_none_operands(&code[pc], "lstore_1", bytes, pc);
+      break;
+    case OPCODE_LSTORE_2:
+      op_size = Code__parse_none_operands(&code[pc], "lstore_2", bytes, pc);
+      break;
+    case OPCODE_LSTORE_3:
+      op_size = Code__parse_none_operands(&code[pc], "lstore_3", bytes, pc);
+      break;
+    case OPCODE_FSTORE_0:
+      op_size = Code__parse_none_operands(&code[pc], "fstore_0", bytes, pc);
+      break;
+    case OPCODE_FSTORE_1:
+      op_size = Code__parse_none_operands(&code[pc], "fstore_1", bytes, pc);
+      break;
+    case OPCODE_FSTORE_2:
+      op_size = Code__parse_none_operands(&code[pc], "fstore_2", bytes, pc);
+      break;
+    case OPCODE_FSTORE_3:
+      op_size = Code__parse_none_operands(&code[pc], "fstore_3", bytes, pc);
+      break;
+    case OPCODE_DSTORE_0:
+      op_size = Code__parse_none_operands(&code[pc], "dstore_0", bytes, pc);
+      break;
+    case OPCODE_DSTORE_1:
+      op_size = Code__parse_none_operands(&code[pc], "dstore_1", bytes, pc);
+      break;
+    case OPCODE_DSTORE_2:
+      op_size = Code__parse_none_operands(&code[pc], "dstore_2", bytes, pc);
+      break;
+    case OPCODE_DSTORE_3:
+      op_size = Code__parse_none_operands(&code[pc], "dstore_3", bytes, pc);
+      break;
+    case OPCODE_ASTORE_0:
+      op_size = Code__parse_none_operands(&code[pc], "astore_0", bytes, pc);
+      break;
+    case OPCODE_ASTORE_1:
+      op_size = Code__parse_none_operands(&code[pc], "astore_1", bytes, pc);
+      break;
+    case OPCODE_ASTORE_2:
+      op_size = Code__parse_none_operands(&code[pc], "astore_2", bytes, pc);
+      break;
+    case OPCODE_ASTORE_3:
+      op_size = Code__parse_none_operands(&code[pc], "astore_3", bytes, pc);
+      break;
+    case OPCODE_IASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "iastore", bytes, pc);
+      break;
+    case OPCODE_LASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "lastore", bytes, pc);
+      break;
+    case OPCODE_FASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "fastore", bytes, pc);
+      break;
+    case OPCODE_DASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "dastore", bytes, pc);
+      break;
+    case OPCODE_AASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "aastore", bytes, pc);
+      break;
+    case OPCODE_BASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "bastore", bytes, pc);
+      break;
+    case OPCODE_CASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "castore", bytes, pc);
+      break;
+    case OPCODE_SASTORE:
+      op_size = Code__parse_none_operands(&code[pc], "sastore", bytes, pc);
+      break;
+    case OPCODE_POP:
+      op_size = Code__parse_none_operands(&code[pc], "pop", bytes, pc);
+      break;
+    case OPCODE_POP2:
+      op_size = Code__parse_none_operands(&code[pc], "pop2", bytes, pc);
+      break;
+    case OPCODE_DUP:
+      op_size = Code__parse_none_operands(&code[pc], "dup", bytes, pc);
+      break;
+    case OPCODE_DUP_X1:
+      op_size = Code__parse_none_operands(&code[pc], "dup_x1", bytes, pc);
+      break;
+    case OPCODE_DUP_X2:
+      op_size = Code__parse_none_operands(&code[pc], "dup_x2", bytes, pc);
+      break;
+    case OPCODE_DUP2:
+      op_size = Code__parse_none_operands(&code[pc], "dup2", bytes, pc);
+      break;
+    case OPCODE_DUP2_X1:
+      op_size = Code__parse_none_operands(&code[pc], "dup2_x1", bytes, pc);
+      break;
+    case OPCODE_DUP2_X2:
+      op_size = Code__parse_none_operands(&code[pc], "dup2_x2", bytes, pc);
+      break;
+    case OPCODE_SWAP:
+      op_size = Code__parse_none_operands(&code[pc], "swap", bytes, pc);
+      break;
+    case OPCODE_IADD:
+      op_size = Code__parse_none_operands(&code[pc], "iadd", bytes, pc);
+      break;
+    case OPCODE_LADD:
+      op_size = Code__parse_none_operands(&code[pc], "ladd", bytes, pc);
+      break;
+    case OPCODE_FADD:
+      op_size = Code__parse_none_operands(&code[pc], "fadd", bytes, pc);
+      break;
+    case OPCODE_DADD:
+      op_size = Code__parse_none_operands(&code[pc], "dadd", bytes, pc);
+      break;
+    case OPCODE_ISUB:
+      op_size = Code__parse_none_operands(&code[pc], "isub", bytes, pc);
+      break;
+    case OPCODE_LSUB:
+      op_size = Code__parse_none_operands(&code[pc], "lsub", bytes, pc);
+      break;
+    case OPCODE_FSUB:
+      op_size = Code__parse_none_operands(&code[pc], "fsub", bytes, pc);
+      break;
+    case OPCODE_DSUB:
+      op_size = Code__parse_none_operands(&code[pc], "dsub", bytes, pc);
+      break;
+    case OPCODE_IMUL:
+      op_size = Code__parse_none_operands(&code[pc], "imul", bytes, pc);
+      break;
+    case OPCODE_LMUL:
+      op_size = Code__parse_none_operands(&code[pc], "lmul", bytes, pc);
+      break;
+    case OPCODE_FMUL:
+      op_size = Code__parse_none_operands(&code[pc], "fmul", bytes, pc);
+      break;
+    case OPCODE_DMUL:
+      op_size = Code__parse_none_operands(&code[pc], "dmul", bytes, pc);
+      break;
+    case OPCODE_IDIV:
+      op_size = Code__parse_none_operands(&code[pc], "idiv", bytes, pc);
+      break;
+    case OPCODE_LDIV:
+      op_size = Code__parse_none_operands(&code[pc], "ldiv", bytes, pc);
+      break;
+    case OPCODE_FDIV:
+      op_size = Code__parse_none_operands(&code[pc], "fdiv", bytes, pc);
+      break;
+    case OPCODE_DDIV:
+      op_size = Code__parse_none_operands(&code[pc], "ddiv", bytes, pc);
+      break;
+    case OPCODE_IREM:
+      op_size = Code__parse_none_operands(&code[pc], "irem", bytes, pc);
+      break;
+    case OPCODE_LREM:
+      op_size = Code__parse_none_operands(&code[pc], "lrem", bytes, pc);
+      break;
+    case OPCODE_FREM:
+      op_size = Code__parse_none_operands(&code[pc], "frem", bytes, pc);
+      break;
+    case OPCODE_DREM:
+      op_size = Code__parse_none_operands(&code[pc], "drem", bytes, pc);
+      break;
+    case OPCODE_INEG:
+      op_size = Code__parse_none_operands(&code[pc], "ineg", bytes, pc);
+      break;
+    case OPCODE_LNEG:
+      op_size = Code__parse_none_operands(&code[pc], "lneg", bytes, pc);
+      break;
+    case OPCODE_FNEG:
+      op_size = Code__parse_none_operands(&code[pc], "fneg", bytes, pc);
+      break;
+    case OPCODE_DNEG:
+      op_size = Code__parse_none_operands(&code[pc], "dneg", bytes, pc);
+      break;
+    case OPCODE_ISHL:
+      op_size = Code__parse_none_operands(&code[pc], "ishl", bytes, pc);
+      break;
+    case OPCODE_LSHL:
+      op_size = Code__parse_none_operands(&code[pc], "lshl", bytes, pc);
+      break;
+    case OPCODE_ISHR:
+      op_size = Code__parse_none_operands(&code[pc], "ishr", bytes, pc);
+      break;
+    case OPCODE_LSHR:
+      op_size = Code__parse_none_operands(&code[pc], "lshr", bytes, pc);
+      break;
+    case OPCODE_IUSHR:
+      op_size = Code__parse_none_operands(&code[pc], "iushr", bytes, pc);
+      break;
+    case OPCODE_LUSHR:
+      op_size = Code__parse_none_operands(&code[pc], "lushr", bytes, pc);
+      break;
+    case OPCODE_IAND:
+      op_size = Code__parse_none_operands(&code[pc], "iand", bytes, pc);
+      break;
+    case OPCODE_LAND:
+      op_size = Code__parse_none_operands(&code[pc], "land", bytes, pc);
+      break;
+    case OPCODE_IOR:
+      op_size = Code__parse_none_operands(&code[pc], "ior", bytes, pc);
+      break;
+    case OPCODE_LOR:
+      op_size = Code__parse_none_operands(&code[pc], "lor", bytes, pc);
+      break;
+    case OPCODE_IXOR:
+      op_size = Code__parse_none_operands(&code[pc], "ixor", bytes, pc);
+      break;
+    case OPCODE_LXOR:
+      op_size = Code__parse_none_operands(&code[pc], "lxor", bytes, pc);
+      break;
+    default:
+      char *str = (char *)malloc(32 * sizeof(char));
+      snprintf(str, 32, "0x%02X", code[pc].opcode);
+      op_size = Code__parse_none_operands(&code[pc], str, bytes, pc);
+      free(str);
       break;
     }
-    // case 1 cp_index operands with 1 byte
-    case OPCODE_LDC:
+    while (op_size--)
     {
-      code[pc]._1cp_index_operands.operands_num_bytes = 1;
-      code[pc] = Code__parse_1cp_index_operands(bytes, &pc, code[pc]);
-    }
-    // case 1 cp_index operands with 2 bytes
-    case OPCODE_LDC_W:
-    case OPCODE_LDC2_W:
-    {
-      code[pc]._1cp_index_operands.operands_num_bytes = 2;
-      code[pc] = Code__parse_1cp_index_operands(bytes, &pc, code[pc]);
-    }
+      pc++;
+      code[pc].opcode = OPCODE_NONE;
     }
   }
   return code;
@@ -188,335 +470,67 @@ Code *Code_Parse(u1 *bytes, u4 code_length)
 
 void Code_Free(Code *code, u4 code_length)
 {
+  for (u4 i = 0; i < code_length; i++)
+  {
+    if (code[i].opcode == OPCODE_NONE)
+    {
+      continue;
+    }
+    free(code[i].mnemonic);
+  }
   free(code);
 }
 
-char *Code_0_opcodes_to_string(const char *mnemonic)
+char *Code__none_operands_to_string(Code code)
 {
   char *str = (char *)malloc(32 * sizeof(char));
-  return strcpy(str, mnemonic);
+  return strcpy(str, code.mnemonic);
 }
 
-char *Code_1byte_operands_to_string(const char *mnemonic, int8_t byte, u4 *pc)
+char *Code__byte_operands_to_string(Code code)
 {
-  char *str = (char *)malloc(256 * sizeof(char));
-  snprintf(str, 32, "%s %hhd", mnemonic, byte);
-  (*pc)++;
+  char *str = (char *)malloc(32 * sizeof(char));
+  snprintf(str, 32, "%s %hhd", code.mnemonic, code.byte_operands.byte);
   return str;
 }
 
-char *Code_1short_operands_to_string(const char *mnemonic, int16_t short_, u4 *pc)
+char *Code__short_operands_to_string(Code code)
 {
-  char *str = (char *)malloc(256 * sizeof(char));
-  snprintf(str, 32, "%s %hd", mnemonic, short_);
-  (*pc) += 2;
+  char *str = (char *)malloc(32 * sizeof(char));
+  snprintf(str, 32, "%s %hd", code.mnemonic, code.short_operands.short_);
   return str;
 }
 
-char *Code_1cp_index_operands_to_string(
-    const char *mnemonic, _1CpIndexOperands _1cp_index_operands, u4 *pc,
-    ConstantPool constant_pool)
+char *Code__cpindex_operands_to_string(
+    Code code, ConstantPool constant_pool)
 {
   char *str = (char *)malloc(256 * sizeof(char));
   char *cp_str = ConstantPool_get_utf8(
-      constant_pool, _1cp_index_operands.cp_index);
+      constant_pool, code.cpindex_operands.cpindex);
   snprintf(
-      str, 32,
+      str, 256,
       "%s #%hd // %s",
-      mnemonic, _1cp_index_operands.cp_index, cp_str);
-  (*pc) += _1cp_index_operands.operands_num_bytes;
+      code.mnemonic, code.cpindex_operands.cpindex, cp_str);
   free(cp_str);
   return str;
 }
 
-char *Code_entry_to_string(Code code_entry, u4 *pc, ConstantPool constant_pool)
+char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
 {
-  switch (code_entry.opcode)
+  switch (code_entry.operand_type)
   {
-  case OPCODE_NOP:
-    return Code_0_opcodes_to_string("nop");
-  case OPCODE_ACONST_NULL:
-    return Code_0_opcodes_to_string("aconst_null");
-  case OPCODE_ICONST_M1:
-    return Code_0_opcodes_to_string("iconst_m1");
-  case OPCODE_ICONST_0:
-    return Code_0_opcodes_to_string("iconst_0");
-  case OPCODE_ICONST_1:
-    return Code_0_opcodes_to_string("iconst_1");
-  case OPCODE_ICONST_2:
-    return Code_0_opcodes_to_string("iconst_2");
-  case OPCODE_ICONST_3:
-    return Code_0_opcodes_to_string("iconst_3");
-  case OPCODE_ICONST_4:
-    return Code_0_opcodes_to_string("iconst_4");
-  case OPCODE_ICONST_5:
-    return Code_0_opcodes_to_string("iconst_5");
-  case OPCODE_LCONST_0:
-    return Code_0_opcodes_to_string("lconst_0");
-  case OPCODE_LCONST_1:
-    return Code_0_opcodes_to_string("lconst_1");
-  case OPCODE_FCONST_0:
-    return Code_0_opcodes_to_string("fconst_0");
-  case OPCODE_FCONST_1:
-    return Code_0_opcodes_to_string("fconst_1");
-  case OPCODE_FCONST_2:
-    return Code_0_opcodes_to_string("fconst_2");
-  case OPCODE_DCONST_0:
-    return Code_0_opcodes_to_string("dconst_0");
-  case OPCODE_DCONST_1:
-    return Code_0_opcodes_to_string("dconst_1");
-  case OPCODE_BIPUSH:
-    return Code_1byte_operands_to_string(
-        "bipush", code_entry._1byte_operands.byte, pc);
-  case OPCODE_SIPUSH:
-    return Code_1short_operands_to_string(
-        "sipush", code_entry._1short_operands.short_, pc);
-  case OPCODE_LDC:
-    return Code_1cp_index_operands_to_string(
-        "ldc", code_entry._1cp_index_operands, pc, constant_pool);
-  case OPCODE_LDC_W:
-    return Code_1cp_index_operands_to_string(
-        "ldc_w", code_entry._1cp_index_operands, pc, constant_pool);
-  case OPCODE_LDC2_W:
-    return Code_1cp_index_operands_to_string(
-        "ldc2_w", code_entry._1cp_index_operands, pc, constant_pool);
-  case OPCODE_ILOAD:
-    return Code_1byte_operands_to_string(
-        "iload", code_entry._1byte_operands.byte, pc);
-  case OPCODE_LLOAD:
-    return Code_1byte_operands_to_string(
-        "lload", code_entry._1byte_operands.byte, pc);
-  case OPCODE_FLOAD:
-    return Code_1byte_operands_to_string(
-        "fload", code_entry._1byte_operands.byte, pc);
-  case OPCODE_DLOAD:
-    return Code_1byte_operands_to_string(
-        "dload", code_entry._1byte_operands.byte, pc);
-  case OPCODE_ALOAD:
-    return Code_1byte_operands_to_string(
-        "aload", code_entry._1byte_operands.byte, pc);
-  case OPCODE_ILOAD_0:
-    return Code_0_opcodes_to_string("iload_0");
-  case OPCODE_ILOAD_1:
-    return Code_0_opcodes_to_string("iload_1");
-  case OPCODE_ILOAD_2:
-    return Code_0_opcodes_to_string("iload_2");
-  case OPCODE_ILOAD_3:
-    return Code_0_opcodes_to_string("iload_3");
-  case OPCODE_LLOAD_0:
-    return Code_0_opcodes_to_string("lload_0");
-  case OPCODE_LLOAD_1:
-    return Code_0_opcodes_to_string("lload_1");
-  case OPCODE_LLOAD_2:
-    return Code_0_opcodes_to_string("lload_2");
-  case OPCODE_LLOAD_3:
-    return Code_0_opcodes_to_string("lload_3");
-  case OPCODE_FLOAD_0:
-    return Code_0_opcodes_to_string("fload_0");
-  case OPCODE_FLOAD_1:
-    return Code_0_opcodes_to_string("fload_1");
-  case OPCODE_FLOAD_2:
-    return Code_0_opcodes_to_string("fload_2");
-  case OPCODE_FLOAD_3:
-    return Code_0_opcodes_to_string("fload_3");
-  case OPCODE_DLOAD_0:
-    return Code_0_opcodes_to_string("dload_0");
-  case OPCODE_DLOAD_1:
-    return Code_0_opcodes_to_string("dload_1");
-  case OPCODE_DLOAD_2:
-    return Code_0_opcodes_to_string("dload_2");
-  case OPCODE_DLOAD_3:
-    return Code_0_opcodes_to_string("dload_3");
-  case OPCODE_ALOAD_0:
-    return Code_0_opcodes_to_string("aload_0");
-  case OPCODE_ALOAD_1:
-    return Code_0_opcodes_to_string("aload_1");
-  case OPCODE_ALOAD_2:
-    return Code_0_opcodes_to_string("aload_2");
-  case OPCODE_ALOAD_3:
-    return Code_0_opcodes_to_string("aload_3");
-  case OPCODE_IALOAD:
-    return Code_0_opcodes_to_string("iaload");
-  case OPCODE_LALOAD:
-    return Code_0_opcodes_to_string("laload");
-  case OPCODE_FALOAD:
-    return Code_0_opcodes_to_string("faload");
-  case OPCODE_DALOAD:
-    return Code_0_opcodes_to_string("daload");
-  case OPCODE_AALOAD:
-    return Code_0_opcodes_to_string("aaload");
-  case OPCODE_BALOAD:
-    return Code_0_opcodes_to_string("baload");
-  case OPCODE_CALOAD:
-    return Code_0_opcodes_to_string("caload");
-  case OPCODE_SALOAD:
-    return Code_0_opcodes_to_string("saload");
-  case OPCODE_ISTORE:
-    return Code_1byte_operands_to_string(
-        "istore", code_entry._1byte_operands.byte, pc);
-  case OPCODE_LSTORE:
-    return Code_1byte_operands_to_string(
-        "lstore", code_entry._1byte_operands.byte, pc);
-  case OPCODE_FSTORE:
-    return Code_1byte_operands_to_string(
-        "fstore", code_entry._1byte_operands.byte, pc);
-  case OPCODE_DSTORE:
-    return Code_1byte_operands_to_string(
-        "dstore", code_entry._1byte_operands.byte, pc);
-  case OPCODE_ASTORE:
-    return Code_1byte_operands_to_string(
-        "astore", code_entry._1byte_operands.byte, pc);
-  case OPCODE_ISTORE_0:
-    return Code_0_opcodes_to_string("istore_0");
-  case OPCODE_ISTORE_1:
-    return Code_0_opcodes_to_string("istore_1");
-  case OPCODE_ISTORE_2:
-    return Code_0_opcodes_to_string("istore_2");
-  case OPCODE_ISTORE_3:
-    return Code_0_opcodes_to_string("istore_3");
-  case OPCODE_LSTORE_0:
-    return Code_0_opcodes_to_string("lstore_0");
-  case OPCODE_LSTORE_1:
-    return Code_0_opcodes_to_string("lstore_1");
-  case OPCODE_LSTORE_2:
-    return Code_0_opcodes_to_string("lstore_2");
-  case OPCODE_LSTORE_3:
-    return Code_0_opcodes_to_string("lstore_3");
-  case OPCODE_FSTORE_0:
-    return Code_0_opcodes_to_string("fstore_0");
-  case OPCODE_FSTORE_1:
-    return Code_0_opcodes_to_string("fstore_1");
-  case OPCODE_FSTORE_2:
-    return Code_0_opcodes_to_string("fstore_2");
-  case OPCODE_FSTORE_3:
-    return Code_0_opcodes_to_string("fstore_3");
-  case OPCODE_DSTORE_0:
-    return Code_0_opcodes_to_string("dstore_0");
-  case OPCODE_DSTORE_1:
-    return Code_0_opcodes_to_string("dstore_1");
-  case OPCODE_DSTORE_2:
-    return Code_0_opcodes_to_string("dstore_2");
-  case OPCODE_DSTORE_3:
-    return Code_0_opcodes_to_string("dstore_3");
-  case OPCODE_ASTORE_0:
-    return Code_0_opcodes_to_string("astore_0");
-  case OPCODE_ASTORE_1:
-    return Code_0_opcodes_to_string("astore_1");
-  case OPCODE_ASTORE_2:
-    return Code_0_opcodes_to_string("astore_2");
-  case OPCODE_ASTORE_3:
-    return Code_0_opcodes_to_string("astore_3");
-  case OPCODE_IASTORE:
-    return Code_0_opcodes_to_string("iastore");
-  case OPCODE_LASTORE:
-    return Code_0_opcodes_to_string("lastore");
-  case OPCODE_FASTORE:
-    return Code_0_opcodes_to_string("fastore");
-  case OPCODE_DASTORE:
-    return Code_0_opcodes_to_string("dastore");
-  case OPCODE_AASTORE:
-    return Code_0_opcodes_to_string("aastore");
-  case OPCODE_BASTORE:
-    return Code_0_opcodes_to_string("bastore");
-  case OPCODE_CASTORE:
-    return Code_0_opcodes_to_string("castore");
-  case OPCODE_SASTORE:
-    return Code_0_opcodes_to_string("sastore");
-  case OPCODE_POP:
-    return Code_0_opcodes_to_string("pop");
-  case OPCODE_POP2:
-    return Code_0_opcodes_to_string("pop2");
-  case OPCODE_DUP:
-    return Code_0_opcodes_to_string("dup");
-  case OPCODE_DUP_X1:
-    return Code_0_opcodes_to_string("dup_x1");
-  case OPCODE_DUP_X2:
-    return Code_0_opcodes_to_string("dup_x2");
-  case OPCODE_DUP2:
-    return Code_0_opcodes_to_string("dup2");
-  case OPCODE_DUP2_X1:
-    return Code_0_opcodes_to_string("dup2_x1");
-  case OPCODE_DUP2_X2:
-    return Code_0_opcodes_to_string("dup2_x2");
-  case OPCODE_SWAP:
-    return Code_0_opcodes_to_string("swap");
-  case OPCODE_IADD:
-    return Code_0_opcodes_to_string("iadd");
-  case OPCODE_LADD:
-    return Code_0_opcodes_to_string("ladd");
-  case OPCODE_FADD:
-    return Code_0_opcodes_to_string("fadd");
-  case OPCODE_DADD:
-    return Code_0_opcodes_to_string("dadd");
-  case OPCODE_ISUB:
-    return Code_0_opcodes_to_string("isub");
-  case OPCODE_LSUB:
-    return Code_0_opcodes_to_string("lsub");
-  case OPCODE_FSUB:
-    return Code_0_opcodes_to_string("fsub");
-  case OPCODE_DSUB:
-    return Code_0_opcodes_to_string("dsub");
-  case OPCODE_IMUL:
-    return Code_0_opcodes_to_string("imul");
-  case OPCODE_LMUL:
-    return Code_0_opcodes_to_string("lmul");
-  case OPCODE_FMUL:
-    return Code_0_opcodes_to_string("fmul");
-  case OPCODE_DMUL:
-    return Code_0_opcodes_to_string("dmul");
-  case OPCODE_IDIV:
-    return Code_0_opcodes_to_string("idiv");
-  case OPCODE_LDIV:
-    return Code_0_opcodes_to_string("ldiv");
-  case OPCODE_FDIV:
-    return Code_0_opcodes_to_string("fdiv");
-  case OPCODE_DDIV:
-    return Code_0_opcodes_to_string("ddiv");
-  case OPCODE_IREM:
-    return Code_0_opcodes_to_string("irem");
-  case OPCODE_LREM:
-    return Code_0_opcodes_to_string("lrem");
-  case OPCODE_FREM:
-    return Code_0_opcodes_to_string("frem");
-  case OPCODE_DREM:
-    return Code_0_opcodes_to_string("drem");
-  case OPCODE_INEG:
-    return Code_0_opcodes_to_string("ineg");
-  case OPCODE_LNEG:
-    return Code_0_opcodes_to_string("lneg");
-  case OPCODE_FNEG:
-    return Code_0_opcodes_to_string("fneg");
-  case OPCODE_DNEG:
-    return Code_0_opcodes_to_string("dneg");
-  case OPCODE_ISHL:
-    return Code_0_opcodes_to_string("ishl");
-  case OPCODE_LSHL:
-    return Code_0_opcodes_to_string("lshl");
-  case OPCODE_ISHR:
-    return Code_0_opcodes_to_string("ishr");
-  case OPCODE_LSHR:
-    return Code_0_opcodes_to_string("lshr");
-  case OPCODE_IUSHR:
-    return Code_0_opcodes_to_string("iushr");
-  case OPCODE_LUSHR:
-    return Code_0_opcodes_to_string("lushr");
-  case OPCODE_IAND:
-    return Code_0_opcodes_to_string("iand");
-  case OPCODE_LAND:
-    return Code_0_opcodes_to_string("land");
-  case OPCODE_IOR:
-    return Code_0_opcodes_to_string("ior");
-  case OPCODE_LOR:
-    return Code_0_opcodes_to_string("lor");
-  case OPCODE_IXOR:
-    return Code_0_opcodes_to_string("ixor");
-  case OPCODE_LXOR:
-    return Code_0_opcodes_to_string("lxor");
+  case OPERAND_TYPE_NONE:
+    return Code__none_operands_to_string(code_entry);
+  case OPERAND_TYPE_BYTE:
+    return Code__byte_operands_to_string(code_entry);
+  case OPERAND_TYPE_SHORT:
+    return Code__short_operands_to_string(code_entry);
+  case OPERAND_TYPE_CPINDEX:
+    return Code__cpindex_operands_to_string(code_entry, constant_pool);
   default:
     char *final_str = (char *)malloc(2048 * sizeof(char));
     snprintf(final_str, 2048, "0x%02X", code_entry.opcode);
     return final_str;
-    break;
   }
 }
 
@@ -528,22 +542,25 @@ char *Code_to_string(Code *code, u4 code_lenght, ConstantPool constant_pool)
     snprintf(str, 2048, "{}");
     return str;
   }
-  snprintf(str, 2048, "{");
+  strcpy(str, "");
   for (u4 pc = 0; pc < code_lenght; pc++)
   {
+    if (code[pc].opcode == OPCODE_NONE)
+    {
+      continue;
+    }
     char *str_temp = (char *)malloc(2048 * sizeof(char));
-    u4 pc_inc = 0;
     char *code_entry_str = Code_entry_to_string(
-        code[pc], &pc_inc, constant_pool);
-    char separator = (pc + pc_inc >= code_lenght - 1) ? '}' : ',';
+        code[pc], constant_pool);
+    char separator = (pc == 0) ? '{' : ',';
     snprintf(
         str_temp, 2048,
-        "%s\"%d\":\"%s\"%c",
-        str, pc, code_entry_str, separator);
+        "%s%c\"%d\":\"%s\"",
+        str, separator, pc, code_entry_str);
     free(code_entry_str);
     free(str);
     str = str_temp;
-    pc += pc_inc;
   }
+  strcat(str, "}");
   return str;
 }

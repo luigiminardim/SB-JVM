@@ -9,6 +9,7 @@
  */
 enum Opcode
 {
+  OPCODE_NONE = 0xFF,
   OPCODE_NOP = 0x00,
   OPCODE_ACONST_NULL = 0x01,
   OPCODE_ICONST_M1 = 0x02,
@@ -143,30 +144,41 @@ enum Opcode
   OPCODE_LXOR = 0x83,
 };
 
+enum OperandType
+{
+  OPERAND_TYPE_NONE,
+  OPERAND_TYPE_BYTE,
+  OPERAND_TYPE_SHORT,
+  OPERAND_TYPE_CPINDEX,
+};
+
 typedef struct
 {
   int8_t byte;
-} _1ByteOperands;
+} ByteOperands;
 
 typedef struct
 {
   int16_t short_;
-} _1ShortOperands;
+} ShortOperands;
 
 typedef struct
 {
-  u2 cp_index;
+  u2 cpindex;
   int operands_num_bytes;
-} _1CpIndexOperands;
+} CpindexOperands;
 
 typedef struct
 {
   Opcode opcode;
+  char *mnemonic;
+  OperandType operand_type;
+
   union
   {
-    _1ByteOperands _1byte_operands;
-    _1ShortOperands _1short_operands;
-    _1CpIndexOperands _1cp_index_operands;
+    ByteOperands byte_operands;
+    ShortOperands short_operands;
+    CpindexOperands cpindex_operands;
   };
 } Code;
 
