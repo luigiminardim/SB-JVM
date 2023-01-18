@@ -24,9 +24,11 @@ VALGRIND = valgrind --leak-check=full --track-origins=yes -s
 
 build: $(TARGET)
 
+command ?= read
+file ?= assets/test-ConstantPool/AllConstanPoolCases.class
 .PHONY: run
 run: $(TARGET)
-	@./$(TARGET) $(file) | json_reformat
+	@./$(TARGET) $(command) $(file) | json_reformat
 
 .PHONY: test
 test: build/test.exe
@@ -51,13 +53,13 @@ valgrind:
 # Build Rules
 
 $(TARGET): $(OBJECTS)
-	$(CC) -o $@ $^
+	@$(CC) -o $@ $^
 
 build/objs/%.test.o: test/%.test.c test/*.h src/*.h
-	$(CC) -I./src -I./test -c -o $@ $<
+	@$(CC) -I./src -I./test -c -o $@ $<
 
 build/objs/%.o: src/%.c src/*.h
-	$(CC) -I./src -I./test -c -o $@ $<
+	@$(CC) -I./src -I./test -c -o $@ $<
 
 build/test.exe: $(TEST_OBJECTS)
-	$(CC) -o $@ $^
+	@$(CC) -o $@ $^
