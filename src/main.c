@@ -1,16 +1,23 @@
-#include "ClassFile.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdlib.h> // exit
+#include "read_classfile_usecase.h"
 
 int main(int argc, char **argv)
 {
-  char default_file_name[] = "assets/test-ConstantPool/AllConstanPoolCases.class";
-  char *file_name = argc > 1 ? argv[1] : default_file_name;
-  FILE *fp = fopen(file_name, "rb");
-  ClassFile c = ClassFile_read(fp);
-  char *s = ClassFile_to_string(c);
-  printf("%s\n", s);
-  free(s);
-  ClassFile_free(c);
-  fclose(fp);
+  const char *command = argc > 1 ? argv[1] : NULL;
+  char *file_name = argc > 2 ? argv[2] : NULL;
+  if (!strcmp(command, "read") != 0)
+  {
+    read_classfile_usecase(file_name);
+  }
+  else if (!strcmp(command, "exec") != 0)
+  {
+    printf("Not implemented yet\n");
+  }
+  else
+  {
+    printf("Usage: %s [exec|read] [file_name]\n", argv[0]);
+    exit(1);
+  }
 }

@@ -79,5 +79,5 @@ make lint
 Para realizar uma análise dinâmica basta executar:
 
 ```sh
-make valgrind file="path para .class"
+make valgrind command="read" file="path para .class"
 ```
