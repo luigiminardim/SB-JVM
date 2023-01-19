@@ -47,6 +47,16 @@ int Code__parse_cpindex_operands(Code *code, const char *mnemonic, u1 *bytes, u4
   return operands_num_bytes;
 }
 
+int Code__parse_byte_byte_operands(Code *code, const char *mnemonic, u1 *bytes, u4 pc)
+{
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_BYTE_BYTE;
+  code->byte_byte_operands.index = bytes[pc + 1];
+  code->byte_byte_operands.const_ = bytes[pc + 2];
+  return 2;
+}
+
 Code *Code_Parse(u1 *bytes, u4 code_length)
 {
   Code *code = (Code *)malloc(sizeof(Code) * code_length);
@@ -452,6 +462,183 @@ Code *Code_Parse(u1 *bytes, u4 code_length)
     case OPCODE_LXOR:
       op_size = Code__parse_none_operands(&code[pc], "lxor", bytes, pc);
       break;
+    case OPCODE_IINC:
+      op_size = Code__parse_byte_byte_operands(&code[pc], "iinc", bytes, pc);
+      break;
+    case OPCODE_I2L:
+      op_size = Code__parse_none_operands(&code[pc], "i2l", bytes, pc);
+      break;
+    case OPCODE_I2F:
+      op_size = Code__parse_none_operands(&code[pc], "i2f", bytes, pc);
+      break;
+    case OPCODE_I2D:
+      op_size = Code__parse_none_operands(&code[pc], "i2d", bytes, pc);
+      break;
+    case OPCODE_L2I:
+      op_size = Code__parse_none_operands(&code[pc], "l2i", bytes, pc);
+      break;
+    case OPCODE_L2F:
+      op_size = Code__parse_none_operands(&code[pc], "l2f", bytes, pc);
+      break;
+    case OPCODE_L2D:
+      op_size = Code__parse_none_operands(&code[pc], "l2d", bytes, pc);
+      break;
+    case OPCODE_F2I:
+      op_size = Code__parse_none_operands(&code[pc], "f2i", bytes, pc);
+      break;
+    case OPCODE_F2L:
+      op_size = Code__parse_none_operands(&code[pc], "f2l", bytes, pc);
+      break;
+    case OPCODE_F2D:
+      op_size = Code__parse_none_operands(&code[pc], "f2d", bytes, pc);
+      break;
+    case OPCODE_D2I:
+      op_size = Code__parse_none_operands(&code[pc], "d2i", bytes, pc);
+      break;
+    case OPCODE_D2L:
+      op_size = Code__parse_none_operands(&code[pc], "d2l", bytes, pc);
+      break;
+    case OPCODE_D2F:
+      op_size = Code__parse_none_operands(&code[pc], "d2f", bytes, pc);
+      break;
+    case OPCODE_I2B:
+      op_size = Code__parse_none_operands(&code[pc], "i2b", bytes, pc);
+      break;
+    case OPCODE_I2C:
+      op_size = Code__parse_none_operands(&code[pc], "i2c", bytes, pc);
+      break;
+    case OPCODE_I2S:
+      op_size = Code__parse_none_operands(&code[pc], "i2s", bytes, pc);
+      break;
+    case OPCODE_LCMP:
+      op_size = Code__parse_none_operands(&code[pc], "lcmp", bytes, pc);
+      break;
+    case OPCODE_FCMPL:
+      op_size = Code__parse_none_operands(&code[pc], "fcmpl", bytes, pc);
+      break;
+    case OPCODE_FCMPG:
+      op_size = Code__parse_none_operands(&code[pc], "fcmpg", bytes, pc);
+      break;
+    case OPCODE_DCMPL:
+      op_size = Code__parse_none_operands(&code[pc], "dcmpl", bytes, pc);
+      break;
+    case OPCODE_DCMPG:
+      op_size = Code__parse_none_operands(&code[pc], "dcmpg", bytes, pc);
+      break;
+    case OPCODE_IFEQ:
+      op_size = Code__parse_short_operands(&code[pc], "ifeq", bytes, pc);
+      break;
+    case OPCODE_IFNE:
+      op_size = Code__parse_short_operands(&code[pc], "ifne", bytes, pc);
+      break;
+    case OPCODE_IFLT:
+      op_size = Code__parse_short_operands(&code[pc], "iflt", bytes, pc);
+      break;
+    case OPCODE_IFGE:
+      op_size = Code__parse_short_operands(&code[pc], "ifge", bytes, pc);
+      break;
+    case OPCODE_IFGT:
+      op_size = Code__parse_short_operands(&code[pc], "ifgt", bytes, pc);
+      break;
+    case OPCODE_IFLE:
+      op_size = Code__parse_short_operands(&code[pc], "ifle", bytes, pc);
+      break;
+    case OPCODE_IF_ICMPEQ:
+      op_size = Code__parse_short_operands(&code[pc], "if_icmpeq", bytes, pc);
+      break;
+    case OPCODE_IF_ICMPNE:
+      op_size = Code__parse_short_operands(&code[pc], "if_icmpne", bytes, pc);
+      break;
+    case OPCODE_IF_ICMPLT:
+      op_size = Code__parse_short_operands(&code[pc], "if_icmplt", bytes, pc);
+      break;
+    case OPCODE_IF_ICMPGE:
+      op_size = Code__parse_short_operands(&code[pc], "if_icmpge", bytes, pc);
+      break;
+    case OPCODE_IF_ICMPGT:
+      op_size = Code__parse_short_operands(&code[pc], "if_icmpgt", bytes, pc);
+      break;
+    case OPCODE_IF_ICMPLE:
+      op_size = Code__parse_short_operands(&code[pc], "if_icmple", bytes, pc);
+      break;
+    case OPCODE_IF_ACMPEQ:
+      op_size = Code__parse_short_operands(&code[pc], "if_acmpeq", bytes, pc);
+      break;
+    case OPCODE_IF_ACMPNE:
+      op_size = Code__parse_short_operands(&code[pc], "if_acmpne", bytes, pc);
+      break;
+    case OPCODE_GOTO:
+      op_size = Code__parse_short_operands(&code[pc], "goto", bytes, pc);
+      break;
+    case OPCODE_JSR:
+      op_size = Code__parse_short_operands(&code[pc], "jsr", bytes, pc);
+      break;
+    case OPCODE_RET:
+      op_size = Code__parse_byte_operands(&code[pc], "ret", bytes, pc);
+      break;
+    // case OPCODE_TABLESWITCH:
+    //   op_size = Code__parse_tableswitch_operands(&code[pc], bytes, pc);
+    //   break;
+    // case OPCODE_LOOKUPSWITCH:
+    //   op_size = Code__parse_lookupswitch_operands(&code[pc], bytes, pc);
+    //   break;
+    case OPCODE_IRETURN:
+      op_size = Code__parse_none_operands(&code[pc], "ireturn", bytes, pc);
+      break;
+    case OPCODE_LRETURN:
+      op_size = Code__parse_none_operands(&code[pc], "lreturn", bytes, pc);
+      break;
+    case OPCODE_FRETURN:
+      op_size = Code__parse_none_operands(&code[pc], "freturn", bytes, pc);
+      break;
+    case OPCODE_DRETURN:
+      op_size = Code__parse_none_operands(&code[pc], "dreturn", bytes, pc);
+      break;
+    case OPCODE_ARETURN:
+      op_size = Code__parse_none_operands(&code[pc], "areturn", bytes, pc);
+      break;
+    case OPCODE_RETURN:
+      op_size = Code__parse_none_operands(&code[pc], "return", bytes, pc);
+      break;
+    case OPCODE_GETSTATIC:
+      op_size = Code__parse_cpindex_operands(&code[pc], "getstatic", bytes, pc, 2);
+      break;
+    case OPCODE_PUTSTATIC:
+      op_size = Code__parse_cpindex_operands(&code[pc], "putstatic", bytes, pc, 2);
+      break;
+    case OPCODE_GETFIELD:
+      op_size = Code__parse_cpindex_operands(&code[pc], "getfield", bytes, pc, 2);
+      break;
+    case OPCODE_PUTFIELD:
+      op_size = Code__parse_cpindex_operands(&code[pc], "putfield", bytes, pc, 2);
+      break;
+    case OPCODE_INVOKEVIRTUAL:
+      op_size = Code__parse_cpindex_operands(&code[pc], "invokevirtual", bytes, pc, 2);
+      break;
+    case OPCODE_INVOKESPECIAL:
+      op_size = Code__parse_cpindex_operands(&code[pc], "invokespecial", bytes, pc, 2);
+      break;
+    case OPCODE_INVOKESTATIC:
+      op_size = Code__parse_cpindex_operands(&code[pc], "invokestatic", bytes, pc, 2);
+      break;
+    // case OPCODE_INVOKEINTERFACE:
+    //   op_size = Code__parse_cpindex_operands(&code[pc], "invokeinterface", bytes, pc, 4);
+    //   break;
+    // case OPCODE_INVOKEDYNAMIC:
+    //   op_size = Code__parse_cpindex_operands(&code[pc], "invokedynamic", bytes, pc, 4);
+    //   break;
+    case OPCODE_NEW:
+      op_size = Code__parse_cpindex_operands(&code[pc], "new", bytes, pc, 2);
+      break;
+    case OPCODE_NEWARRAY:
+      op_size = Code__parse_byte_operands(&code[pc], "newarray", bytes, pc);
+      break;
+    case OPCODE_ANEWARRAY:
+      op_size = Code__parse_cpindex_operands(&code[pc], "anewarray", bytes, pc, 2);
+      break;
+    case OPCODE_ARRAYLENGTH:
+      op_size = Code__parse_none_operands(&code[pc], "arraylength", bytes, pc);
+      break;
     default:
       char *str = (char *)malloc(32 * sizeof(char));
       snprintf(str, 32, "0x%02X", code[pc].opcode);
@@ -515,6 +702,19 @@ char *Code__cpindex_operands_to_string(
   return str;
 }
 
+char *Code__byte_byte_operands_to_string(
+    Code code)
+{
+  char *str = (char *)malloc(256 * sizeof(char));
+  snprintf(
+      str, 256,
+      "%s %hhd, %hhd",
+      code.mnemonic,
+      code.byte_byte_operands.index,
+      code.byte_byte_operands.const_);
+  return str;
+}
+
 char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
 {
   switch (code_entry.operand_type)
@@ -527,6 +727,8 @@ char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
     return Code__short_operands_to_string(code_entry);
   case OPERAND_TYPE_CPINDEX:
     return Code__cpindex_operands_to_string(code_entry, constant_pool);
+  case OPERAND_TYPE_BYTE_BYTE:
+    return Code__byte_byte_operands_to_string(code_entry);
   default:
     char *final_str = (char *)malloc(2048 * sizeof(char));
     snprintf(final_str, 2048, "0x%02X", code_entry.opcode);
