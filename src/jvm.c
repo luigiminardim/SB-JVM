@@ -27,7 +27,7 @@ void setMethod(JVM* jvm, char* method_name){
 
 void popFrame(JVM* jvm){
     // JVM
-    // Frame *f = jvm->frames[jvm->frame_count - 1];
+    // Frame *f = topFrame(jvm);
     // jvm->frame_count = jvm->frame_count - 1;
     
     // Frame
@@ -38,11 +38,18 @@ void pushFrame(JVM* jvm){
     ClassFile *new_current_class = jvm->current_class;
     MethodInfo *new_curret_method = jvm->current_method;
 
-    jvm->frame_count = jvm->frame_count + 1
+    jvm->frame_count = jvm->frame_count + 1;
     // Frame* new_frame_stack = realloc(jvm->frames, jvm->frame_count);
     // Frame* new_frame = createframe(jvm, new_current_class, new_current_method);
     
     // new_frame_stack[jvm->frame_count-1] = new_frame;
     // jvm->frames = new_frame_stack;
     jvm->pc = 0;
+}
+
+void saveContext(JVM* jvm){
+    // Frame *f = topFrame(jvm);
+    // f->pc = jvm->pc + 2;
+    // f->frame_class = jvm->current_class;
+    // f->frame_method = jvm->current_method;
 }
