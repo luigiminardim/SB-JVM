@@ -18,3 +18,9 @@ void setClass(JVM* jvm, char* classname){
     // ClassFile* cf = loadClass(char* classname)
     jvm->current_class = cf;
 }
+
+void setMethod(JVM* jvm, char* method_name){
+    MethodInfo* m;
+    m = getMethod(jvm->current_class, method_name);
+    jvm->current_method = m;
+}
