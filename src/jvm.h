@@ -10,7 +10,7 @@ typedef struct JVM
   u2 frame_count; // Também atua como index do frame atual já que se trata de uma pilha
   // Frame *frames;
   u2 method_area_count;
-  ClassFile* method_area;
+  MethodArea* method_area;
   ClassFile* current_class;
   MethodInfo* current_method; // Index para vetor de Methods da Classe atual
 } JVM;
