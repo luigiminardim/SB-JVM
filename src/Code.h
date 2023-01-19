@@ -142,6 +142,65 @@ enum Opcode
   OPCODE_LOR = 0x81,
   OPCODE_IXOR = 0x82,
   OPCODE_LXOR = 0x83,
+  OPCODE_IINC = 0x84,
+  OPCODE_I2L = 0x85,
+  OPCODE_I2F = 0x86,
+  OPCODE_I2D = 0x87,
+  OPCODE_L2I = 0x88,
+  OPCODE_L2F = 0x89,
+  OPCODE_L2D = 0x8A,
+  OPCODE_F2I = 0x8B,
+  OPCODE_F2L = 0x8C,
+  OPCODE_F2D = 0x8D,
+  OPCODE_D2I = 0x8E,
+  OPCODE_D2L = 0x8F,
+  OPCODE_D2F = 0x90,
+  OPCODE_I2B = 0x91,
+  OPCODE_I2C = 0x92,
+  OPCODE_I2S = 0x93,
+  OPCODE_LCMP = 0x94,
+  OPCODE_FCMPL = 0x95,
+  OPCODE_FCMPG = 0x96,
+  OPCODE_DCMPL = 0x97,
+  OPCODE_DCMPG = 0x98,
+  OPCODE_IFEQ = 0x99,
+  OPCODE_IFNE = 0x9A,
+  OPCODE_IFLT = 0x9B,
+  OPCODE_IFGE = 0x9C,
+  OPCODE_IFGT = 0x9D,
+  OPCODE_IFLE = 0x9E,
+  OPCODE_IF_ICMPEQ = 0x9F,
+  OPCODE_IF_ICMPNE = 0xA0,
+  OPCODE_IF_ICMPLT = 0xA1,
+  OPCODE_IF_ICMPGE = 0xA2,
+  OPCODE_IF_ICMPGT = 0xA3,
+  OPCODE_IF_ICMPLE = 0xA4,
+  OPCODE_IF_ACMPEQ = 0xA5,
+  OPCODE_IF_ACMPNE = 0xA6,
+  OPCODE_GOTO = 0xA7,
+  OPCODE_JSR = 0xA8,
+  OPCODE_RET = 0xA9,
+  // OPCODE_TABLESWITCH = 0xAA,
+  // OPCODE_LOOKUPSWITCH = 0xAB,
+  OPCODE_IRETURN = 0xAC,
+  OPCODE_LRETURN = 0xAD,
+  OPCODE_FRETURN = 0xAE,
+  OPCODE_DRETURN = 0xAF,
+  OPCODE_ARETURN = 0xB0,
+  OPCODE_RETURN = 0xB1,
+  OPCODE_GETSTATIC = 0xB2,
+  OPCODE_PUTSTATIC = 0xB3,
+  OPCODE_GETFIELD = 0xB4,
+  OPCODE_PUTFIELD = 0xB5,
+  OPCODE_INVOKEVIRTUAL = 0xB6,
+  OPCODE_INVOKESPECIAL = 0xB7,
+  OPCODE_INVOKESTATIC = 0xB8,
+  // OPCODE_INVOKEINTERFACE = 0xB9,
+  // OPCODE_INVOKEDYNAMIC = 0xBA,
+  OPCODE_NEW = 0xBB,
+  OPCODE_NEWARRAY = 0xBC,
+  OPCODE_ANEWARRAY = 0xBD,
+  OPCODE_ARRAYLENGTH = 0xBE,
 };
 
 enum OperandType
@@ -150,6 +209,7 @@ enum OperandType
   OPERAND_TYPE_BYTE,
   OPERAND_TYPE_SHORT,
   OPERAND_TYPE_CPINDEX,
+  OPERAND_TYPE_BYTE_BYTE,
 };
 
 typedef struct
@@ -161,6 +221,11 @@ typedef struct
 {
   int16_t short_;
 } ShortOperands;
+
+typedef struct {
+  int8_t index;
+  int8_t const_;
+} ByteByteOperands;
 
 typedef struct
 {
@@ -179,6 +244,7 @@ typedef struct
     ByteOperands byte_operands;
     ShortOperands short_operands;
     CpindexOperands cpindex_operands;
+    ByteByteOperands byte_byte_operands;
   };
 } Code;
 
