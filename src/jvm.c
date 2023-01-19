@@ -6,10 +6,15 @@ JVM *startJVM(){
     jvm->pc = 0;
     jvm->frame_count = 0;
     jvm->method_area_count = 0;
-    jvm->method_area = (ClassFile *)malloc(sizeof(ClassFile));
+    jvm->method_area = (MethodArea *)malloc(sizeof(MethodArea));
     jvm->current_class = (ClassFile *)malloc(sizeof(ClassFile));
     jvm->current_method = (MethodInfo *)malloc(sizeof(MethodInfo));
 
     return jvm;
 }
 
+void setClass(JVM* jvm, char* classname){
+    ClassFile* cf;
+    // ClassFile* cf = loadClass(char* classname)
+    jvm->current_class = cf;
+}
