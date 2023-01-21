@@ -17,7 +17,6 @@ typedef struct JVM
 
 JVM *startJVM();
 
-// Classfile ou Class
 void setClass(JVM* jvm, char* classname);
 
 void setMethod(JVM* jvm, char* method_name);

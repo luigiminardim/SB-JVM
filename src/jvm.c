@@ -15,7 +15,7 @@ JVM *startJVM(){
 
 void setClass(JVM* jvm, char* classname){
     ClassFile* cf;
-    // ClassFile* cf = loadClass(char* classname)
+    cf = getClass(jvm->method_area, classname);
     jvm->current_class = cf;
 }
 
@@ -52,4 +52,11 @@ void saveContext(JVM* jvm){
     // f->pc = jvm->pc + 2;
     // f->frame_class = jvm->current_class;
     // f->frame_method = jvm->current_method;
+}
+
+void restoreContext(JVM* jmv) {
+    // Frame *f = topFrame(jvm);
+    // jvm->pc = f->pc;
+    // jvm->current_class = f->frame_class;
+    // jvm->current_method = f->frame_method;
 }
