@@ -16,4 +16,4 @@ ClassFile *loadClass(JVM* jvm, char* classname);
 
 ClassFile *getClass(MethodArea* method_area, char* classname);
 
-int classLoaded(MethodArea* method_area, char* classname);
+int classLoaded(MethodArea* method_area, u2 n_classes, char* classname);

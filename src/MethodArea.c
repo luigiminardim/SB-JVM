@@ -17,13 +17,22 @@ MethodInfo *getMethod(ClassFile* method_class, char* method_name){
     // TODO: E se o metodo não existir ?
 }
 
-int classLoaded(MethodArea* method_area, char* classname){
-    
+int classLoaded(MethodArea* method_area, u2 n_classes,char* classname){
+    for(MethodArea* ma=method_area; ma< method_area + n_classes; ma++){
+        // Fazer uma função de acesso a valores do CP pode ser interessante
+        CpInfo cp_record = ma->classfile->constant_pool[ma->classfile->this_class];
+        cp_record = ma->classfile->constant_pool[cp_record.constant_class_info.name_index];
+        char* name = cp_record.constant_utf8_info.bytes;
+        if (strcmp(name, classname) == 0){
+            return 1;
+        }
+    }
+    return 0;
 }
 
 ClassFile *loadClass(JVM* jvm, char* classname){
     
-    if (class_loaded(jvm->method_area, classname)){
+    if (class_loaded(jvm->method_area, jvm->method_area_count, classname)){
         return;
     }
 
