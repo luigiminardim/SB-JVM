@@ -14,7 +14,7 @@ MethodInfo *getMethod(ClassFile* method_class, char* method_name){
         }
     }
 
-    // TODO: E se o metodo não existir ?
+    return NULL;
 }
 
 ClassFile *getClass(MethodArea* method_area, u2 n_classes,char* classname){
