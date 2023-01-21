@@ -1,9 +1,10 @@
 public class SumNumber {
     
     final private int first_attribute = 1;
-    final public int second_attribute = 2;
+    final public int second_attribute = 13;
     protected boolean third_attribute = true;
     protected char fourth_attribute = '4';
+    public int fifth_attribute = 33;
 
     static {System.out.println("69");}
     {System.out.println("96");}
@@ -11,6 +12,8 @@ public class SumNumber {
     public static void main(String[] args) {
         System.out.println(SumNumber.Soma(3,6));
         SumNumber somaClasse = new SumNumber();
+        int teste_var = somaClasse.fifth_attribute;
+        somaClasse.fifth_attribute = somaClasse.fifth_attribute + teste_var;
         System.out.println(somaClasse.second_attribute);
         somaClasse.Subtracao(20, 10);
     }   
