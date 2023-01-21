@@ -11,3 +11,9 @@ typedef struct MethodArea
 } MethodArea;
 
 MethodInfo *getMethod(ClassFile* method_class, char* method_name);
+
+ClassFile *loadClass(JVM* jvm, char* classname);
+
+ClassFile *getClass(MethodArea* method_area, char* classname);
+
+int classLoaded(MethodArea* method_area, char* classname);
