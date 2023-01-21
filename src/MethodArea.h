@@ -13,6 +13,6 @@ typedef struct MethodArea
 
 MethodInfo *getMethod(ClassFile* method_class, char* method_name);
 
-ClassFile *loadClass(JVM* jvm, char* classname);
+void loadClass(JVM* jvm, char* classname);
 
 ClassFile *getClass(MethodArea* method_area, u2 n_classes, char* classname);

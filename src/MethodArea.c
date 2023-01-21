@@ -30,7 +30,7 @@ ClassFile *getClass(MethodArea* method_area, u2 n_classes,char* classname){
     return NULL;
 }
 
-ClassFile *loadClass(JVM* jvm, char* classname){
+void loadClass(JVM* jvm, char* classname){
     
     if (getClass(jvm->method_area, jvm->method_area_count, classname) == NULL){
         return;
