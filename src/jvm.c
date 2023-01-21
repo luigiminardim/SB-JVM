@@ -15,7 +15,7 @@ JVM *startJVM(){
 
 void setClass(JVM* jvm, char* classname){
     ClassFile* cf;
-    cf = getClass(jvm->method_area, classname);
+    cf = getClass(jvm->method_area, jvm->method_area_count, classname);
     jvm->current_class = cf;
 }
 
