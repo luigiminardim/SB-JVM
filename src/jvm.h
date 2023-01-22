@@ -26,6 +26,8 @@ void popFrame(JVM*);
 
 void pushFrame(JVM*);
 
+void verifyClinit(JVM*);
+
 void saveContext(JVM*);
 
 void restoreContext(JVM*);

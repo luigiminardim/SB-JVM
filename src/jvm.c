@@ -26,12 +26,12 @@ void setMethod(JVM* jvm, char* method_name){
 }
 
 void popFrame(JVM* jvm){
-    // JVM
-    // Frame *f = topFrame(jvm);
-    // jvm->frame_count = jvm->frame_count - 1;
+    Frame *f = topFrame(jvm);
+    jvm->frame_count--;
+    Frame* new_frame_stack = realloc(jvm->frames, sizeof(Frame)*jvm->frame_count);
+    jvm->frames = new_frame_stack;
     
-    // Frame
-    // freeFrame(f);
+    freeFrame(f);
 }
 
 void pushFrame(JVM* jvm){
@@ -47,11 +47,21 @@ void pushFrame(JVM* jvm){
     jvm->pc = 0;
 }
 
+void verifyClinit(JVM* jvm){
+    MethodInfo *clinit = getMethod(jvm->current_class, "clinit");
+    if (clinit == NULL){return;}
+
+    saveContext(jvm);
+    setMethod(jvm, "clinit");
+    pushFrame(jvm);
+}
+
 void saveContext(JVM* jvm){
-    // Frame *f = topFrame(jvm);
-    // f->pc = jvm->pc + 2;
-    // f->frame_class = jvm->current_class;
-    // f->frame_method = jvm->current_method;
+    Frame *f = topFrame(jvm);
+    // Assume que jvm já calculou pc da proximo instrução antes de salvar o contexto
+    f->pc = jvm->pc;
+    f->frame_class = jvm->current_class;
+    f->frame_method = jvm->current_method;
 }
 
 void restoreContext(JVM* jmv) {
