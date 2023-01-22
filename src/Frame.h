@@ -14,3 +14,5 @@ typedef struct Frame
 Frame *topFrame(JVM* jvm);
 
 Frame *createFrame(JVM*, ClassFile*, MethodInfo*);
+
+void freeFrame(Frame*);

@@ -32,8 +32,12 @@ void saveContext(JVM*);
 
 void restoreContext(JVM*);
 
-void runJVM(JVM*);
+char* methodName(MethodInfo*, ClassFile*);
 
-void clinitJVM(JVM *jvm);
+char* className(ClassFile*);
+
+int inMain(JVM*);
+
+void runJVM(JVM*);
 
 void freeJVM(JVM* jvm);

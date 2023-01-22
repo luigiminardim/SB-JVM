@@ -70,3 +70,25 @@ void restoreContext(JVM* jmv) {
     // jvm->current_class = f->frame_class;
     // jvm->current_method = f->frame_method;
 }
+
+char* methodName(MethodInfo* method, ClassFile* class){
+    CpInfo cpinfo = class->constant_pool[method->name_index];
+    char *method_name = cpinfo.constant_utf8_info.bytes;
+    return method_name;
+}
+
+char* className(ClassFile* class){
+    CpInfo cpinfo = class->constant_pool[class->this_class];
+    cpinfo = class->constant_pool[cpinfo.constant_class_info.name_index];
+    char* classname = cpinfo.constant_utf8_info.bytes;
+    return classname;
+}
+
+int inMain(JVM* jvm){
+    char* curr_method_name = methodName(jvm->current_method, jvm->current_class);
+    if (strcmp(curr_method_name, "main") == 0){
+        return 1;
+    } else {
+        return 0;
+    }
+}
