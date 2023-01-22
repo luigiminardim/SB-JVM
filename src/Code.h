@@ -180,7 +180,7 @@ enum Opcode
   OPCODE_GOTO = 0xA7,
   OPCODE_JSR = 0xA8,
   OPCODE_RET = 0xA9,
-  // OPCODE_TABLESWITCH = 0xAA,
+  OPCODE_TABLESWITCH = 0xAA,
   // OPCODE_LOOKUPSWITCH = 0xAB,
   OPCODE_IRETURN = 0xAC,
   OPCODE_LRETURN = 0xAD,
@@ -224,6 +224,7 @@ enum OperandType
   OPERAND_TYPE_CPINDEX,
   OPERAND_TYPE_BYTE_BYTE,
   OPERAND_TYPE_CPINDEX_BYTE,
+  OPERAND_TYPE_TABLESWITCH,
 };
 
 typedef struct
@@ -260,6 +261,14 @@ typedef struct
 
 typedef struct
 {
+  int32_t default_;
+  int32_t low;
+  int32_t high;
+  int32_t *offsets;
+} TableswitchOperands;
+
+typedef struct
+{
   Opcode opcode;
   char *mnemonic;
   OperandType operand_type;
@@ -271,6 +280,7 @@ typedef struct
     ByteByteOperands byte_byte_operands;
     CpindexByteOperands cpindex_byte_operands;
     IntOperands int_operands;
+    TableswitchOperands tableswitch_operands;
   };
 } Code;
 

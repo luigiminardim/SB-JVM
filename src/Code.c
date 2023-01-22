@@ -84,6 +84,36 @@ int Code__parse_cpindex_byte_operands(Code *code, const char *mnemonic, u1 *byte
   return cpindex_num_bytes + 1;
 }
 
+int Code__parse_tableswitch_operands(Code *code, const char *mnemonic, u1 *bytes, u4 pc)
+{
+  u4 start_pc = pc;
+  pc += 1 + (3 - (pc % 4)) % 4;
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_TABLESWITCH;
+  code->tableswitch_operands.default_ =
+      bytes[pc++] << 24 | bytes[pc++] << 16 |
+      bytes[pc++] << 8 | bytes[pc++];
+  code->tableswitch_operands.low =
+      bytes[pc++] << 24 | bytes[pc++] << 16 |
+      bytes[pc++] << 8 | bytes[pc++];
+  code->tableswitch_operands.high =
+      bytes[pc++] << 24 | bytes[pc++] << 16 |
+      bytes[pc++] << 8 | bytes[pc++];
+  int num_offsets =
+      code->tableswitch_operands.high -
+      code->tableswitch_operands.low + 1;
+  code->tableswitch_operands.offsets =
+      (int32_t *)malloc(sizeof(int32_t) * num_offsets);
+  for (int i = 0; i < num_offsets; i++)
+  {
+    code->tableswitch_operands.offsets[i] =
+        bytes[pc++] << 24 | bytes[pc++] << 16 |
+        bytes[pc++] << 8 | bytes[pc++];
+  }
+  return pc - start_pc - 1;
+}
+
 Code *Code_Parse(u1 *bytes, u4 code_length)
 {
   Code *code = (Code *)malloc(sizeof(Code) * code_length);
@@ -603,9 +633,9 @@ Code *Code_Parse(u1 *bytes, u4 code_length)
     case OPCODE_RET:
       op_size = Code__parse_byte_operands(&code[pc], "ret", bytes, pc);
       break;
-    // case OPCODE_TABLESWITCH:
-    //   op_size = Code__parse_tableswitch_operands(&code[pc], bytes, pc);
-    //   break;
+    case OPCODE_TABLESWITCH:
+      op_size = Code__parse_tableswitch_operands(&code[pc], "tableswitch", bytes, pc);
+      break;
     // case OPCODE_LOOKUPSWITCH:
     //   op_size = Code__parse_lookupswitch_operands(&code[pc], bytes, pc);
     //   break;
@@ -726,6 +756,10 @@ void Code_Free(Code *code, u4 code_length)
     {
       continue;
     }
+    if (code[i].operand_type == OPERAND_TYPE_TABLESWITCH)
+    {
+      free(code[i].tableswitch_operands.offsets);
+    }
     free(code[i].mnemonic);
   }
   free(code);
@@ -794,6 +828,30 @@ char *Code__cpindex_byte_operands_to_string(
   return str;
 }
 
+char *Code__tableswitch_operands_to_string(
+    Code code, ConstantPool constant_pool)
+{
+  int str_size = 2048;
+  char *str = (char *)malloc(str_size * sizeof(char));
+  char *str_it = str;
+  snprintf(
+      str, str_size,
+      "%s {low: %d,high:%d,default:%d,offsets:[",
+      code.mnemonic, code.tableswitch_operands.low,
+      code.tableswitch_operands.high,
+      code.tableswitch_operands.default_);
+  str_it += strlen(str);
+  str_size = str_size - (str_it - str);
+  for (int i = 0; i < code.tableswitch_operands.high - code.tableswitch_operands.low + 1; i++)
+  {
+    snprintf(str_it, str_size - (str_it - str), "%d,", code.tableswitch_operands.offsets[i]);
+    str_it += strlen(str_it);
+    str_size = str_size - (str_it - str);
+  }
+  snprintf(str_it, str_size - (str_it - str), "]}");
+  return str;
+}
+
 char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
 {
   switch (code_entry.operand_type)
@@ -810,6 +868,8 @@ char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
     return Code__byte_byte_operands_to_string(code_entry);
   case OPERAND_TYPE_CPINDEX_BYTE:
     return Code__cpindex_byte_operands_to_string(code_entry, constant_pool);
+  case OPERAND_TYPE_TABLESWITCH:
+    return Code__tableswitch_operands_to_string(code_entry);
   default:
     char *final_str = (char *)malloc(2048 * sizeof(char));
     snprintf(final_str, 2048, "0x%02X", code_entry.opcode);
