@@ -100,7 +100,7 @@ void CodeAttribute_free(CodeAttribute code_attribute, ConstantPool constant_pool
 
 char *CodeAttribute_to_string(CodeAttribute code_attribute, ConstantPool constant_pool)
 {
-  char *str = (char *)malloc(2048 * sizeof(char));
+  char *str = (char *)malloc(65536 * sizeof(char));
   char *exception_table_str = ExceptionTable_to_string(
       code_attribute.exception_table,
       code_attribute.exception_table_length);
@@ -110,7 +110,7 @@ char *CodeAttribute_to_string(CodeAttribute code_attribute, ConstantPool constan
       code_attribute.attributes,
       code_attribute.attributes_count,
       constant_pool);
-  snprintf(str, 2048,
+  snprintf(str, 65536,
            "\"max_stack\":%d,\"max_locals\":%d,\"code_length\":%d,\"code\":%s,\"exception_table_length\":%d,\"exception_table\":%s,\"attributes_count\":%d,\"attributes\":%s",
            code_attribute.max_stack, code_attribute.max_locals, code_attribute.code_length,
            instructions_str, code_attribute.exception_table_length, exception_table_str,

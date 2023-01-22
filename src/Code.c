@@ -751,12 +751,12 @@ char *Code_to_string(Code *code, u4 code_lenght, ConstantPool constant_pool)
     {
       continue;
     }
-    char *str_temp = (char *)malloc(2048 * sizeof(char));
+    char *str_temp = (char *)malloc(65536 * sizeof(char));
     char *code_entry_str = Code_entry_to_string(
         code[pc], constant_pool);
     char separator = (pc == 0) ? '{' : ',';
     snprintf(
-        str_temp, 2048,
+        str_temp, 65536,
         "%s%c\"%d\":\"%s\"",
         str, separator, pc, code_entry_str);
     free(code_entry_str);
