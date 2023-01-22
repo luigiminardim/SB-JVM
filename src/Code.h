@@ -181,7 +181,7 @@ enum Opcode
   OPCODE_JSR = 0xA8,
   OPCODE_RET = 0xA9,
   OPCODE_TABLESWITCH = 0xAA,
-  // OPCODE_LOOKUPSWITCH = 0xAB,
+  OPCODE_LOOKUPSWITCH = 0xAB,
   OPCODE_IRETURN = 0xAC,
   OPCODE_LRETURN = 0xAD,
   OPCODE_FRETURN = 0xAE,
@@ -225,6 +225,7 @@ enum OperandType
   OPERAND_TYPE_BYTE_BYTE,
   OPERAND_TYPE_CPINDEX_BYTE,
   OPERAND_TYPE_TABLESWITCH,
+  OPERAND_TYPE_LOOKUPSWITCH,
 };
 
 typedef struct
@@ -237,7 +238,8 @@ typedef struct
   int16_t short_;
 } ShortOperands;
 
-typedef struct {
+typedef struct
+{
   int8_t index;
   int8_t const_;
 } ByteByteOperands;
@@ -267,6 +269,19 @@ typedef struct
   int32_t *offsets;
 } TableswitchOperands;
 
+struct LookupswitchOperandsPairs
+{
+  int32_t key;
+  int32_t offset;
+};
+
+typedef struct
+{
+  int32_t default_;
+  int32_t npairs;
+  struct LookupswitchOperandsPairs *pairs;
+} LookupswitchOperands;
+
 typedef struct
 {
   Opcode opcode;
@@ -281,6 +296,7 @@ typedef struct
     CpindexByteOperands cpindex_byte_operands;
     IntOperands int_operands;
     TableswitchOperands tableswitch_operands;
+    LookupswitchOperands lookupswitch_operands;
   };
 } Code;
 
