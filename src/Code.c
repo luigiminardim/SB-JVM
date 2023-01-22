@@ -32,6 +32,18 @@ int Code__parse_short_operands(
   return 2;
 }
 
+int Code__parse_int_operands(
+    Code *code, const char *mnemonic, u1 *bytes, u4 pc)
+{
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_INT;
+  code->short_operands.short_ =
+      bytes[pc + 1] << 24 | bytes[pc + 2] << 16 |
+      bytes[pc + 3] << 8 | bytes[pc + 4];
+  return 2;
+}
+
 int Code__parse_cpindex_operands(Code *code, const char *mnemonic, u1 *bytes, u4 pc, int operands_num_bytes)
 {
   code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
@@ -55,6 +67,21 @@ int Code__parse_byte_byte_operands(Code *code, const char *mnemonic, u1 *bytes, 
   code->byte_byte_operands.index = bytes[pc + 1];
   code->byte_byte_operands.const_ = bytes[pc + 2];
   return 2;
+}
+
+int Code__parse_cpindex_byte_operands(Code *code, const char *mnemonic, u1 *bytes, u4 pc, int cpindex_num_bytes)
+{
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_CPINDEX_BYTE;
+  u2 cp_index = 0;
+  for (int i = 1; i <= cpindex_num_bytes; i++)
+  {
+    cp_index = cp_index << 8 | bytes[pc + i];
+  }
+  code->cpindex_byte_operands.cpindex = cp_index;
+  code->cpindex_byte_operands.byte_ = bytes[pc + cpindex_num_bytes + 1];
+  return cpindex_num_bytes + 1;
 }
 
 Code *Code_Parse(u1 *bytes, u4 code_length)
@@ -639,6 +666,42 @@ Code *Code_Parse(u1 *bytes, u4 code_length)
     case OPCODE_ARRAYLENGTH:
       op_size = Code__parse_none_operands(&code[pc], "arraylength", bytes, pc);
       break;
+    case OPCODE_ATHROW:
+      op_size = Code__parse_none_operands(&code[pc], "athrow", bytes, pc);
+      break;
+    case OPCODE_CHECKCAST:
+      op_size = Code__parse_cpindex_operands(&code[pc], "checkcast", bytes, pc, 2);
+      break;
+    case OPCODE_INSTANCEOF:
+      op_size = Code__parse_cpindex_operands(&code[pc], "instanceof", bytes, pc, 2);
+      break;
+    case OPCODE_MONITORENTER:
+      op_size = Code__parse_none_operands(&code[pc], "monitorenter", bytes, pc);
+      break;
+    case OPCODE_MONITOREXIT:
+      op_size = Code__parse_none_operands(&code[pc], "monitorexit", bytes, pc);
+      break;
+    // case OPCODE_WIDE:
+    //   op_size = Code__parse_wide_operands(&code[pc], bytes, pc);
+    //   break;
+    case OPCODE_MULTIANEWARRAY:
+      op_size = Code__parse_cpindex_byte_operands(&code[pc], "multianewarray", bytes, pc, 3);
+      break;
+    case OPCODE_IFNULL:
+      op_size = Code__parse_short_operands(&code[pc], "ifnull", bytes, pc);
+      break;
+    case OPCODE_IFNONNULL:
+      op_size = Code__parse_short_operands(&code[pc], "ifnonnull", bytes, pc);
+      break;
+    case OPCODE_GOTO_W:
+      op_size = Code__parse_int_operands(&code[pc], "goto_w", bytes, pc);
+      break;
+    case OPCODE_JSR_W:
+      op_size = Code__parse_int_operands(&code[pc], "jsr_w", bytes, pc);
+      break;
+    case OPCODE_BREAKPOINT:
+      op_size = Code__parse_none_operands(&code[pc], "breakpoint", bytes, pc);
+      break;
     default:
       char *str = (char *)malloc(32 * sizeof(char));
       snprintf(str, 32, "0x%02X", code[pc].opcode);
@@ -715,6 +778,22 @@ char *Code__byte_byte_operands_to_string(
   return str;
 }
 
+char *Code__cpindex_byte_operands_to_string(
+    Code code, ConstantPool constant_pool)
+{
+  char *str = (char *)malloc(256 * sizeof(char));
+  char *cp_str = ConstantPool_get_utf8(
+      constant_pool, code.cpindex_operands.cpindex);
+  snprintf(
+      str, 256,
+      "%s #%hd %hhd // %s %hhd",
+      code.mnemonic, code.cpindex_byte_operands.cpindex,
+      code.cpindex_byte_operands.byte_, cp_str,
+      code.cpindex_byte_operands.byte_);
+  free(cp_str);
+  return str;
+}
+
 char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
 {
   switch (code_entry.operand_type)
@@ -729,6 +808,8 @@ char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
     return Code__cpindex_operands_to_string(code_entry, constant_pool);
   case OPERAND_TYPE_BYTE_BYTE:
     return Code__byte_byte_operands_to_string(code_entry);
+  case OPERAND_TYPE_CPINDEX_BYTE:
+    return Code__cpindex_byte_operands_to_string(code_entry, constant_pool);
   default:
     char *final_str = (char *)malloc(2048 * sizeof(char));
     snprintf(final_str, 2048, "0x%02X", code_entry.opcode);
