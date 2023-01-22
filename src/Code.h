@@ -195,8 +195,8 @@ enum Opcode
   OPCODE_INVOKEVIRTUAL = 0xB6,
   OPCODE_INVOKESPECIAL = 0xB7,
   OPCODE_INVOKESTATIC = 0xB8,
-  // OPCODE_INVOKEINTERFACE = 0xB9,
-  // OPCODE_INVOKEDYNAMIC = 0xBA,
+  OPCODE_INVOKEINTERFACE = 0xB9,
+  OPCODE_INVOKEDYNAMIC = 0xBA,
   OPCODE_NEW = 0xBB,
   OPCODE_NEWARRAY = 0xBC,
   OPCODE_ANEWARRAY = 0xBD,
@@ -226,6 +226,7 @@ enum OperandType
   OPERAND_TYPE_CPINDEX_BYTE,
   OPERAND_TYPE_TABLESWITCH,
   OPERAND_TYPE_LOOKUPSWITCH,
+  OPERAND_TYPE_CPINDEX_BYTE_BYTE,
 };
 
 typedef struct
@@ -284,6 +285,13 @@ typedef struct
 
 typedef struct
 {
+  u2 cpindex;
+  int8_t byte1;
+  int8_t byte2;
+} CpindexByteByteOperands;
+
+typedef struct
+{
   Opcode opcode;
   char *mnemonic;
   OperandType operand_type;
@@ -297,6 +305,7 @@ typedef struct
     IntOperands int_operands;
     TableswitchOperands tableswitch_operands;
     LookupswitchOperands lookupswitch_operands;
+    CpindexByteByteOperands cpindex_byte_byte_operands;
   };
 } Code;
 

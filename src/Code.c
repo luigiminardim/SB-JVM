@@ -144,6 +144,23 @@ int Code__parse_lookupswitch_operands(
   return pc - start_pc - 1;
 }
 
+int Code__parse_cpindex_byte_byte_operands(
+    Code *code, const char *mnemonic, u1 *bytes, u4 pc, int cpindex_num_bytes)
+{
+  code->mnemonic = (char *)malloc(sizeof(char) * (strlen(mnemonic) + 1));
+  strcpy(code->mnemonic, mnemonic);
+  code->operand_type = OPERAND_TYPE_CPINDEX_BYTE_BYTE;
+  u2 cp_index = 0;
+  for (int i = 1; i <= cpindex_num_bytes; i++)
+  {
+    cp_index = cp_index << 8 | bytes[pc + i];
+  }
+  code->cpindex_byte_byte_operands.cpindex = cp_index;
+  code->cpindex_byte_byte_operands.byte1 = bytes[pc + cpindex_num_bytes + 1];
+  code->cpindex_byte_byte_operands.byte2 = bytes[pc + cpindex_num_bytes + 2];
+  return cpindex_num_bytes + 2;
+}
+
 Code *Code_Parse(u1 *bytes, u4 code_length)
 {
   Code *code = (Code *)malloc(sizeof(Code) * code_length);
@@ -708,12 +725,14 @@ Code *Code_Parse(u1 *bytes, u4 code_length)
     case OPCODE_INVOKESTATIC:
       op_size = Code__parse_cpindex_operands(&code[pc], "invokestatic", bytes, pc, 2);
       break;
-    // case OPCODE_INVOKEINTERFACE:
-    //   op_size = Code__parse_cpindex_operands(&code[pc], "invokeinterface", bytes, pc, 4);
-    //   break;
-    // case OPCODE_INVOKEDYNAMIC:
-    //   op_size = Code__parse_cpindex_operands(&code[pc], "invokedynamic", bytes, pc, 4);
-    //   break;
+    case OPCODE_INVOKEINTERFACE:
+      op_size = Code__parse_cpindex_byte_byte_operands(
+          &code[pc], "invokeinterface", bytes, pc, 2);
+      break;
+    case OPCODE_INVOKEDYNAMIC:
+      op_size = Code__parse_cpindex_byte_byte_operands(
+          &code[pc], "invokedynamic", bytes, pc, 2);
+      break;
     case OPCODE_NEW:
       op_size = Code__parse_cpindex_operands(&code[pc], "new", bytes, pc, 2);
       break;
@@ -913,6 +932,25 @@ char *Code__lookupswitch_operands_to_string(
   return str;
 }
 
+char *Code__cpindex_byte_byte_operands_to_string(
+    Code code, ConstantPool constant_pool)
+{
+  char *str = (char *)malloc(256 * sizeof(char));
+  char *cp_str = ConstantPool_get_utf8(
+      constant_pool, code.cpindex_byte_byte_operands.cpindex);
+  snprintf(
+      str, 256,
+      "%s #%hd %hhd %hhd // %s %hhd %hhd",
+      code.mnemonic, code.cpindex_byte_byte_operands.cpindex,
+      code.cpindex_byte_byte_operands.byte1,
+      code.cpindex_byte_byte_operands.byte2,
+      cp_str,
+      code.cpindex_byte_byte_operands.byte1,
+      code.cpindex_byte_byte_operands.byte2);
+  free(cp_str);
+  return str;
+}
+
 char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
 {
   switch (code_entry.operand_type)
@@ -933,6 +971,8 @@ char *Code_entry_to_string(Code code_entry, ConstantPool constant_pool)
     return Code__tableswitch_operands_to_string(code_entry, constant_pool);
   case OPERAND_TYPE_LOOKUPSWITCH:
     return Code__lookupswitch_operands_to_string(code_entry, constant_pool);
+  case OPERAND_TYPE_CPINDEX_BYTE_BYTE:
+    return Code__cpindex_byte_byte_operands_to_string(code_entry, constant_pool);
   default:
     char *final_str = (char *)malloc(2048 * sizeof(char));
     snprintf(final_str, 2048, "0x%02X", code_entry.opcode);
