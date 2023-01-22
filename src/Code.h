@@ -201,6 +201,18 @@ enum Opcode
   OPCODE_NEWARRAY = 0xBC,
   OPCODE_ANEWARRAY = 0xBD,
   OPCODE_ARRAYLENGTH = 0xBE,
+  OPCODE_ATHROW = 0xBF,
+  OPCODE_CHECKCAST = 0xC0,
+  OPCODE_INSTANCEOF = 0xC1,
+  OPCODE_MONITORENTER = 0xC2,
+  OPCODE_MONITOREXIT = 0xC3,
+  // OPCODE_WIDE = 0xC4,
+  OPCODE_MULTIANEWARRAY = 0xC5,
+  OPCODE_IFNULL = 0xC6,
+  OPCODE_IFNONNULL = 0xC7,
+  OPCODE_GOTO_W = 0xC8,
+  OPCODE_JSR_W = 0xC9,
+  OPCODE_BREAKPOINT = 0xCA,
 };
 
 enum OperandType
@@ -208,8 +220,10 @@ enum OperandType
   OPERAND_TYPE_NONE,
   OPERAND_TYPE_BYTE,
   OPERAND_TYPE_SHORT,
+  OPERAND_TYPE_INT,
   OPERAND_TYPE_CPINDEX,
   OPERAND_TYPE_BYTE_BYTE,
+  OPERAND_TYPE_CPINDEX_BYTE,
 };
 
 typedef struct
@@ -235,16 +249,28 @@ typedef struct
 
 typedef struct
 {
+  u2 cpindex;
+  int8_t byte_;
+} CpindexByteOperands;
+
+typedef struct
+{
+  int32_t int_;
+} IntOperands;
+
+typedef struct
+{
   Opcode opcode;
   char *mnemonic;
   OperandType operand_type;
-
   union
   {
     ByteOperands byte_operands;
     ShortOperands short_operands;
     CpindexOperands cpindex_operands;
     ByteByteOperands byte_byte_operands;
+    CpindexByteOperands cpindex_byte_operands;
+    IntOperands int_operands;
   };
 } Code;
 
