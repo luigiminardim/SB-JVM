@@ -31,12 +31,12 @@ ClassFile *getClass(MethodArea* method_area, u2 n_classes,char* classname){
 }
 
 void loadClass(JVM* jvm, char* classname){
-    
-    if (getClass(jvm->method_area, jvm->method_area_count, classname) == NULL){
+
+    if (getClass(jvm->method_area, jvm->method_area_count, classname) != NULL){
         return;
     }
 
-    // +1 because of '\0' at the end
+    // +1 pelo '\0' no final
     char * copy = malloc(strlen(classname) + 1); 
     strcpy(copy, classname);
     strcat(copy, ".class");
@@ -46,10 +46,10 @@ void loadClass(JVM* jvm, char* classname){
 
     jvm->method_area_count++;
     MethodArea* new_method_area = realloc(jvm->method_area, jvm->method_area_count*sizeof(MethodArea));
-    // Não tenho certeza se é assim mesmo: 
+    // Não tenho certeza se é assim mesmo que acessa: 
     new_method_area[jvm->method_area_count-1].classfile = &cf;
 
     jvm->method_area = new_method_area;
 
-    free(copy); // at the end, free it again.
+    free(copy);
 }
