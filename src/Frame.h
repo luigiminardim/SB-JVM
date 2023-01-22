@@ -11,4 +11,6 @@ typedef struct Frame
     MethodInfo* frame_method;
 } Frame;
 
-Frame * topFrame(JVM* jvm);
+Frame *topFrame(JVM* jvm);
+
+Frame *createFrame(JVM*, ClassFile*, MethodInfo*);
