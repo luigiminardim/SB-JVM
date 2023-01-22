@@ -64,11 +64,11 @@ void saveContext(JVM* jvm){
     f->frame_method = jvm->current_method;
 }
 
-void restoreContext(JVM* jmv) {
-    // Frame *f = topFrame(jvm);
-    // jvm->pc = f->pc;
-    // jvm->current_class = f->frame_class;
-    // jvm->current_method = f->frame_method;
+void restoreContext(JVM* jvm) {
+    Frame *f = topFrame(jvm);
+    jvm->pc = f->pc;
+    jvm->current_class = f->frame_class;
+    jvm->current_method = f->frame_method;
 }
 
 char* methodName(MethodInfo* method, ClassFile* class){
