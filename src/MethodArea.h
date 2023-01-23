@@ -25,7 +25,9 @@ typedef struct Instance
 typedef struct MethodArea
 {
   ClassFile* classfile;
+  u2 instances_count;
   Instance* instances;
+  u2 static_fields_count;
   FieldValue* static_fields;
 } MethodArea;
 
@@ -33,10 +35,10 @@ MethodInfo *getMethod(ClassFile* method_class, char* method_name);
 
 void loadClass(JVM* jvm, char* classname);
 
-ClassFile *getClass(MethodArea* method_area, u2 n_classes, char* classname);
+MethodArea *getClassMethodArea(MethodArea* method_area, u2 n_classes, char* classname);
 
 void loadStatic(MethodArea* method_area);
 
-FieldValue* getStatic(char* class_name, char* field_name);
+FieldValue* getStatic(MethodArea*, u2 method_area_count, char* class_name, char* field_name, char* type_name);
 
 Instance* allocNewInstance(char* class_name);

@@ -17,7 +17,7 @@ MethodInfo *getMethod(ClassFile* method_class, char* method_name){
     return NULL;
 }
 
-ClassFile *getClass(MethodArea* method_area, u2 n_classes,char* classname){
+MethodArea *getClassMethodArea(MethodArea* method_area, u2 n_classes,char* classname){
     for(MethodArea* ma=method_area; ma< method_area + n_classes; ma++){
         // Fazer uma função de acesso a valores do CP pode ser interessante
         CpInfo cp_record = ma->classfile->constant_pool[ma->classfile->this_class];
@@ -54,8 +54,19 @@ void loadStatic(MethodArea* method_area){
         }
     }
 
+    method_area->static_fields_count = contador;
     method_area->static_fields = field_values;
+}
 
+FieldValue *getStatic(MethodArea* method_area, u2 method_area_count, char* class_name, char* field_name, char* type_name){
+    MethodArea* ma = getClassMethodArea(method_area, method_area_count, class_name);
+
+    for (FieldValue *fv_iter = ma->static_fields; fv_iter < ma->static_fields + ma->static_fields_count; fv_iter++){
+        if ((strcmp(fv_iter->name_cpinfo.bytes, field_name) == 0) && 
+            (strcmp(fv_iter->type_cpinfo.bytes, type_name) == 0)){
+            return fv_iter;
+        }
+    }   
 }
 
 void loadClass(JVM* jvm, char* classname){
