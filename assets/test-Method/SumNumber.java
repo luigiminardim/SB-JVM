@@ -5,6 +5,7 @@ public class SumNumber {
     protected boolean third_attribute = true;
     protected char fourth_attribute = '4';
     public int fifth_attribute = 33;
+    static int sixth_attribute = 1998;
 
     static {System.out.println("69");}
     {System.out.println("96");}
@@ -16,6 +17,7 @@ public class SumNumber {
         somaClasse.fifth_attribute = somaClasse.fifth_attribute + teste_var;
         System.out.println(somaClasse.second_attribute);
         somaClasse.Subtracao(20, 10);
+        System.out.println(SumNumber.sixth_attribute);
     }   
 
     public static boolean TestaExcecao(){
