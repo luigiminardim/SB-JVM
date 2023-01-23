@@ -7,8 +7,8 @@ public class SumNumber {
     public int fifth_attribute = 33;
     static int sixth_attribute = 1998;
 
-    static {System.out.println("69");}
-    {System.out.println("96");}
+    static {System.out.println("99");}
+    {System.out.println("100");}
 
     public static void main(String[] args) {
         System.out.println(SumNumber.Soma(3,6));
