@@ -30,6 +30,34 @@ ClassFile *getClass(MethodArea* method_area, u2 n_classes,char* classname){
     return NULL;
 }
 
+void loadStatic(MethodArea* method_area){
+    // iterar sobre os fields
+    int contador = 0;
+    FieldInfo *f;
+    FieldInfo * field_infos = method_area->classfile->fields;
+    u2 fields_count = method_area->classfile->fields_count;
+    for (f = field_infos; f < field_infos + fields_count; f++){
+        // verifica se static
+        if (f->access_flags >= 8 && f->access_flags <= 12){
+            contador++;
+        }
+    }
+    
+    FieldValue *field_values = (FieldValue *)malloc(contador * sizeof(FieldValue));
+    FieldValue *fv_iter = field_values;
+    for (f = field_infos; f < field_infos + fields_count; f++){
+        // verifica se static
+        if (f->access_flags >= 8 && f->access_flags <= 12){
+            fv_iter->name_cpinfo = method_area->classfile->constant_pool[f->name_index].constant_utf8_info;
+            fv_iter->type_cpinfo = method_area->classfile->constant_pool[f->descriptor_index].constant_utf8_info;
+            fv_iter++;
+        }
+    }
+
+    method_area->static_fields = field_values;
+
+}
+
 void loadClass(JVM* jvm, char* classname){
 
     if (getClass(jvm->method_area, jvm->method_area_count, classname) != NULL){
@@ -49,6 +77,8 @@ void loadClass(JVM* jvm, char* classname){
     // Não tenho certeza se é assim mesmo que acessa: 
     new_method_area[jvm->method_area_count-1].classfile = &cf;
 
+    loadStatic(new_method_area);
+    
     jvm->method_area = new_method_area;
 
     free(copy);

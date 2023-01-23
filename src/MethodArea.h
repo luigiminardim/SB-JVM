@@ -34,3 +34,9 @@ MethodInfo *getMethod(ClassFile* method_class, char* method_name);
 void loadClass(JVM* jvm, char* classname);
 
 ClassFile *getClass(MethodArea* method_area, u2 n_classes, char* classname);
+
+void loadStatic(MethodArea* method_area);
+
+FieldValue* getStatic(char* class_name, char* field_name);
+
+Instance* allocNewInstance(char* class_name);
