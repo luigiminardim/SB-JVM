@@ -1,5 +1,6 @@
 #include "Frame.h"
 #include <string.h>
+#include "stdlib.h"
 
 AttributeInfo* getCodeAttribute(Frame* current_frame){
     AttributeInfo *att_iter;
@@ -17,4 +18,29 @@ AttributeInfo* getCodeAttribute(Frame* current_frame){
 
 void pushOperandStack(Frame* frame, int32_t value){
     frame->operand_stack[frame->stack_count++] = value;
+}
+
+int32_t popOperandStack(Frame* frame){
+    int32_t val = frame->operand_stack[frame->stack_count--];
+    return val;
+}
+
+Frame* createFrame(ClassFile* cf, MethodInfo* mi){
+    Frame *f = (Frame *)malloc(sizeof(Frame));
+    f->pc = 0;
+    f->frame_class = cf;
+    f->frame_method = mi;
+    f->constant_pool = &(cf->constant_pool);
+    
+    AttributeInfo* code_attr = getCodeAttribute(f);
+    f->local_variables = (int32_t *)malloc(sizeof(int32_t) * code_attr->code.max_locals);
+    f->operand_stack = (int32_t *)malloc(sizeof(int32_t) * code_attr->code.max_stack);
+    f->stack_count = 0;
+    return f;
+}
+
+void freeFrame(Frame* f){
+    free(f->operand_stack);
+    free(f->local_variables);
+    free(f);
 }

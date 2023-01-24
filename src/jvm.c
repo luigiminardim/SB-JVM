@@ -37,6 +37,11 @@ void pushFrame(JVM *jvm, const char *classname, const char *method_name)
     // jvm->pc = 0;
 }
 
+Frame *topFrame(JVM* jvm){
+    Frame* f = jvm->frames + ((jvm->frame_count-1) * sizeof(Frame));
+    return f;
+}
+
 void verifyClinit(JVM *jvm)
 {
     MethodInfo *clinit = getMethod(topFrame(jvm)->frame_class, "clinit");
@@ -91,13 +96,9 @@ void runJVM(JVM *jvm)
             current_frame->pc++;
             continue;
         }
+        
     }
 
-    // code = fetch(topFrame(jvm), jmv->pc);
-
-    // if code.opcode == NONE
-    //      pc ++
-    //      continue
 
     // code.exec(jvm)
 

@@ -20,4 +20,6 @@ AttributeInfo* getCodeAttribute(Frame* f);
 
 void pushOperandStack(Frame*, int32_t);
 
+int32_t popOperandStack(Frame*);
+
 void freeFrame(Frame*);

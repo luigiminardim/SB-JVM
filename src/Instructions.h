@@ -1,11 +1,13 @@
-0 iconst_1
-1 istore_1
-2 bipush 23
-4 istore_2
-5 iload_1
-6 iload_2
-7 iadd
-8 istore_3
-9 return
+#include "Frame.h"
 
 void sipush(Frame* frame, Code code);
+
+void bipush(Frame* frame, Code code);
+
+void istore_2(Frame* frame, Code code);
+
+void iload_1(Frame* frame, Code code);
+
+void iadd(Frame* frame, Code code);
+
+void __return(Frame* frame, Code code);
