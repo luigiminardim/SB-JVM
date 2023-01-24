@@ -90,7 +90,6 @@ MethodArea* loadClass(JVM* jvm, const char* classname){
 
     jvm->method_area_count++;
     jvm->method_area = (MethodArea *)realloc(jvm->method_area, jvm->method_area_count*sizeof(MethodArea));
-    
 
     MethodArea* new_ma = initMethodArea();
     new_ma->classfile = &cf;
@@ -113,4 +112,11 @@ MethodArea* initMethodArea(){
     new_ma->static_fields = (FieldValue *)malloc(sizeof(FieldValue));
     
     return new_ma;
+}
+
+void freeMethodArea(MethodArea* ma){
+    free(ma->static_fields);
+    free(ma->instances);
+    ClassFile_free(*(ma->classfile));
+    free(ma);
 }

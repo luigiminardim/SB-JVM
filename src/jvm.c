@@ -72,10 +72,10 @@ FieldValue *getStatic(JVM *jvm, const char *class_name, const char *field_name, 
     return getstatic(jvm, class_name, field_name, type_name);
 }
 
-Instance *allocNewInstance(JVM *jvm, const char *class_name)
-{
-    return newinstance(jvm->method_area, jvm->method_area_count, class_name);
-}
+//Instance *allocNewInstance(JVM *jvm, const char *class_name)
+//{
+//    return newinstance(jvm->method_area, jvm->method_area_count, class_name);
+//}
 
 Code fetchCode(Frame *current_frame)
 {
@@ -95,13 +95,22 @@ void runJVM(JVM *jvm)
         {
             current_frame->pc++;
             continue;
+        } else if (code.opcode == OPCODE_RETURN){
+            popFrame(jvm);
+        } else {
+            code.exec(current_frame, &code);
         }
 
-        code.exec(current_frame, &code);
+        current_frame->pc++;
     }
+}
 
-
-    // code.exec(jvm)
-
-    // pc++
+void freeJVM(JVM* jvm){
+    
+    MethodArea* method_area = jvm->method_area;
+    u2 n_classes = jvm->method_area_count;
+    MethodArea* ma;
+    for(ma=method_area; ma< method_area + n_classes; ma++){
+        freeMethodArea(ma);
+    }
 }

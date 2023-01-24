@@ -45,4 +45,6 @@ void loadStatic(MethodArea* method_area);
 
 FieldValue* getstatic(JVM* jvm, const char* class_name, const char* field_name, const char* type_name);
 
-Instance* newinstance(MethodArea* method_area, u2 method_area_count, const char* class_name);
+// Instance* newinstance(MethodArea* method_area, u2 method_area_count, const char* class_name);
+
+void freeMethodArea(MethodArea*);

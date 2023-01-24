@@ -38,7 +38,7 @@ void runJVM(JVM*);
 
 FieldValue* getStatic(JVM* jvm, const char* class_name, const char* field_name, const char* type_name);
 
-Instance* allocNewInstance(JVM* jvm, const char* class_name);
+// Instance* allocNewInstance(JVM* jvm, const char* class_name);
 
 Code fetchCode(Frame* current_frame);
 

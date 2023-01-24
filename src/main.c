@@ -2,6 +2,7 @@
 #include <string.h>
 #include <stdlib.h> // exit
 #include "read_classfile_usecase.h"
+#include "jvm.h"
 
 int main(int argc, char **argv)
 {
@@ -13,6 +14,11 @@ int main(int argc, char **argv)
   }
   else if (!strcmp(command, "exec") != 0)
   {
+    JVM* jvm = startJVM();
+    loadClass(jvm, file_name);
+    verifyClinit(jvm);
+    runJVM(jvm);
+    freeJVM(jvm);
     printf("Not implemented yet\n");
   }
   else
