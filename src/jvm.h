@@ -40,4 +40,8 @@ int inMain(JVM*);
 
 void runJVM(JVM*);
 
+FieldValue* getStatic(JVM* jvm, char* class_name, char* field_name, char* type_name);
+
+Instance* allocNewInstance(JVM* jvm, char* class_name);
+
 void freeJVM(JVM* jvm);

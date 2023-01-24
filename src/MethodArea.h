@@ -39,6 +39,6 @@ MethodArea *getClassMethodArea(MethodArea* method_area, u2 n_classes, char* clas
 
 void loadStatic(MethodArea* method_area);
 
-FieldValue* getStatic(MethodArea*, u2 method_area_count, char* class_name, char* field_name, char* type_name);
+FieldValue* getstatic(MethodArea* method_area, u2 method_area_count, char* class_name, char* field_name, char* type_name);
 
-Instance* allocNewInstance(char* class_name);
+Instance* newinstance(MethodArea* method_area, u2 method_area_count, char* class_name);

@@ -14,9 +14,9 @@ JVM *startJVM(){
 }
 
 void setClass(JVM* jvm, char* classname){
-    ClassFile* cf;
-    cf = getClass(jvm->method_area, jvm->method_area_count, classname);
-    jvm->current_class = cf;
+    MethodArea* ma;
+    ma = getClassMethodArea(jvm->method_area, jvm->method_area_count, classname);
+    jvm->current_class = ma->classfile;
 }
 
 void setMethod(JVM* jvm, char* method_name){
@@ -91,4 +91,12 @@ int inMain(JVM* jvm){
     } else {
         return 0;
     }
+}
+
+FieldValue* getStatic(JVM* jvm, char* class_name, char* field_name, char* type_name){
+    return getstatic(jvm->method_area, jvm->method_area_count, class_name, field_name, type_name);
+}
+
+Instance* allocNewInstance(JVM* jvm, char* class_name){
+    return newinstance(jvm->method_area, jvm->method_area_count, class_name);
 }

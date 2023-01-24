@@ -58,7 +58,7 @@ void loadStatic(MethodArea* method_area){
     method_area->static_fields = field_values;
 }
 
-FieldValue *getStatic(MethodArea* method_area, u2 method_area_count, char* class_name, char* field_name, char* type_name){
+FieldValue *getstatic(MethodArea* method_area, u2 method_area_count, char* class_name, char* field_name, char* type_name){
     MethodArea* ma = getClassMethodArea(method_area, method_area_count, class_name);
 
     for (FieldValue *fv_iter = ma->static_fields; fv_iter < ma->static_fields + ma->static_fields_count; fv_iter++){
@@ -71,7 +71,7 @@ FieldValue *getStatic(MethodArea* method_area, u2 method_area_count, char* class
 
 void loadClass(JVM* jvm, char* classname){
 
-    if (getClass(jvm->method_area, jvm->method_area_count, classname) != NULL){
+    if (getClassMethodArea(jvm->method_area, jvm->method_area_count, classname) != NULL){
         return;
     }
 
