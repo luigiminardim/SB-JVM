@@ -290,11 +290,14 @@ typedef struct
   int8_t byte2;
 } CpindexByteByteOperands;
 
-typedef struct
+struct Frame;
+
+typedef struct Code
 {
   enum Opcode opcode;
   char *mnemonic;
   enum OperandType operand_type;
+  void (*exec)(Frame*, Code*);
   union
   {
     ByteOperands byte_operands;

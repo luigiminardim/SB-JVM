@@ -96,7 +96,8 @@ void runJVM(JVM *jvm)
             current_frame->pc++;
             continue;
         }
-        
+
+        code.exec(current_frame, &code);
     }
 
 
