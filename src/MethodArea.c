@@ -17,8 +17,11 @@ MethodInfo *getMethod(ClassFile* method_class, char* method_name){
     return NULL;
 }
 
-MethodArea *getClassMethodArea(MethodArea* method_area, u2 n_classes,char* classname){
-    for(MethodArea* ma=method_area; ma< method_area + n_classes; ma++){
+MethodArea *getClassMethodArea(JVM* jvm,char* classname){
+    MethodArea* method_area = jvm->method_area;
+    u2 n_classes = jvm->method_area_count;
+    MethodArea* ma;
+    for(ma=method_area; ma< method_area + n_classes; ma++){
         // Fazer uma função de acesso a valores do CP pode ser interessante
         CpInfo cp_record = ma->classfile->constant_pool[ma->classfile->this_class];
         cp_record = ma->classfile->constant_pool[cp_record.constant_class_info.name_index];
@@ -27,7 +30,10 @@ MethodArea *getClassMethodArea(MethodArea* method_area, u2 n_classes,char* class
             return ma;
         }
     }
-    return NULL;
+
+    ma = loadClass(jvm, classname);
+
+    return ma;
 }
 
 void loadStatic(MethodArea* method_area){
@@ -58,8 +64,8 @@ void loadStatic(MethodArea* method_area){
     method_area->static_fields = field_values;
 }
 
-FieldValue *getstatic(MethodArea* method_area, u2 method_area_count, char* class_name, char* field_name, char* type_name){
-    MethodArea* ma = getClassMethodArea(method_area, method_area_count, class_name);
+FieldValue *getstatic(JVM* jvm, char* class_name, char* field_name, char* type_name){
+    MethodArea* ma = getClassMethodArea(jvm, class_name);
 
     for (FieldValue *fv_iter = ma->static_fields; fv_iter < ma->static_fields + ma->static_fields_count; fv_iter++){
         if ((strcmp(fv_iter->name_cpinfo.bytes, field_name) == 0) && 
@@ -69,11 +75,7 @@ FieldValue *getstatic(MethodArea* method_area, u2 method_area_count, char* class
     }   
 }
 
-void loadClass(JVM* jvm, char* classname){
-
-    if (getClassMethodArea(jvm->method_area, jvm->method_area_count, classname) != NULL){
-        return;
-    }
+MethodArea* loadClass(JVM* jvm, char* classname){
 
     // +1 pelo '\0' no final
     char * copy = malloc(strlen(classname) + 1); 
@@ -84,13 +86,28 @@ void loadClass(JVM* jvm, char* classname){
     ClassFile cf = ClassFile_read(fp);
 
     jvm->method_area_count++;
-    MethodArea* new_method_area = realloc(jvm->method_area, jvm->method_area_count*sizeof(MethodArea));
-    // Não tenho certeza se é assim mesmo que acessa: 
-    new_method_area[jvm->method_area_count-1].classfile = &cf;
-
-    loadStatic(new_method_area);
+    jvm->method_area = realloc(jvm->method_area, jvm->method_area_count*sizeof(MethodArea));
     
-    jvm->method_area = new_method_area;
+
+    MethodArea* new_ma = initMethodArea();
+    new_ma->classfile = &cf;
+    loadStatic(new_ma);
+
+    jvm->method_area[jvm->method_area_count-1] = *new_ma;
 
     free(copy);
+
+    return new_ma;
+}
+
+
+MethodArea* initMethodArea(){
+    MethodArea *new_ma = (MethodArea *)malloc(sizeof(MethodArea));
+    new_ma->instances_count = 0;
+    new_ma->static_fields_count = 0;
+    new_ma->classfile = (ClassFile *)malloc(sizeof(ClassFile));
+    new_ma->instances = (Instance *)malloc(sizeof(Instance));
+    new_ma->static_fields = (FieldValue *)malloc(sizeof(FieldValue));
+    
+    return new_ma;
 }

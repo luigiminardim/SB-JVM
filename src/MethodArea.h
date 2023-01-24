@@ -19,7 +19,7 @@ typedef struct FieldValue
 typedef struct Instance
 {
   ClassFile* instance_class;
-  FieldValue* fields; 
+  FieldValue* fields;
 } Instance;
 
 typedef struct MethodArea
@@ -31,14 +31,16 @@ typedef struct MethodArea
   FieldValue* static_fields;
 } MethodArea;
 
+MethodArea* initMethodArea();
+
 MethodInfo *getMethod(ClassFile* method_class, char* method_name);
 
-void loadClass(JVM* jvm, char* classname);
+MethodArea* loadClass(JVM* jvm, char* classname);
 
-MethodArea *getClassMethodArea(MethodArea* method_area, u2 n_classes, char* classname);
+MethodArea *getClassMethodArea(JVM* jvm, char* classname);
 
 void loadStatic(MethodArea* method_area);
 
-FieldValue* getstatic(MethodArea* method_area, u2 method_area_count, char* class_name, char* field_name, char* type_name);
+FieldValue* getstatic(JVM* jvm, char* class_name, char* field_name, char* type_name);
 
 Instance* newinstance(MethodArea* method_area, u2 method_area_count, char* class_name);

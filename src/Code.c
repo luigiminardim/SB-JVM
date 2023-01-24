@@ -166,7 +166,7 @@ Code *Code_Parse(u1 *bytes, u4 code_length)
   Code *code = (Code *)malloc(sizeof(Code) * code_length);
   for (u4 pc = 0; pc < code_length; pc++)
   {
-    code[pc].opcode = (Opcode)bytes[pc];
+    code[pc].opcode = (enum Opcode)bytes[pc];
     int op_size;
     switch (code[pc].opcode)
     {

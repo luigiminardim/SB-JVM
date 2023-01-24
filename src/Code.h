@@ -292,9 +292,9 @@ typedef struct
 
 typedef struct
 {
-  Opcode opcode;
+  enum Opcode opcode;
   char *mnemonic;
-  OperandType operand_type;
+  enum OperandType operand_type;
   union
   {
     ByteOperands byte_operands;
