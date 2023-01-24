@@ -1,5 +1,5 @@
 #include "Frame.h"
-
+#include <string.h>
 
 AttributeInfo* getCodeAttribute(Frame* current_frame){
     AttributeInfo *att_iter;

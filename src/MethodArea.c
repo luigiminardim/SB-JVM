@@ -3,8 +3,9 @@
 #include "ClassFile.h"
 #include "MethodArea.h"
 #include "jvm.h"
+#include <string.h>
 
-MethodInfo *getMethod(ClassFile* method_class, char* method_name){
+MethodInfo *getMethod(ClassFile* method_class, const char* method_name){
     MethodInfo* first_method = method_class->methods;
     u2 method_count = method_class->methods_count;
     for (MethodInfo* m = first_method; m < first_method + method_count; m++){
@@ -17,7 +18,7 @@ MethodInfo *getMethod(ClassFile* method_class, char* method_name){
     return NULL;
 }
 
-MethodArea *getClassMethodArea(JVM* jvm,char* classname){
+MethodArea *getClassMethodArea(JVM* jvm, const char* classname){
     MethodArea* method_area = jvm->method_area;
     u2 n_classes = jvm->method_area_count;
     MethodArea* ma;
@@ -64,7 +65,7 @@ void loadStatic(MethodArea* method_area){
     method_area->static_fields = field_values;
 }
 
-FieldValue *getstatic(JVM* jvm, char* class_name, char* field_name, char* type_name){
+FieldValue *getstatic(JVM* jvm, const char* class_name, const char* field_name, const char* type_name){
     MethodArea* ma = getClassMethodArea(jvm, class_name);
 
     for (FieldValue *fv_iter = ma->static_fields; fv_iter < ma->static_fields + ma->static_fields_count; fv_iter++){
@@ -72,13 +73,15 @@ FieldValue *getstatic(JVM* jvm, char* class_name, char* field_name, char* type_n
             (strcmp(fv_iter->type_cpinfo.bytes, type_name) == 0)){
             return fv_iter;
         }
-    }   
+    }
+
+    return NULL;
 }
 
-MethodArea* loadClass(JVM* jvm, char* classname){
+MethodArea* loadClass(JVM* jvm, const char* classname){
 
     // +1 pelo '\0' no final
-    char * copy = malloc(strlen(classname) + 1); 
+    char * copy = (char *)malloc(strlen(classname) + 1); 
     strcpy(copy, classname);
     strcat(copy, ".class");
 
@@ -86,7 +89,7 @@ MethodArea* loadClass(JVM* jvm, char* classname){
     ClassFile cf = ClassFile_read(fp);
 
     jvm->method_area_count++;
-    jvm->method_area = realloc(jvm->method_area, jvm->method_area_count*sizeof(MethodArea));
+    jvm->method_area = (MethodArea *)realloc(jvm->method_area, jvm->method_area_count*sizeof(MethodArea));
     
 
     MethodArea* new_ma = initMethodArea();

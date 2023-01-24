@@ -31,16 +31,18 @@ typedef struct MethodArea
   FieldValue* static_fields;
 } MethodArea;
 
+struct JVM;
+
 MethodArea* initMethodArea();
 
-MethodInfo *getMethod(ClassFile* method_class, char* method_name);
+MethodInfo *getMethod(ClassFile* method_class, const char* method_name);
 
-MethodArea* loadClass(JVM* jvm, char* classname);
+MethodArea* loadClass(JVM* jvm, const char* classname);
 
-MethodArea *getClassMethodArea(JVM* jvm, char* classname);
+MethodArea *getClassMethodArea(JVM* jvm, const char* classname);
 
 void loadStatic(MethodArea* method_area);
 
-FieldValue* getstatic(JVM* jvm, char* class_name, char* field_name, char* type_name);
+FieldValue* getstatic(JVM* jvm, const char* class_name, const char* field_name, const char* type_name);
 
-Instance* newinstance(MethodArea* method_area, u2 method_area_count, char* class_name);
+Instance* newinstance(MethodArea* method_area, u2 method_area_count, const char* class_name);

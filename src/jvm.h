@@ -5,6 +5,10 @@
 #include "MethodArea.h"
 #include "Frame.h"
 
+struct MethodArea;
+struct FieldValue;
+struct Instance;
+
 typedef struct JVM
 {
   // u4 pc;
@@ -18,13 +22,11 @@ typedef struct JVM
 
 JVM *startJVM();
 
-void setClass(JVM* jvm, char* classname);
-
-void setMethod(JVM* jvm, char* method_name);
-
 void popFrame(JVM*);
 
-void pushFrame(JVM* jvm, char* classname, char* method_name);
+void pushFrame(JVM* jvm, const char* classname, const char* method_name);
+
+Frame *topFrame(JVM* jvm);
 
 void verifyClinit(JVM*);
 
@@ -34,9 +36,9 @@ char* className(ClassFile*);
 
 void runJVM(JVM*);
 
-FieldValue* getStatic(JVM* jvm, char* class_name, char* field_name, char* type_name);
+FieldValue* getStatic(JVM* jvm, const char* class_name, const char* field_name, const char* type_name);
 
-Instance* allocNewInstance(JVM* jvm, char* class_name);
+Instance* allocNewInstance(JVM* jvm, const char* class_name);
 
 Code fetchCode(Frame* current_frame);
 

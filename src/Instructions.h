@@ -8,4 +8,4 @@
 8 istore_3
 9 return
 
-void sipush(Frame* frame);
+void sipush(Frame* frame, Code code);

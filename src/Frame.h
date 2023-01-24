@@ -1,6 +1,5 @@
 #pragma once
 
-#include "jvm.h"
 #include "ClassFile.h"
 #include "Method.h"
 
@@ -15,9 +14,7 @@ typedef struct Frame
     ConstantPool* constant_pool;
 } Frame;
 
-Frame *topFrame(JVM* jvm);
-
-Frame *createFrame(JVM*, ClassFile*, MethodInfo*);
+Frame *createFrame(ClassFile*, MethodInfo*);
 
 AttributeInfo* getCodeAttribute(Frame* f);
 
