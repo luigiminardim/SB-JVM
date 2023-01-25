@@ -229,39 +229,67 @@ enum OperandType
   OPERAND_TYPE_CPINDEX_BYTE_BYTE,
 };
 
+/**
+ * @brief Struct for instructions with Byte operands
+ * 
+ */
 typedef struct
 {
   int8_t byte;
 } ByteOperands;
 
+/**
+ * @brief Struct for instructions with short operands
+ * 
+ */
 typedef struct
 {
   int16_t short_;
 } ShortOperands;
 
+/**
+ * @brief Struct for instructions with byte byte operands
+ * 
+ */
 typedef struct
 {
   int8_t index;
   int8_t const_;
 } ByteByteOperands;
 
+/**
+ * @brief Struct for instructions with constantpool index operands
+ * 
+ */
 typedef struct
 {
   u2 cpindex;
   int operands_num_bytes;
 } CpindexOperands;
 
+/**
+ * @brief Struct for instructions with constantpool index and byte operands
+ * 
+ */
 typedef struct
 {
   u2 cpindex;
   int8_t byte_;
 } CpindexByteOperands;
 
+/**
+ * @brief Struct for instructions with int operands
+ * 
+ */
 typedef struct
 {
   int32_t int_;
 } IntOperands;
 
+/**
+ * @brief Tableswitch instruction struct
+ * 
+ */
 typedef struct
 {
   int32_t default_;
@@ -270,12 +298,20 @@ typedef struct
   int32_t *offsets;
 } TableswitchOperands;
 
+/**
+ * @brief Lookupswitch operands pairs
+ * 
+ */
 struct LookupswitchOperandsPairs
 {
   int32_t key;
   int32_t offset;
 };
 
+/**
+ * @brief Lookupswitch operands struct
+ * 
+ */
 typedef struct
 {
   int32_t default_;
@@ -283,6 +319,10 @@ typedef struct
   struct LookupswitchOperandsPairs *pairs;
 } LookupswitchOperands;
 
+/**
+ * @brief Struct for Instruction with Byte Byte operands
+ * 
+ */
 typedef struct
 {
   u2 cpindex;
@@ -292,6 +332,10 @@ typedef struct
 
 struct Frame;
 
+/**
+ * @brief Struct that represents a general code instruction
+ * 
+ */
 typedef struct Code
 {
   enum Opcode opcode;
@@ -314,6 +358,20 @@ typedef struct Code
 
 Code *Code_Parse(u1 *bytes, u4 code_length);
 
+/**
+ * @brief Free's Code struct allocated memory
+ * 
+ * @param code Code instruction struct
+ * @param code_length Code size
+ */
 void Code_Free(Code *code, u4 code_length);
 
+/**
+ * @brief Prints code instruction
+ * 
+ * @param code Code instruction struct
+ * @param code_length Size of code
+ * @param constant_pool Constantpool object
+ * @return char* 
+ */
 char *Code_to_string(Code *code, u4 code_length, ConstantPool constant_pool);

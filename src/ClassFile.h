@@ -7,6 +7,10 @@
 #include "Field.h"
 #include "Method.h"
 
+/**
+ * @brief Struct that represents a classfile in memory
+ * 
+ */
 typedef struct ClassFile
 {
   u4 magic_number;
@@ -27,8 +31,25 @@ typedef struct ClassFile
   AttributeInfo* attributes;
 } ClassFile;
 
+/**
+ * @brief Reads classfile into memory
+ * 
+ * @param fp File pointer to .class file
+ * @return ClassFile 
+ */
 ClassFile ClassFile_read(FILE *fp);
 
+/**
+ * @brief Prints classfile
+ * 
+ * @param c Classfile object
+ * @return char* 
+ */
 char *ClassFile_to_string(ClassFile c);
 
+/**
+ * @brief Free's classfile allocated memory
+ * 
+ * @param c 
+ */
 void ClassFile_free(ClassFile c);
