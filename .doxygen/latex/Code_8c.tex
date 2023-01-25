@@ -1,0 +1,199 @@
+\hypertarget{Code_8c}{}\doxysection{src/\+Code.c File Reference}
+\label{Code_8c}\index{src/Code.c@{src/Code.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Instructions.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Code.\+h\char`\"{}}\newline
+Include dependency graph for Code.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{Code_8c_a201eb699e71441f0b6b926d2cbbbbfc9}{Code\+\_\+\+\_\+parse\+\_\+none\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_a96df8b60cbb2d0ed12a6160e3c4d3271}{Code\+\_\+\+\_\+parse\+\_\+byte\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_a48f7c22ac83e6fe302e5bcae3d789cfe}{Code\+\_\+\+\_\+parse\+\_\+short\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_a140bf9a9fdec8e7202b875823b7b03c8}{Code\+\_\+\+\_\+parse\+\_\+int\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_af7c028c04a0de8c7e245996a0c41d2c2}{Code\+\_\+\+\_\+parse\+\_\+cpindex\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, int operands\+\_\+num\+\_\+bytes, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_ace8ce947aae4d01836bb2684abaec8a6}{Code\+\_\+\+\_\+parse\+\_\+byte\+\_\+byte\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_a82f0efb1cf695f381882ea43ed50c6cb}{Code\+\_\+\+\_\+parse\+\_\+cpindex\+\_\+byte\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, int cpindex\+\_\+num\+\_\+bytes, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_a734357adbd07a56e027e7b704daa8b56}{Code\+\_\+\+\_\+parse\+\_\+tableswitch\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_a211f5699b6db5f6a589a163f4336d16d}{Code\+\_\+\+\_\+parse\+\_\+lookupswitch\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+int \mbox{\hyperlink{Code_8c_ad19c83c09654d278b89fa31d720e963a}{Code\+\_\+\+\_\+parse\+\_\+cpindex\+\_\+byte\+\_\+byte\+\_\+operands}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, const char $\ast$mnemonic, \mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} pc, int cpindex\+\_\+num\+\_\+bytes, void($\ast$func)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$))
+\item 
+\mbox{\hyperlink{structCode}{Code}} $\ast$ \mbox{\hyperlink{Code_8c_a2ac6e613426f9dfe84ff47d40a5ab7e0}{Code\+\_\+\+Parse}} (\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$bytes, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} code\+\_\+length)
+\item 
+void \mbox{\hyperlink{Code_8c_a3758989996ac8611abc58281deb67c23}{Code\+\_\+\+Free}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} code\+\_\+length)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_a127b8dbe347cc75308fc1c3ae9d353e3}{Code\+\_\+\+\_\+none\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_aa82a57a9709380574a72873f2a643aa2}{Code\+\_\+\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_a08e507d632485c40fac34a32a6c26b3b}{Code\+\_\+\+\_\+short\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_ab05bef337a724d948320356d8e167b38}{Code\+\_\+\+\_\+cpindex\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_aa14ddc86df11486a6aaf981cce30592b}{Code\+\_\+\+\_\+byte\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_a853c6d7adbc740087a13386451b81458}{Code\+\_\+\+\_\+cpindex\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_a4b24722ce1ffff56cf0d2f10e204498d}{Code\+\_\+\+\_\+tableswitch\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_a71f47295da2d39b4ab5d2dbc351692d0}{Code\+\_\+\+\_\+lookupswitch\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_a3f12e967e0c1e15add9f29d454f8a49f}{Code\+\_\+\+\_\+cpindex\+\_\+byte\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_aa6ed927739a7ddeb9a91f8172cc4414f}{Code\+\_\+entry\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} code\+\_\+entry, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Code_8c_ad41a9d16f474cb0de90d15c4e20969c2}{Code\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCode}{Code}} $\ast$code, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} code\+\_\+lenght, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Code_8c_aa14ddc86df11486a6aaf981cce30592b}\label{Code_8c_aa14ddc86df11486a6aaf981cce30592b}} 
+\index{Code.c@{Code.c}!Code\_\_byte\_byte\_operands\_to\_string@{Code\_\_byte\_byte\_operands\_to\_string}}
+\index{Code\_\_byte\_byte\_operands\_to\_string@{Code\_\_byte\_byte\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_byte\_byte\_operands\_to\_string()}{Code\_\_byte\_byte\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+byte\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_aa82a57a9709380574a72873f2a643aa2}\label{Code_8c_aa82a57a9709380574a72873f2a643aa2}} 
+\index{Code.c@{Code.c}!Code\_\_byte\_operands\_to\_string@{Code\_\_byte\_operands\_to\_string}}
+\index{Code\_\_byte\_operands\_to\_string@{Code\_\_byte\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_byte\_operands\_to\_string()}{Code\_\_byte\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a3f12e967e0c1e15add9f29d454f8a49f}\label{Code_8c_a3f12e967e0c1e15add9f29d454f8a49f}} 
+\index{Code.c@{Code.c}!Code\_\_cpindex\_byte\_byte\_operands\_to\_string@{Code\_\_cpindex\_byte\_byte\_operands\_to\_string}}
+\index{Code\_\_cpindex\_byte\_byte\_operands\_to\_string@{Code\_\_cpindex\_byte\_byte\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_cpindex\_byte\_byte\_operands\_to\_string()}{Code\_\_cpindex\_byte\_byte\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+cpindex\+\_\+byte\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a853c6d7adbc740087a13386451b81458}\label{Code_8c_a853c6d7adbc740087a13386451b81458}} 
+\index{Code.c@{Code.c}!Code\_\_cpindex\_byte\_operands\_to\_string@{Code\_\_cpindex\_byte\_operands\_to\_string}}
+\index{Code\_\_cpindex\_byte\_operands\_to\_string@{Code\_\_cpindex\_byte\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_cpindex\_byte\_operands\_to\_string()}{Code\_\_cpindex\_byte\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+cpindex\+\_\+byte\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_ab05bef337a724d948320356d8e167b38}\label{Code_8c_ab05bef337a724d948320356d8e167b38}} 
+\index{Code.c@{Code.c}!Code\_\_cpindex\_operands\_to\_string@{Code\_\_cpindex\_operands\_to\_string}}
+\index{Code\_\_cpindex\_operands\_to\_string@{Code\_\_cpindex\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_cpindex\_operands\_to\_string()}{Code\_\_cpindex\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+cpindex\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a71f47295da2d39b4ab5d2dbc351692d0}\label{Code_8c_a71f47295da2d39b4ab5d2dbc351692d0}} 
+\index{Code.c@{Code.c}!Code\_\_lookupswitch\_operands\_to\_string@{Code\_\_lookupswitch\_operands\_to\_string}}
+\index{Code\_\_lookupswitch\_operands\_to\_string@{Code\_\_lookupswitch\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_lookupswitch\_operands\_to\_string()}{Code\_\_lookupswitch\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+lookupswitch\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a127b8dbe347cc75308fc1c3ae9d353e3}\label{Code_8c_a127b8dbe347cc75308fc1c3ae9d353e3}} 
+\index{Code.c@{Code.c}!Code\_\_none\_operands\_to\_string@{Code\_\_none\_operands\_to\_string}}
+\index{Code\_\_none\_operands\_to\_string@{Code\_\_none\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_none\_operands\_to\_string()}{Code\_\_none\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+none\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_ace8ce947aae4d01836bb2684abaec8a6}\label{Code_8c_ace8ce947aae4d01836bb2684abaec8a6}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_byte\_byte\_operands@{Code\_\_parse\_byte\_byte\_operands}}
+\index{Code\_\_parse\_byte\_byte\_operands@{Code\_\_parse\_byte\_byte\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_byte\_byte\_operands()}{Code\_\_parse\_byte\_byte\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+byte\+\_\+byte\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a96df8b60cbb2d0ed12a6160e3c4d3271}\label{Code_8c_a96df8b60cbb2d0ed12a6160e3c4d3271}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_byte\_operands@{Code\_\_parse\_byte\_operands}}
+\index{Code\_\_parse\_byte\_operands@{Code\_\_parse\_byte\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_byte\_operands()}{Code\_\_parse\_byte\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+byte\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_ad19c83c09654d278b89fa31d720e963a}\label{Code_8c_ad19c83c09654d278b89fa31d720e963a}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_cpindex\_byte\_byte\_operands@{Code\_\_parse\_cpindex\_byte\_byte\_operands}}
+\index{Code\_\_parse\_cpindex\_byte\_byte\_operands@{Code\_\_parse\_cpindex\_byte\_byte\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_cpindex\_byte\_byte\_operands()}{Code\_\_parse\_cpindex\_byte\_byte\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+cpindex\+\_\+byte\+\_\+byte\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{int}]{cpindex\+\_\+num\+\_\+bytes,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a82f0efb1cf695f381882ea43ed50c6cb}\label{Code_8c_a82f0efb1cf695f381882ea43ed50c6cb}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_cpindex\_byte\_operands@{Code\_\_parse\_cpindex\_byte\_operands}}
+\index{Code\_\_parse\_cpindex\_byte\_operands@{Code\_\_parse\_cpindex\_byte\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_cpindex\_byte\_operands()}{Code\_\_parse\_cpindex\_byte\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+cpindex\+\_\+byte\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{int}]{cpindex\+\_\+num\+\_\+bytes,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_af7c028c04a0de8c7e245996a0c41d2c2}\label{Code_8c_af7c028c04a0de8c7e245996a0c41d2c2}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_cpindex\_operands@{Code\_\_parse\_cpindex\_operands}}
+\index{Code\_\_parse\_cpindex\_operands@{Code\_\_parse\_cpindex\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_cpindex\_operands()}{Code\_\_parse\_cpindex\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+cpindex\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{int}]{operands\+\_\+num\+\_\+bytes,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a140bf9a9fdec8e7202b875823b7b03c8}\label{Code_8c_a140bf9a9fdec8e7202b875823b7b03c8}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_int\_operands@{Code\_\_parse\_int\_operands}}
+\index{Code\_\_parse\_int\_operands@{Code\_\_parse\_int\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_int\_operands()}{Code\_\_parse\_int\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+int\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a211f5699b6db5f6a589a163f4336d16d}\label{Code_8c_a211f5699b6db5f6a589a163f4336d16d}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_lookupswitch\_operands@{Code\_\_parse\_lookupswitch\_operands}}
+\index{Code\_\_parse\_lookupswitch\_operands@{Code\_\_parse\_lookupswitch\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_lookupswitch\_operands()}{Code\_\_parse\_lookupswitch\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+lookupswitch\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a201eb699e71441f0b6b926d2cbbbbfc9}\label{Code_8c_a201eb699e71441f0b6b926d2cbbbbfc9}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_none\_operands@{Code\_\_parse\_none\_operands}}
+\index{Code\_\_parse\_none\_operands@{Code\_\_parse\_none\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_none\_operands()}{Code\_\_parse\_none\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+none\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a48f7c22ac83e6fe302e5bcae3d789cfe}\label{Code_8c_a48f7c22ac83e6fe302e5bcae3d789cfe}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_short\_operands@{Code\_\_parse\_short\_operands}}
+\index{Code\_\_parse\_short\_operands@{Code\_\_parse\_short\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_short\_operands()}{Code\_\_parse\_short\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+short\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a734357adbd07a56e027e7b704daa8b56}\label{Code_8c_a734357adbd07a56e027e7b704daa8b56}} 
+\index{Code.c@{Code.c}!Code\_\_parse\_tableswitch\_operands@{Code\_\_parse\_tableswitch\_operands}}
+\index{Code\_\_parse\_tableswitch\_operands@{Code\_\_parse\_tableswitch\_operands}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_parse\_tableswitch\_operands()}{Code\_\_parse\_tableswitch\_operands()}}
+{\footnotesize\ttfamily int Code\+\_\+\+\_\+parse\+\_\+tableswitch\+\_\+operands (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{const char $\ast$}]{mnemonic,  }\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{pc,  }\item[{void($\ast$)(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}]{func }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a08e507d632485c40fac34a32a6c26b3b}\label{Code_8c_a08e507d632485c40fac34a32a6c26b3b}} 
+\index{Code.c@{Code.c}!Code\_\_short\_operands\_to\_string@{Code\_\_short\_operands\_to\_string}}
+\index{Code\_\_short\_operands\_to\_string@{Code\_\_short\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_short\_operands\_to\_string()}{Code\_\_short\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+short\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a4b24722ce1ffff56cf0d2f10e204498d}\label{Code_8c_a4b24722ce1ffff56cf0d2f10e204498d}} 
+\index{Code.c@{Code.c}!Code\_\_tableswitch\_operands\_to\_string@{Code\_\_tableswitch\_operands\_to\_string}}
+\index{Code\_\_tableswitch\_operands\_to\_string@{Code\_\_tableswitch\_operands\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_\_tableswitch\_operands\_to\_string()}{Code\_\_tableswitch\_operands\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+\+\_\+tableswitch\+\_\+operands\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_aa6ed927739a7ddeb9a91f8172cc4414f}\label{Code_8c_aa6ed927739a7ddeb9a91f8172cc4414f}} 
+\index{Code.c@{Code.c}!Code\_entry\_to\_string@{Code\_entry\_to\_string}}
+\index{Code\_entry\_to\_string@{Code\_entry\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_entry\_to\_string()}{Code\_entry\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+entry\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}}}]{code\+\_\+entry,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a3758989996ac8611abc58281deb67c23}\label{Code_8c_a3758989996ac8611abc58281deb67c23}} 
+\index{Code.c@{Code.c}!Code\_Free@{Code\_Free}}
+\index{Code\_Free@{Code\_Free}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_Free()}{Code\_Free()}}
+{\footnotesize\ttfamily void Code\+\_\+\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{code\+\_\+length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_a2ac6e613426f9dfe84ff47d40a5ab7e0}\label{Code_8c_a2ac6e613426f9dfe84ff47d40a5ab7e0}} 
+\index{Code.c@{Code.c}!Code\_Parse@{Code\_Parse}}
+\index{Code\_Parse@{Code\_Parse}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_Parse()}{Code\_Parse()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCode}{Code}}$\ast$ Code\+\_\+\+Parse (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{java-bytes_8h_ad9f4cdb6757615aae2fad89dab3c5470}{u1}} $\ast$}]{bytes,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{code\+\_\+length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Code_8c_ad41a9d16f474cb0de90d15c4e20969c2}\label{Code_8c_ad41a9d16f474cb0de90d15c4e20969c2}} 
+\index{Code.c@{Code.c}!Code\_to\_string@{Code\_to\_string}}
+\index{Code\_to\_string@{Code\_to\_string}!Code.c@{Code.c}}
+\doxysubsubsection{\texorpdfstring{Code\_to\_string()}{Code\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCode}{Code}} $\ast$}]{code,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{code\+\_\+lenght,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+

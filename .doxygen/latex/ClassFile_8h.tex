@@ -1,0 +1,61 @@
+\hypertarget{ClassFile_8h}{}\doxysection{src/\+Class\+File.h File Reference}
+\label{ClassFile_8h}\index{src/ClassFile.h@{src/ClassFile.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}java-\/bytes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Constant\+Pool.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Field.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Method.\+h\char`\"{}}\newline
+Include dependency graph for Class\+File.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structClassFile}{Class\+File}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structClassFile}{Class\+File}} \mbox{\hyperlink{ClassFile_8h_aa07e89a6a70b8f868c66e1f8e2a8956f}{Class\+File}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structClassFile}{Class\+File}} \mbox{\hyperlink{ClassFile_8h_a66cd9feb8adfe5810a99f12868c63ae5}{Class\+File\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ClassFile_8h_a21995db7240709784d29eb58dacf09fe}{Class\+File\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structClassFile}{Class\+File}} c)
+\item 
+void \mbox{\hyperlink{ClassFile_8h_a6330ad056d12f6714e0e1c1655c90771}{Class\+File\+\_\+free}} (\mbox{\hyperlink{structClassFile}{Class\+File}} c)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{ClassFile_8h_aa07e89a6a70b8f868c66e1f8e2a8956f}\label{ClassFile_8h_aa07e89a6a70b8f868c66e1f8e2a8956f}} 
+\index{ClassFile.h@{ClassFile.h}!ClassFile@{ClassFile}}
+\index{ClassFile@{ClassFile}!ClassFile.h@{ClassFile.h}}
+\doxysubsubsection{\texorpdfstring{ClassFile}{ClassFile}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structClassFile}{Class\+File}} \mbox{\hyperlink{structClassFile}{Class\+File}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ClassFile_8h_a6330ad056d12f6714e0e1c1655c90771}\label{ClassFile_8h_a6330ad056d12f6714e0e1c1655c90771}} 
+\index{ClassFile.h@{ClassFile.h}!ClassFile\_free@{ClassFile\_free}}
+\index{ClassFile\_free@{ClassFile\_free}!ClassFile.h@{ClassFile.h}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_free()}{ClassFile\_free()}}
+{\footnotesize\ttfamily void Class\+File\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}}}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ClassFile_8h_a66cd9feb8adfe5810a99f12868c63ae5}\label{ClassFile_8h_a66cd9feb8adfe5810a99f12868c63ae5}} 
+\index{ClassFile.h@{ClassFile.h}!ClassFile\_read@{ClassFile\_read}}
+\index{ClassFile\_read@{ClassFile\_read}!ClassFile.h@{ClassFile.h}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_read()}{ClassFile\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClassFile}{Class\+File}} Class\+File\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ClassFile_8h_a21995db7240709784d29eb58dacf09fe}\label{ClassFile_8h_a21995db7240709784d29eb58dacf09fe}} 
+\index{ClassFile.h@{ClassFile.h}!ClassFile\_to\_string@{ClassFile\_to\_string}}
+\index{ClassFile\_to\_string@{ClassFile\_to\_string}!ClassFile.h@{ClassFile.h}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_to\_string()}{ClassFile\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Class\+File\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}}}]{c }\end{DoxyParamCaption})}
+

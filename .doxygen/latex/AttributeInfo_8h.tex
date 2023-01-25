@@ -1,0 +1,122 @@
+\hypertarget{AttributeInfo_8h}{}\doxysection{src/\+Attribute\+Info.h File Reference}
+\label{AttributeInfo_8h}\index{src/AttributeInfo.h@{src/AttributeInfo.h}}
+{\ttfamily \#include \char`\"{}java-\/bytes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Constant\+Pool.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Code.\+h\char`\"{}}\newline
+Include dependency graph for Attribute\+Info.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}}
+\begin{DoxyCompactList}\small\item\em É atributo. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{structExceptionTable}{Exception\+Table}}
+\item 
+struct \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}}
+\item 
+struct \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}}
+\item 
+struct \mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}}
+\item 
+struct \mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}}
+\item 
+struct \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}} \mbox{\hyperlink{AttributeInfo_8h_a8cca07be60939f2fa8dfef3cc9eda0c8}{Constant\+Value\+Attribute}}
+\begin{DoxyCompactList}\small\item\em É atributo. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{structExceptionTable}{Exception\+Table}} \mbox{\hyperlink{AttributeInfo_8h_a73fc05c3548247628473c63e8e57394c}{Exception\+Table}}
+\item 
+typedef struct \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} \mbox{\hyperlink{AttributeInfo_8h_a61375e2c55788bde9b31c51a491f1f98}{Code\+Attribute}}
+\item 
+typedef struct \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} \mbox{\hyperlink{AttributeInfo_8h_ac97f4ffbe6073c8a1752f45c10fff1e1}{Exceptions\+Attribute}}
+\item 
+typedef struct \mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}} \mbox{\hyperlink{AttributeInfo_8h_adb1c1bd92066545cdb69673d237a6470}{Source\+File\+Attribute}}
+\item 
+typedef struct \mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}} \mbox{\hyperlink{AttributeInfo_8h_a746aa3f441f227de237ed2898a900ee8}{Unknown\+Attribute}}
+\item 
+typedef struct \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} \mbox{\hyperlink{AttributeInfo_8h_ac6568edc28cb610a009987d4251d2236}{Attribute\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$ \mbox{\hyperlink{AttributeInfo_8h_a62c716a07a974075cd37cae002c1f792}{Attribute\+Info\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} attributes\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+void \mbox{\hyperlink{AttributeInfo_8h_a067efbe3bba7ae6b6c41745266d22aee}{Attribute\+Info\+\_\+free}} (\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$attributes, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} attributes\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8h_a897f315f62efbf216c726aef5e5b3d2a}{Attribute\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$attribute\+\_\+infos, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} attributes\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{AttributeInfo_8h_ac6568edc28cb610a009987d4251d2236}\label{AttributeInfo_8h_ac6568edc28cb610a009987d4251d2236}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!AttributeInfo@{AttributeInfo}}
+\index{AttributeInfo@{AttributeInfo}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{AttributeInfo}{AttributeInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}}
+
+\mbox{\Hypertarget{AttributeInfo_8h_a61375e2c55788bde9b31c51a491f1f98}\label{AttributeInfo_8h_a61375e2c55788bde9b31c51a491f1f98}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!CodeAttribute@{CodeAttribute}}
+\index{CodeAttribute@{CodeAttribute}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{CodeAttribute}{CodeAttribute}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}}}
+
+\mbox{\Hypertarget{AttributeInfo_8h_a8cca07be60939f2fa8dfef3cc9eda0c8}\label{AttributeInfo_8h_a8cca07be60939f2fa8dfef3cc9eda0c8}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!ConstantValueAttribute@{ConstantValueAttribute}}
+\index{ConstantValueAttribute@{ConstantValueAttribute}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{ConstantValueAttribute}{ConstantValueAttribute}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}} \mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}}}
+
+
+
+É atributo. 
+
+\mbox{\Hypertarget{AttributeInfo_8h_ac97f4ffbe6073c8a1752f45c10fff1e1}\label{AttributeInfo_8h_ac97f4ffbe6073c8a1752f45c10fff1e1}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!ExceptionsAttribute@{ExceptionsAttribute}}
+\index{ExceptionsAttribute@{ExceptionsAttribute}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{ExceptionsAttribute}{ExceptionsAttribute}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}}}
+
+\mbox{\Hypertarget{AttributeInfo_8h_a73fc05c3548247628473c63e8e57394c}\label{AttributeInfo_8h_a73fc05c3548247628473c63e8e57394c}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!ExceptionTable@{ExceptionTable}}
+\index{ExceptionTable@{ExceptionTable}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{ExceptionTable}{ExceptionTable}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structExceptionTable}{Exception\+Table}} \mbox{\hyperlink{structExceptionTable}{Exception\+Table}}}
+
+\mbox{\Hypertarget{AttributeInfo_8h_adb1c1bd92066545cdb69673d237a6470}\label{AttributeInfo_8h_adb1c1bd92066545cdb69673d237a6470}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!SourceFileAttribute@{SourceFileAttribute}}
+\index{SourceFileAttribute@{SourceFileAttribute}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{SourceFileAttribute}{SourceFileAttribute}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}} \mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}}}
+
+\mbox{\Hypertarget{AttributeInfo_8h_a746aa3f441f227de237ed2898a900ee8}\label{AttributeInfo_8h_a746aa3f441f227de237ed2898a900ee8}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!UnknownAttribute@{UnknownAttribute}}
+\index{UnknownAttribute@{UnknownAttribute}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{UnknownAttribute}{UnknownAttribute}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}} \mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{AttributeInfo_8h_a067efbe3bba7ae6b6c41745266d22aee}\label{AttributeInfo_8h_a067efbe3bba7ae6b6c41745266d22aee}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!AttributeInfo\_free@{AttributeInfo\_free}}
+\index{AttributeInfo\_free@{AttributeInfo\_free}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{AttributeInfo\_free()}{AttributeInfo\_free()}}
+{\footnotesize\ttfamily void Attribute\+Info\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$}]{attributes,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{attributes\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8h_a62c716a07a974075cd37cae002c1f792}\label{AttributeInfo_8h_a62c716a07a974075cd37cae002c1f792}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!AttributeInfo\_read@{AttributeInfo\_read}}
+\index{AttributeInfo\_read@{AttributeInfo\_read}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{AttributeInfo\_read()}{AttributeInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}$\ast$ Attribute\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{attributes\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8h_a897f315f62efbf216c726aef5e5b3d2a}\label{AttributeInfo_8h_a897f315f62efbf216c726aef5e5b3d2a}} 
+\index{AttributeInfo.h@{AttributeInfo.h}!AttributeInfo\_to\_string@{AttributeInfo\_to\_string}}
+\index{AttributeInfo\_to\_string@{AttributeInfo\_to\_string}!AttributeInfo.h@{AttributeInfo.h}}
+\doxysubsubsection{\texorpdfstring{AttributeInfo\_to\_string()}{AttributeInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Attribute\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$}]{attribute\+\_\+infos,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{attributes\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+

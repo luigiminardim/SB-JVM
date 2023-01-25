@@ -1,0 +1,43 @@
+digraph "AttributeInfo"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="AttributeInfo",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node2 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" unknown" ,fontname="Helvetica"];
+  Node2 [label="UnknownAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structUnknownAttribute.html",tooltip=" "];
+  Node3 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" exceptions" ,fontname="Helvetica"];
+  Node3 [label="ExceptionsAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structExceptionsAttribute.html",tooltip=" "];
+  Node4 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" source_file" ,fontname="Helvetica"];
+  Node4 [label="SourceFileAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structSourceFileAttribute.html",tooltip=" "];
+  Node5 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" code" ,fontname="Helvetica"];
+  Node5 [label="CodeAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCodeAttribute.html",tooltip=" "];
+  Node1 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" attributes" ,fontname="Helvetica"];
+  Node6 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" code" ,fontname="Helvetica"];
+  Node6 [label="Code",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCode.html",tooltip=" "];
+  Node7 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" short_operands" ,fontname="Helvetica"];
+  Node7 [label="ShortOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structShortOperands.html",tooltip=" "];
+  Node8 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" int_operands" ,fontname="Helvetica"];
+  Node8 [label="IntOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structIntOperands.html",tooltip=" "];
+  Node9 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" byte_byte_operands" ,fontname="Helvetica"];
+  Node9 [label="ByteByteOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structByteByteOperands.html",tooltip=" "];
+  Node10 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" lookupswitch_operands" ,fontname="Helvetica"];
+  Node10 [label="LookupswitchOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structLookupswitchOperands.html",tooltip=" "];
+  Node11 -> Node10 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" pairs" ,fontname="Helvetica"];
+  Node11 [label="LookupswitchOperandsPairs",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structLookupswitchOperandsPairs.html",tooltip=" "];
+  Node12 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" tableswitch_operands" ,fontname="Helvetica"];
+  Node12 [label="TableswitchOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structTableswitchOperands.html",tooltip=" "];
+  Node13 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cpindex_byte_operands" ,fontname="Helvetica"];
+  Node13 [label="CpindexByteOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCpindexByteOperands.html",tooltip=" "];
+  Node14 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" byte_operands" ,fontname="Helvetica"];
+  Node14 [label="ByteOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structByteOperands.html",tooltip=" "];
+  Node15 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cpindex_operands" ,fontname="Helvetica"];
+  Node15 [label="CpindexOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCpindexOperands.html",tooltip=" "];
+  Node16 -> Node6 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" cpindex_byte_byte_operands" ,fontname="Helvetica"];
+  Node16 [label="CpindexByteByteOperands",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structCpindexByteByteOperands.html",tooltip=" "];
+  Node17 -> Node5 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" exception_table" ,fontname="Helvetica"];
+  Node17 [label="ExceptionTable",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structExceptionTable.html",tooltip=" "];
+  Node18 -> Node1 [dir="back",color="darkorchid3",fontsize="10",style="dashed",label=" constant_value" ,fontname="Helvetica"];
+  Node18 [label="ConstantValueAttribute",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$structConstantValueAttribute.html",tooltip="É atributo."];
+}

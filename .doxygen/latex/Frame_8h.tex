@@ -1,0 +1,73 @@
+\hypertarget{Frame_8h}{}\doxysection{src/\+Frame.h File Reference}
+\label{Frame_8h}\index{src/Frame.h@{src/Frame.h}}
+{\ttfamily \#include \char`\"{}Class\+File.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Method.\+h\char`\"{}}\newline
+Include dependency graph for Frame.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structFrame}{Frame}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structFrame}{Frame}} \mbox{\hyperlink{Frame_8h_a8bed1e36372ccc1470e37e91647cce20}{Frame}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structFrame}{Frame}} $\ast$ \mbox{\hyperlink{Frame_8h_adab9b54e2137a9c4991082a490d09188}{create\+Frame}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structClassFile}{Class\+File}}, \mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$)
+\item 
+\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$ \mbox{\hyperlink{Frame_8h_ab1fa85c3e92d94d694fdd298ff689816}{get\+Code\+Attribute}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$f)
+\item 
+void \mbox{\hyperlink{Frame_8h_ad9d95607e129225ee0d85743e1c001a8}{push\+Operand\+Stack}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$, int32\+\_\+t)
+\item 
+int32\+\_\+t \mbox{\hyperlink{Frame_8h_ab6ab8738e53c64a24dce7251bb359201}{pop\+Operand\+Stack}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$)
+\item 
+void \mbox{\hyperlink{Frame_8h_a56fa710db84e901a5a70f736cb019b47}{free\+Frame}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{Frame_8h_a8bed1e36372ccc1470e37e91647cce20}\label{Frame_8h_a8bed1e36372ccc1470e37e91647cce20}} 
+\index{Frame.h@{Frame.h}!Frame@{Frame}}
+\index{Frame@{Frame}!Frame.h@{Frame.h}}
+\doxysubsubsection{\texorpdfstring{Frame}{Frame}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structFrame}{Frame}} \mbox{\hyperlink{structFrame}{Frame}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Frame_8h_adab9b54e2137a9c4991082a490d09188}\label{Frame_8h_adab9b54e2137a9c4991082a490d09188}} 
+\index{Frame.h@{Frame.h}!createFrame@{createFrame}}
+\index{createFrame@{createFrame}!Frame.h@{Frame.h}}
+\doxysubsubsection{\texorpdfstring{createFrame()}{createFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFrame}{Frame}}$\ast$ create\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{f,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}}}]{cf,  }\item[{\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$}]{mi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8h_a56fa710db84e901a5a70f736cb019b47}\label{Frame_8h_a56fa710db84e901a5a70f736cb019b47}} 
+\index{Frame.h@{Frame.h}!freeFrame@{freeFrame}}
+\index{freeFrame@{freeFrame}!Frame.h@{Frame.h}}
+\doxysubsubsection{\texorpdfstring{freeFrame()}{freeFrame()}}
+{\footnotesize\ttfamily void free\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{f }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8h_ab1fa85c3e92d94d694fdd298ff689816}\label{Frame_8h_ab1fa85c3e92d94d694fdd298ff689816}} 
+\index{Frame.h@{Frame.h}!getCodeAttribute@{getCodeAttribute}}
+\index{getCodeAttribute@{getCodeAttribute}!Frame.h@{Frame.h}}
+\doxysubsubsection{\texorpdfstring{getCodeAttribute()}{getCodeAttribute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}$\ast$ get\+Code\+Attribute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{f }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8h_ab6ab8738e53c64a24dce7251bb359201}\label{Frame_8h_ab6ab8738e53c64a24dce7251bb359201}} 
+\index{Frame.h@{Frame.h}!popOperandStack@{popOperandStack}}
+\index{popOperandStack@{popOperandStack}!Frame.h@{Frame.h}}
+\doxysubsubsection{\texorpdfstring{popOperandStack()}{popOperandStack()}}
+{\footnotesize\ttfamily int32\+\_\+t pop\+Operand\+Stack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{frame }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8h_ad9d95607e129225ee0d85743e1c001a8}\label{Frame_8h_ad9d95607e129225ee0d85743e1c001a8}} 
+\index{Frame.h@{Frame.h}!pushOperandStack@{pushOperandStack}}
+\index{pushOperandStack@{pushOperandStack}!Frame.h@{Frame.h}}
+\doxysubsubsection{\texorpdfstring{pushOperandStack()}{pushOperandStack()}}
+{\footnotesize\ttfamily void push\+Operand\+Stack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{frame,  }\item[{int32\+\_\+t}]{value }\end{DoxyParamCaption})}
+

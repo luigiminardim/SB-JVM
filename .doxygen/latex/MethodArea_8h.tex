@@ -1,0 +1,111 @@
+\hypertarget{MethodArea_8h}{}\doxysection{src/\+Method\+Area.h File Reference}
+\label{MethodArea_8h}\index{src/MethodArea.h@{src/MethodArea.h}}
+{\ttfamily \#include \char`\"{}java-\/bytes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Class\+File.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Method.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}jvm.\+h\char`\"{}}\newline
+Include dependency graph for Method\+Area.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structFieldValue}{Field\+Value}}
+\item 
+struct \mbox{\hyperlink{structInstance}{Instance}}
+\item 
+struct \mbox{\hyperlink{structMethodArea}{Method\+Area}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structFieldValue}{Field\+Value}} \mbox{\hyperlink{MethodArea_8h_aa2cc333dd917258f84e7d36cdf7de503}{Field\+Value}}
+\item 
+typedef struct \mbox{\hyperlink{structInstance}{Instance}} \mbox{\hyperlink{MethodArea_8h_aeadfce98b8e2394257cf05f6eb6ef949}{Instance}}
+\item 
+typedef struct \mbox{\hyperlink{structMethodArea}{Method\+Area}} \mbox{\hyperlink{MethodArea_8h_ad9dffa398e8047fd118fccfb418dcd66}{Method\+Area}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{MethodArea_8h_a05df32da620a0cb54be04a6d819887b8}{init\+Method\+Area}} (\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$new\+\_\+ma)
+\item 
+\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$ \mbox{\hyperlink{MethodArea_8h_aa2c6c98193a7509dc08e3527cae47da7}{get\+Method}} (\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$method\+\_\+class, const char $\ast$method\+\_\+name)
+\item 
+\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$ \mbox{\hyperlink{MethodArea_8h_abcb3486bccb48943c2255074f8d56b61}{load\+Class}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm, const char $\ast$classname)
+\item 
+\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$ \mbox{\hyperlink{MethodArea_8h_a3a61291c442230f398497f96c303b2f3}{get\+Class\+Method\+Area}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm, const char $\ast$classname)
+\item 
+void \mbox{\hyperlink{MethodArea_8h_a1a38c55928fd792bf8bf739fc526336f}{load\+Static}} (\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$method\+\_\+area)
+\item 
+\mbox{\hyperlink{structFieldValue}{Field\+Value}} $\ast$ \mbox{\hyperlink{MethodArea_8h_abea4f3979f0ded8b2abf19ef29bdf210}{getstatic}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm, const char $\ast$class\+\_\+name, const char $\ast$field\+\_\+name, const char $\ast$type\+\_\+name)
+\item 
+void \mbox{\hyperlink{MethodArea_8h_a64615b542ec1ff135e186be9a1d820f5}{free\+Method\+Area}} (\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{MethodArea_8h_aa2cc333dd917258f84e7d36cdf7de503}\label{MethodArea_8h_aa2cc333dd917258f84e7d36cdf7de503}} 
+\index{MethodArea.h@{MethodArea.h}!FieldValue@{FieldValue}}
+\index{FieldValue@{FieldValue}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{FieldValue}{FieldValue}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structFieldValue}{Field\+Value}} \mbox{\hyperlink{structFieldValue}{Field\+Value}}}
+
+\mbox{\Hypertarget{MethodArea_8h_aeadfce98b8e2394257cf05f6eb6ef949}\label{MethodArea_8h_aeadfce98b8e2394257cf05f6eb6ef949}} 
+\index{MethodArea.h@{MethodArea.h}!Instance@{Instance}}
+\index{Instance@{Instance}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{Instance}{Instance}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structInstance}{Instance}} \mbox{\hyperlink{structInstance}{Instance}}}
+
+\mbox{\Hypertarget{MethodArea_8h_ad9dffa398e8047fd118fccfb418dcd66}\label{MethodArea_8h_ad9dffa398e8047fd118fccfb418dcd66}} 
+\index{MethodArea.h@{MethodArea.h}!MethodArea@{MethodArea}}
+\index{MethodArea@{MethodArea}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{MethodArea}{MethodArea}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structMethodArea}{Method\+Area}} \mbox{\hyperlink{structMethodArea}{Method\+Area}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{MethodArea_8h_a64615b542ec1ff135e186be9a1d820f5}\label{MethodArea_8h_a64615b542ec1ff135e186be9a1d820f5}} 
+\index{MethodArea.h@{MethodArea.h}!freeMethodArea@{freeMethodArea}}
+\index{freeMethodArea@{freeMethodArea}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{freeMethodArea()}{freeMethodArea()}}
+{\footnotesize\ttfamily void free\+Method\+Area (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$}]{ma }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MethodArea_8h_a3a61291c442230f398497f96c303b2f3}\label{MethodArea_8h_a3a61291c442230f398497f96c303b2f3}} 
+\index{MethodArea.h@{MethodArea.h}!getClassMethodArea@{getClassMethodArea}}
+\index{getClassMethodArea@{getClassMethodArea}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{getClassMethodArea()}{getClassMethodArea()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMethodArea}{Method\+Area}}$\ast$ get\+Class\+Method\+Area (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm,  }\item[{const char $\ast$}]{classname }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MethodArea_8h_aa2c6c98193a7509dc08e3527cae47da7}\label{MethodArea_8h_aa2c6c98193a7509dc08e3527cae47da7}} 
+\index{MethodArea.h@{MethodArea.h}!getMethod@{getMethod}}
+\index{getMethod@{getMethod}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{getMethod()}{getMethod()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMethodInfo}{Method\+Info}}$\ast$ get\+Method (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{method\+\_\+class,  }\item[{const char $\ast$}]{method\+\_\+name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MethodArea_8h_abea4f3979f0ded8b2abf19ef29bdf210}\label{MethodArea_8h_abea4f3979f0ded8b2abf19ef29bdf210}} 
+\index{MethodArea.h@{MethodArea.h}!getstatic@{getstatic}}
+\index{getstatic@{getstatic}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{getstatic()}{getstatic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFieldValue}{Field\+Value}}$\ast$ getstatic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm,  }\item[{const char $\ast$}]{class\+\_\+name,  }\item[{const char $\ast$}]{field\+\_\+name,  }\item[{const char $\ast$}]{type\+\_\+name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MethodArea_8h_a05df32da620a0cb54be04a6d819887b8}\label{MethodArea_8h_a05df32da620a0cb54be04a6d819887b8}} 
+\index{MethodArea.h@{MethodArea.h}!initMethodArea@{initMethodArea}}
+\index{initMethodArea@{initMethodArea}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{initMethodArea()}{initMethodArea()}}
+{\footnotesize\ttfamily void init\+Method\+Area (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$}]{new\+\_\+ma }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MethodArea_8h_abcb3486bccb48943c2255074f8d56b61}\label{MethodArea_8h_abcb3486bccb48943c2255074f8d56b61}} 
+\index{MethodArea.h@{MethodArea.h}!loadClass@{loadClass}}
+\index{loadClass@{loadClass}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{loadClass()}{loadClass()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMethodArea}{Method\+Area}}$\ast$ load\+Class (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm,  }\item[{const char $\ast$}]{classname }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{MethodArea_8h_a1a38c55928fd792bf8bf739fc526336f}\label{MethodArea_8h_a1a38c55928fd792bf8bf739fc526336f}} 
+\index{MethodArea.h@{MethodArea.h}!loadStatic@{loadStatic}}
+\index{loadStatic@{loadStatic}!MethodArea.h@{MethodArea.h}}
+\doxysubsubsection{\texorpdfstring{loadStatic()}{loadStatic()}}
+{\footnotesize\ttfamily void load\+Static (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMethodArea}{Method\+Area}} $\ast$}]{method\+\_\+area }\end{DoxyParamCaption})}
+

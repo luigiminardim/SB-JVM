@@ -1,0 +1,32 @@
+\hypertarget{structAttributeInfo}{}\doxysection{Attribute\+Info Struct Reference}
+\label{structAttributeInfo}\index{AttributeInfo@{AttributeInfo}}
+
+
+Collaboration diagram for Attribute\+Info\+:
+% FIG 0
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{structAttributeInfo_a08fa166e5d47f86b16ff15e4b07bccad}\label{structAttributeInfo_a08fa166e5d47f86b16ff15e4b07bccad}} 
+u2 {\bfseries attribute\+\_\+name\+\_\+index}
+\item 
+\mbox{\Hypertarget{structAttributeInfo_a8998d3b7982ee357397cc1e2f8a8ea5e}\label{structAttributeInfo_a8998d3b7982ee357397cc1e2f8a8ea5e}} 
+u4 {\bfseries attribute\+\_\+length}
+\item 
+\mbox{\Hypertarget{structAttributeInfo_ab35b46c1790d2b7441e934de8e718efb}\label{structAttributeInfo_ab35b46c1790d2b7441e934de8e718efb}} 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{structConstantValueAttribute}{ConstantValueAttribute}} {\bfseries constant\_value}\\
+\>\mbox{\hyperlink{structCodeAttribute}{CodeAttribute}} {\bfseries code}\\
+\>\mbox{\hyperlink{structExceptionsAttribute}{ExceptionsAttribute}} {\bfseries exceptions}\\
+\>\mbox{\hyperlink{structSourceFileAttribute}{SourceFileAttribute}} {\bfseries source\_file}\\
+\>\mbox{\hyperlink{structUnknownAttribute}{UnknownAttribute}} {\bfseries unknown}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/Attribute\+Info.\+h\end{DoxyCompactItemize}

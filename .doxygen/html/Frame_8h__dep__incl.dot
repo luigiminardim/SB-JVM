@@ -1,0 +1,27 @@
+digraph "src/Frame.h"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="src/Frame.h",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip=" "];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="src/Frame.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Frame_8c.html",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="src/Instructions.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Instructions_8c.html",tooltip=" "];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="src/Instructions.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Instructions_8h.html",tooltip=" "];
+  Node4 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="src/Code.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$Code_8c.html",tooltip=" "];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="src/jvm.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$jvm_8h.html",tooltip=" "];
+  Node6 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="src/exec_classfile\l_usecase.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$exec__classfile__usecase_8c.html",tooltip=" "];
+  Node6 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="src/jvm.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$jvm_8c.html",tooltip=" "];
+  Node6 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="src/MethodArea.c",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$MethodArea_8c.html",tooltip=" "];
+  Node6 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="src/MethodArea.h",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$MethodArea_8h.html",tooltip=" "];
+  Node10 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+}

@@ -1,0 +1,53 @@
+\hypertarget{Frame_8c}{}\doxysection{src/\+Frame.c File Reference}
+\label{Frame_8c}\index{src/Frame.c@{src/Frame.c}}
+{\ttfamily \#include \char`\"{}Frame.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}stdlib.\+h\char`\"{}}\newline
+Include dependency graph for Frame.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$ \mbox{\hyperlink{Frame_8c_a13ba1bb87bebdbb2aed7a8d34ffc13f1}{get\+Code\+Attribute}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$current\+\_\+frame)
+\item 
+void \mbox{\hyperlink{Frame_8c_a907955eec03bf9986b47565aa476fb20}{push\+Operand\+Stack}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$frame, int32\+\_\+t value)
+\item 
+int32\+\_\+t \mbox{\hyperlink{Frame_8c_aee36a665f699ceb107efb4945e625aae}{pop\+Operand\+Stack}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$frame)
+\item 
+\mbox{\hyperlink{structFrame}{Frame}} $\ast$ \mbox{\hyperlink{Frame_8c_a7d51e06800c1ce0231561e1563d96f7d}{create\+Frame}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$f, \mbox{\hyperlink{structClassFile}{Class\+File}} cf, \mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$mi)
+\item 
+void \mbox{\hyperlink{Frame_8c_a973f6173d132c7c2f3c529c1c80bc9dd}{free\+Frame}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$f)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Frame_8c_a7d51e06800c1ce0231561e1563d96f7d}\label{Frame_8c_a7d51e06800c1ce0231561e1563d96f7d}} 
+\index{Frame.c@{Frame.c}!createFrame@{createFrame}}
+\index{createFrame@{createFrame}!Frame.c@{Frame.c}}
+\doxysubsubsection{\texorpdfstring{createFrame()}{createFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFrame}{Frame}}$\ast$ create\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{f,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}}}]{cf,  }\item[{\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$}]{mi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8c_a973f6173d132c7c2f3c529c1c80bc9dd}\label{Frame_8c_a973f6173d132c7c2f3c529c1c80bc9dd}} 
+\index{Frame.c@{Frame.c}!freeFrame@{freeFrame}}
+\index{freeFrame@{freeFrame}!Frame.c@{Frame.c}}
+\doxysubsubsection{\texorpdfstring{freeFrame()}{freeFrame()}}
+{\footnotesize\ttfamily void free\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{f }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8c_a13ba1bb87bebdbb2aed7a8d34ffc13f1}\label{Frame_8c_a13ba1bb87bebdbb2aed7a8d34ffc13f1}} 
+\index{Frame.c@{Frame.c}!getCodeAttribute@{getCodeAttribute}}
+\index{getCodeAttribute@{getCodeAttribute}!Frame.c@{Frame.c}}
+\doxysubsubsection{\texorpdfstring{getCodeAttribute()}{getCodeAttribute()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}$\ast$ get\+Code\+Attribute (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{current\+\_\+frame }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8c_aee36a665f699ceb107efb4945e625aae}\label{Frame_8c_aee36a665f699ceb107efb4945e625aae}} 
+\index{Frame.c@{Frame.c}!popOperandStack@{popOperandStack}}
+\index{popOperandStack@{popOperandStack}!Frame.c@{Frame.c}}
+\doxysubsubsection{\texorpdfstring{popOperandStack()}{popOperandStack()}}
+{\footnotesize\ttfamily int32\+\_\+t pop\+Operand\+Stack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{frame }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Frame_8c_a907955eec03bf9986b47565aa476fb20}\label{Frame_8c_a907955eec03bf9986b47565aa476fb20}} 
+\index{Frame.c@{Frame.c}!pushOperandStack@{pushOperandStack}}
+\index{pushOperandStack@{pushOperandStack}!Frame.c@{Frame.c}}
+\doxysubsubsection{\texorpdfstring{pushOperandStack()}{pushOperandStack()}}
+{\footnotesize\ttfamily void push\+Operand\+Stack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{frame,  }\item[{int32\+\_\+t}]{value }\end{DoxyParamCaption})}
+

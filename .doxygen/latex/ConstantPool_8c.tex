@@ -1,0 +1,326 @@
+\hypertarget{ConstantPool_8c}{}\doxysection{src/\+Constant\+Pool.c File Reference}
+\label{ConstantPool_8c}\index{src/ConstantPool.c@{src/ConstantPool.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Constant\+Pool.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Constant\+Pool.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}} \mbox{\hyperlink{ConstantPool_8c_a9f95ef981b9c5285f0acdf6cc46f2bc2}{Constant\+Methodref\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a853e2f9003aab7841cea9bb0d7bbf24f}{Constant\+Methodref\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}} cfi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a2b279d42bab2728bca2075ffdab818ea}{Constant\+Methodref\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}} cfi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}} \mbox{\hyperlink{ConstantPool_8c_add99d1587d18fea391def4cc8e5b398d}{Constant\+Fieldref\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a7c4b4793791eb4f5696e490ba40fef3f}{Constant\+Fieldref\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}} cfi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_aab29b5b7648152e55aaef87927f9eb98}{Constant\+Fieldref\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}} cfi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}} \mbox{\hyperlink{ConstantPool_8c_a2de2bd236d45aba722e8c27cfacc2328}{Constant\+Float\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_ad8013faa6c25d8d01ca8b6a6056995da}{Constant\+Float\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}} cfi)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_ad10a60c65a481aa1845373909c6c07dc}{Constant\+Float\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}} cfi)
+\item 
+\mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}} \mbox{\hyperlink{ConstantPool_8c_a7319b03fc72ab9462a7f286041b55895}{Constant\+Long\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a2667cf045fe7933f59c2db440479fc97}{Constant\+Long\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}} cfi)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_aedde860804cea633994ae090488f9801}{Constant\+Long\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}} cfi)
+\item 
+\mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}} \mbox{\hyperlink{ConstantPool_8c_a998c52ae01c2008cc6cd4acd010df8ab}{Constant\+Double\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a9866c02b6b56109961ae0188c5bd0b44}{Constant\+Double\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}} cfi)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a9d046e7df4a36f69505bdd00ced27d95}{Constant\+Double\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}} cfi)
+\item 
+\mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}} \mbox{\hyperlink{ConstantPool_8c_a4b8e9de25060406b09566d5ff038d4b0}{Constant\+String\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a71773052a7682d59a95608ff555c27a3}{Constant\+String\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}} csi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_ad99be7ce7245bac86048e711f5659724}{Constant\+String\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}} csi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}} \mbox{\hyperlink{ConstantPool_8c_aa8720157ca4fb56216edabcfc9c498a4}{Constant\+Class\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a594c3a617c43ef36abd9a33f9aae4e85}{Constant\+Class\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}} cci, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a2025025273fb108abf5c06521cd3d684}{Constant\+Class\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}} cci, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}} \mbox{\hyperlink{ConstantPool_8c_ae6129685d4124705eee3cc8b7ce5bac2}{Constant\+Interface\+Methodref\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a16a9a43d48a493ad065895fed9b6a0c9}{Constant\+Interface\+Methodref\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}} cimi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a5ace03c54f0e01d041e074c51802375d}{Constant\+Interface\+Methodref\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}} cimi, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}} \mbox{\hyperlink{ConstantPool_8c_a710e6789c811eaffb437be1c77106cc7}{Constant\+Utf8\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a8bbe3f51cd2599cec142046bf4c39d34}{Constant\+Utf8\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}} cui)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_afa1f884e5e791dd3ca3e146e854832c1}{Constant\+Utf8\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}} cui, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}} \mbox{\hyperlink{ConstantPool_8c_ad1630831eacecd12f5c9b8cb23a60311}{Constant\+Integer\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a3a58a4ac352c23d8112f0e6c35771b7a}{Constant\+Integer\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}} cii)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a7b4574f458f2999bb9dac3e0c9be61a0}{Constant\+Integer\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}} cii)
+\item 
+\mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}} \mbox{\hyperlink{ConstantPool_8c_a2c6e3dfd286d0d882f81ad5a135fff71}{Constant\+Name\+And\+Type\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_aeeb38e897dd0440815b398304b3bf1d2}{Constant\+Name\+And\+Type\+Info\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}} cti, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_af2ad6aa21b932f8ca9534abcdff7f081}{Constant\+Name\+And\+Type\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}} cti, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{structCpInfo}{Cp\+Info}} \mbox{\hyperlink{ConstantPool_8c_a481975d98566070dd3a787a86069fdd2}{Cp\+Info\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_aeeb0efc9a2fc78083aadf75bdec34c4d}{Cp\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCpInfo}{Cp\+Info}} ci, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp)
+\item 
+\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} \mbox{\hyperlink{ConstantPool_8c_a3c0881fa2e157c8dd80744165356b6af}{Constant\+Pool\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} constant\+\_\+pool\+\_\+count)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_acadca93cf33cb67b3d5dac2e2e4eb1bc}{Constant\+Pool\+\_\+to\+\_\+string}} (\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} constant\+\_\+pool\+\_\+count)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8c_a22ce7a9cba3c3f5c010b62ca901a28ad}{Constant\+Pool\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} index)
+\item 
+void \mbox{\hyperlink{ConstantPool_8c_ad296d1703021d8359effeaf452641821}{Constant\+Pool\+\_\+free}} (\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} constant\+\_\+pool\+\_\+count)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ConstantPool_8c_a2025025273fb108abf5c06521cd3d684}\label{ConstantPool_8c_a2025025273fb108abf5c06521cd3d684}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantClassInfo\_get\_utf8@{ConstantClassInfo\_get\_utf8}}
+\index{ConstantClassInfo\_get\_utf8@{ConstantClassInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantClassInfo\_get\_utf8()}{ConstantClassInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Class\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}}}]{cci,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_aa8720157ca4fb56216edabcfc9c498a4}\label{ConstantPool_8c_aa8720157ca4fb56216edabcfc9c498a4}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantClassInfo\_read@{ConstantClassInfo\_read}}
+\index{ConstantClassInfo\_read@{ConstantClassInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantClassInfo\_read()}{ConstantClassInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}} Constant\+Class\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a594c3a617c43ef36abd9a33f9aae4e85}\label{ConstantPool_8c_a594c3a617c43ef36abd9a33f9aae4e85}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantClassInfo\_to\_string@{ConstantClassInfo\_to\_string}}
+\index{ConstantClassInfo\_to\_string@{ConstantClassInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantClassInfo\_to\_string()}{ConstantClassInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Class\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}}}]{cci,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a9866c02b6b56109961ae0188c5bd0b44}\label{ConstantPool_8c_a9866c02b6b56109961ae0188c5bd0b44}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantDoubleInfo\_get\_utf8@{ConstantDoubleInfo\_get\_utf8}}
+\index{ConstantDoubleInfo\_get\_utf8@{ConstantDoubleInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantDoubleInfo\_get\_utf8()}{ConstantDoubleInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Double\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}}}]{cfi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a998c52ae01c2008cc6cd4acd010df8ab}\label{ConstantPool_8c_a998c52ae01c2008cc6cd4acd010df8ab}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantDoubleInfo\_read@{ConstantDoubleInfo\_read}}
+\index{ConstantDoubleInfo\_read@{ConstantDoubleInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantDoubleInfo\_read()}{ConstantDoubleInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}} Constant\+Double\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a9d046e7df4a36f69505bdd00ced27d95}\label{ConstantPool_8c_a9d046e7df4a36f69505bdd00ced27d95}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantDoubleInfo\_to\_string@{ConstantDoubleInfo\_to\_string}}
+\index{ConstantDoubleInfo\_to\_string@{ConstantDoubleInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantDoubleInfo\_to\_string()}{ConstantDoubleInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Double\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}}}]{cfi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a7c4b4793791eb4f5696e490ba40fef3f}\label{ConstantPool_8c_a7c4b4793791eb4f5696e490ba40fef3f}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantFieldrefInfo\_get\_utf8@{ConstantFieldrefInfo\_get\_utf8}}
+\index{ConstantFieldrefInfo\_get\_utf8@{ConstantFieldrefInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantFieldrefInfo\_get\_utf8()}{ConstantFieldrefInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Fieldref\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}}}]{cfi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_add99d1587d18fea391def4cc8e5b398d}\label{ConstantPool_8c_add99d1587d18fea391def4cc8e5b398d}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantFieldrefInfo\_read@{ConstantFieldrefInfo\_read}}
+\index{ConstantFieldrefInfo\_read@{ConstantFieldrefInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantFieldrefInfo\_read()}{ConstantFieldrefInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}} Constant\+Fieldref\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_aab29b5b7648152e55aaef87927f9eb98}\label{ConstantPool_8c_aab29b5b7648152e55aaef87927f9eb98}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantFieldrefInfo\_to\_string@{ConstantFieldrefInfo\_to\_string}}
+\index{ConstantFieldrefInfo\_to\_string@{ConstantFieldrefInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantFieldrefInfo\_to\_string()}{ConstantFieldrefInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Fieldref\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}}}]{cfi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_ad8013faa6c25d8d01ca8b6a6056995da}\label{ConstantPool_8c_ad8013faa6c25d8d01ca8b6a6056995da}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantFloatInfo\_get\_utf8@{ConstantFloatInfo\_get\_utf8}}
+\index{ConstantFloatInfo\_get\_utf8@{ConstantFloatInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantFloatInfo\_get\_utf8()}{ConstantFloatInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Float\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}}}]{cfi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a2de2bd236d45aba722e8c27cfacc2328}\label{ConstantPool_8c_a2de2bd236d45aba722e8c27cfacc2328}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantFloatInfo\_read@{ConstantFloatInfo\_read}}
+\index{ConstantFloatInfo\_read@{ConstantFloatInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantFloatInfo\_read()}{ConstantFloatInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}} Constant\+Float\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_ad10a60c65a481aa1845373909c6c07dc}\label{ConstantPool_8c_ad10a60c65a481aa1845373909c6c07dc}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantFloatInfo\_to\_string@{ConstantFloatInfo\_to\_string}}
+\index{ConstantFloatInfo\_to\_string@{ConstantFloatInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantFloatInfo\_to\_string()}{ConstantFloatInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Float\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}}}]{cfi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a3a58a4ac352c23d8112f0e6c35771b7a}\label{ConstantPool_8c_a3a58a4ac352c23d8112f0e6c35771b7a}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantIntegerInfo\_get\_utf8@{ConstantIntegerInfo\_get\_utf8}}
+\index{ConstantIntegerInfo\_get\_utf8@{ConstantIntegerInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantIntegerInfo\_get\_utf8()}{ConstantIntegerInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Integer\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}}}]{cii }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_ad1630831eacecd12f5c9b8cb23a60311}\label{ConstantPool_8c_ad1630831eacecd12f5c9b8cb23a60311}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantIntegerInfo\_read@{ConstantIntegerInfo\_read}}
+\index{ConstantIntegerInfo\_read@{ConstantIntegerInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantIntegerInfo\_read()}{ConstantIntegerInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}} Constant\+Integer\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a7b4574f458f2999bb9dac3e0c9be61a0}\label{ConstantPool_8c_a7b4574f458f2999bb9dac3e0c9be61a0}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantIntegerInfo\_to\_string@{ConstantIntegerInfo\_to\_string}}
+\index{ConstantIntegerInfo\_to\_string@{ConstantIntegerInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantIntegerInfo\_to\_string()}{ConstantIntegerInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Integer\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}}}]{cii }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a16a9a43d48a493ad065895fed9b6a0c9}\label{ConstantPool_8c_a16a9a43d48a493ad065895fed9b6a0c9}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantInterfaceMethodrefInfo\_get\_utf8@{ConstantInterfaceMethodrefInfo\_get\_utf8}}
+\index{ConstantInterfaceMethodrefInfo\_get\_utf8@{ConstantInterfaceMethodrefInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantInterfaceMethodrefInfo\_get\_utf8()}{ConstantInterfaceMethodrefInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Interface\+Methodref\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}}}]{cimi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_ae6129685d4124705eee3cc8b7ce5bac2}\label{ConstantPool_8c_ae6129685d4124705eee3cc8b7ce5bac2}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantInterfaceMethodrefInfo\_read@{ConstantInterfaceMethodrefInfo\_read}}
+\index{ConstantInterfaceMethodrefInfo\_read@{ConstantInterfaceMethodrefInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantInterfaceMethodrefInfo\_read()}{ConstantInterfaceMethodrefInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}} Constant\+Interface\+Methodref\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a5ace03c54f0e01d041e074c51802375d}\label{ConstantPool_8c_a5ace03c54f0e01d041e074c51802375d}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantInterfaceMethodrefInfo\_to\_string@{ConstantInterfaceMethodrefInfo\_to\_string}}
+\index{ConstantInterfaceMethodrefInfo\_to\_string@{ConstantInterfaceMethodrefInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantInterfaceMethodrefInfo\_to\_string()}{ConstantInterfaceMethodrefInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Interface\+Methodref\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}}}]{cimi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a2667cf045fe7933f59c2db440479fc97}\label{ConstantPool_8c_a2667cf045fe7933f59c2db440479fc97}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantLongInfo\_get\_utf8@{ConstantLongInfo\_get\_utf8}}
+\index{ConstantLongInfo\_get\_utf8@{ConstantLongInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantLongInfo\_get\_utf8()}{ConstantLongInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Long\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}}}]{cfi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a7319b03fc72ab9462a7f286041b55895}\label{ConstantPool_8c_a7319b03fc72ab9462a7f286041b55895}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantLongInfo\_read@{ConstantLongInfo\_read}}
+\index{ConstantLongInfo\_read@{ConstantLongInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantLongInfo\_read()}{ConstantLongInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}} Constant\+Long\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_aedde860804cea633994ae090488f9801}\label{ConstantPool_8c_aedde860804cea633994ae090488f9801}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantLongInfo\_to\_string@{ConstantLongInfo\_to\_string}}
+\index{ConstantLongInfo\_to\_string@{ConstantLongInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantLongInfo\_to\_string()}{ConstantLongInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Long\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}}}]{cfi }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a853e2f9003aab7841cea9bb0d7bbf24f}\label{ConstantPool_8c_a853e2f9003aab7841cea9bb0d7bbf24f}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantMethodrefInfo\_get\_utf8@{ConstantMethodrefInfo\_get\_utf8}}
+\index{ConstantMethodrefInfo\_get\_utf8@{ConstantMethodrefInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantMethodrefInfo\_get\_utf8()}{ConstantMethodrefInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Methodref\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}}}]{cfi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a9f95ef981b9c5285f0acdf6cc46f2bc2}\label{ConstantPool_8c_a9f95ef981b9c5285f0acdf6cc46f2bc2}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantMethodrefInfo\_read@{ConstantMethodrefInfo\_read}}
+\index{ConstantMethodrefInfo\_read@{ConstantMethodrefInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantMethodrefInfo\_read()}{ConstantMethodrefInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}} Constant\+Methodref\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a2b279d42bab2728bca2075ffdab818ea}\label{ConstantPool_8c_a2b279d42bab2728bca2075ffdab818ea}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantMethodrefInfo\_to\_string@{ConstantMethodrefInfo\_to\_string}}
+\index{ConstantMethodrefInfo\_to\_string@{ConstantMethodrefInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantMethodrefInfo\_to\_string()}{ConstantMethodrefInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Methodref\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}}}]{cfi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_aeeb38e897dd0440815b398304b3bf1d2}\label{ConstantPool_8c_aeeb38e897dd0440815b398304b3bf1d2}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantNameAndTypeInfo\_get\_utf8@{ConstantNameAndTypeInfo\_get\_utf8}}
+\index{ConstantNameAndTypeInfo\_get\_utf8@{ConstantNameAndTypeInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantNameAndTypeInfo\_get\_utf8()}{ConstantNameAndTypeInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Name\+And\+Type\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}}}]{cti,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a2c6e3dfd286d0d882f81ad5a135fff71}\label{ConstantPool_8c_a2c6e3dfd286d0d882f81ad5a135fff71}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantNameAndTypeInfo\_read@{ConstantNameAndTypeInfo\_read}}
+\index{ConstantNameAndTypeInfo\_read@{ConstantNameAndTypeInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantNameAndTypeInfo\_read()}{ConstantNameAndTypeInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}} Constant\+Name\+And\+Type\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_af2ad6aa21b932f8ca9534abcdff7f081}\label{ConstantPool_8c_af2ad6aa21b932f8ca9534abcdff7f081}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantNameAndTypeInfo\_to\_string@{ConstantNameAndTypeInfo\_to\_string}}
+\index{ConstantNameAndTypeInfo\_to\_string@{ConstantNameAndTypeInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantNameAndTypeInfo\_to\_string()}{ConstantNameAndTypeInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Name\+And\+Type\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}}}]{cti,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_ad296d1703021d8359effeaf452641821}\label{ConstantPool_8c_ad296d1703021d8359effeaf452641821}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantPool\_free@{ConstantPool\_free}}
+\index{ConstantPool\_free@{ConstantPool\_free}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_free()}{ConstantPool\_free()}}
+{\footnotesize\ttfamily void Constant\+Pool\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{constant\+\_\+pool\+\_\+count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a22ce7a9cba3c3f5c010b62ca901a28ad}\label{ConstantPool_8c_a22ce7a9cba3c3f5c010b62ca901a28ad}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantPool\_get\_utf8@{ConstantPool\_get\_utf8}}
+\index{ConstantPool\_get\_utf8@{ConstantPool\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_get\_utf8()}{ConstantPool\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Pool\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a3c0881fa2e157c8dd80744165356b6af}\label{ConstantPool_8c_a3c0881fa2e157c8dd80744165356b6af}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantPool\_read@{ConstantPool\_read}}
+\index{ConstantPool\_read@{ConstantPool\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_read()}{ConstantPool\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} Constant\+Pool\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{constant\+\_\+pool\+\_\+count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_acadca93cf33cb67b3d5dac2e2e4eb1bc}\label{ConstantPool_8c_acadca93cf33cb67b3d5dac2e2e4eb1bc}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantPool\_to\_string@{ConstantPool\_to\_string}}
+\index{ConstantPool\_to\_string@{ConstantPool\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_to\_string()}{ConstantPool\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Pool\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{constant\+\_\+pool\+\_\+count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a71773052a7682d59a95608ff555c27a3}\label{ConstantPool_8c_a71773052a7682d59a95608ff555c27a3}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantStringInfo\_get\_utf8@{ConstantStringInfo\_get\_utf8}}
+\index{ConstantStringInfo\_get\_utf8@{ConstantStringInfo\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantStringInfo\_get\_utf8()}{ConstantStringInfo\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+String\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}}}]{csi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a4b8e9de25060406b09566d5ff038d4b0}\label{ConstantPool_8c_a4b8e9de25060406b09566d5ff038d4b0}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantStringInfo\_read@{ConstantStringInfo\_read}}
+\index{ConstantStringInfo\_read@{ConstantStringInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantStringInfo\_read()}{ConstantStringInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}} Constant\+String\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_ad99be7ce7245bac86048e711f5659724}\label{ConstantPool_8c_ad99be7ce7245bac86048e711f5659724}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantStringInfo\_to\_string@{ConstantStringInfo\_to\_string}}
+\index{ConstantStringInfo\_to\_string@{ConstantStringInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantStringInfo\_to\_string()}{ConstantStringInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+String\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}}}]{csi,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_afa1f884e5e791dd3ca3e146e854832c1}\label{ConstantPool_8c_afa1f884e5e791dd3ca3e146e854832c1}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantUtf8Info\_get\_utf8@{ConstantUtf8Info\_get\_utf8}}
+\index{ConstantUtf8Info\_get\_utf8@{ConstantUtf8Info\_get\_utf8}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantUtf8Info\_get\_utf8()}{ConstantUtf8Info\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Utf8\+Info\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}}}]{cui,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a710e6789c811eaffb437be1c77106cc7}\label{ConstantPool_8c_a710e6789c811eaffb437be1c77106cc7}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantUtf8Info\_read@{ConstantUtf8Info\_read}}
+\index{ConstantUtf8Info\_read@{ConstantUtf8Info\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantUtf8Info\_read()}{ConstantUtf8Info\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}} Constant\+Utf8\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a8bbe3f51cd2599cec142046bf4c39d34}\label{ConstantPool_8c_a8bbe3f51cd2599cec142046bf4c39d34}} 
+\index{ConstantPool.c@{ConstantPool.c}!ConstantUtf8Info\_to\_string@{ConstantUtf8Info\_to\_string}}
+\index{ConstantUtf8Info\_to\_string@{ConstantUtf8Info\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{ConstantUtf8Info\_to\_string()}{ConstantUtf8Info\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Utf8\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}}}]{cui }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_a481975d98566070dd3a787a86069fdd2}\label{ConstantPool_8c_a481975d98566070dd3a787a86069fdd2}} 
+\index{ConstantPool.c@{ConstantPool.c}!CpInfo\_read@{CpInfo\_read}}
+\index{CpInfo\_read@{CpInfo\_read}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{CpInfo\_read()}{CpInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCpInfo}{Cp\+Info}} Cp\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8c_aeeb0efc9a2fc78083aadf75bdec34c4d}\label{ConstantPool_8c_aeeb0efc9a2fc78083aadf75bdec34c4d}} 
+\index{ConstantPool.c@{ConstantPool.c}!CpInfo\_to\_string@{CpInfo\_to\_string}}
+\index{CpInfo\_to\_string@{CpInfo\_to\_string}!ConstantPool.c@{ConstantPool.c}}
+\doxysubsubsection{\texorpdfstring{CpInfo\_to\_string()}{CpInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Cp\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCpInfo}{Cp\+Info}}}]{ci,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp }\end{DoxyParamCaption})}
+

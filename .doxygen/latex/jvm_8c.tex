@@ -1,0 +1,112 @@
+\hypertarget{jvm_8c}{}\doxysection{src/jvm.c File Reference}
+\label{jvm_8c}\index{src/jvm.c@{src/jvm.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}jvm.\+h\char`\"{}}\newline
+Include dependency graph for jvm.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structJVM}{JVM}} $\ast$ \mbox{\hyperlink{jvm_8c_ae03bceece1925cab2f7a040ab1929290}{start\+JVM}} ()
+\item 
+void \mbox{\hyperlink{jvm_8c_a7730c0b0699d1709f16e3d3160dd4c1a}{pop\+Frame}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm)
+\begin{DoxyCompactList}\small\item\em Pop frame from jvm frames. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{jvm_8c_a446f56eac6d00fd56b3f1215304b8d16}{push\+Frame}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm, const char $\ast$classname, const char $\ast$method\+\_\+name)
+\item 
+\mbox{\hyperlink{structFrame}{Frame}} $\ast$ \mbox{\hyperlink{jvm_8c_ac5bdbec4aefc0a3460b8c6c11e9376b2}{top\+Frame}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm)
+\item 
+void \mbox{\hyperlink{jvm_8c_a802b7574aa3a9e591418b713b63e0adb}{verify\+Clinit}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm)
+\item 
+char $\ast$ \mbox{\hyperlink{jvm_8c_accf569ec4003176f4f7e9d8138a0fd0d}{method\+Name}} (\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$method, \mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$classfile)
+\item 
+char $\ast$ \mbox{\hyperlink{jvm_8c_a9d157b0c10f5e52ea9e30b534510afff}{class\+Name}} (\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$classfile)
+\item 
+\mbox{\hyperlink{structFieldValue}{Field\+Value}} $\ast$ \mbox{\hyperlink{jvm_8c_a66cf7cc05bbf52e7227bce0617836887}{get\+Static}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm, const char $\ast$class\+\_\+name, const char $\ast$field\+\_\+name, const char $\ast$type\+\_\+name)
+\item 
+\mbox{\hyperlink{structCode}{Code}} \mbox{\hyperlink{jvm_8c_adc3b56cf5896d1e30a8361d85ea9ff17}{fetch\+Code}} (\mbox{\hyperlink{structFrame}{Frame}} $\ast$current\+\_\+frame)
+\item 
+void \mbox{\hyperlink{jvm_8c_a12c02b207ccfdba1ecddc5d49766eb29}{run\+JVM}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm)
+\item 
+void \mbox{\hyperlink{jvm_8c_ad5ede546ba19d5d065b98acf6a415d88}{free\+JVM}} (\mbox{\hyperlink{structJVM}{JVM}} $\ast$jvm)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{jvm_8c_a9d157b0c10f5e52ea9e30b534510afff}\label{jvm_8c_a9d157b0c10f5e52ea9e30b534510afff}} 
+\index{jvm.c@{jvm.c}!className@{className}}
+\index{className@{className}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{className()}{className()}}
+{\footnotesize\ttfamily char$\ast$ class\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{classfile }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_adc3b56cf5896d1e30a8361d85ea9ff17}\label{jvm_8c_adc3b56cf5896d1e30a8361d85ea9ff17}} 
+\index{jvm.c@{jvm.c}!fetchCode@{fetchCode}}
+\index{fetchCode@{fetchCode}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{fetchCode()}{fetchCode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCode}{Code}} fetch\+Code (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFrame}{Frame}} $\ast$}]{current\+\_\+frame }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_ad5ede546ba19d5d065b98acf6a415d88}\label{jvm_8c_ad5ede546ba19d5d065b98acf6a415d88}} 
+\index{jvm.c@{jvm.c}!freeJVM@{freeJVM}}
+\index{freeJVM@{freeJVM}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{freeJVM()}{freeJVM()}}
+{\footnotesize\ttfamily void free\+JVM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_a66cf7cc05bbf52e7227bce0617836887}\label{jvm_8c_a66cf7cc05bbf52e7227bce0617836887}} 
+\index{jvm.c@{jvm.c}!getStatic@{getStatic}}
+\index{getStatic@{getStatic}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{getStatic()}{getStatic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFieldValue}{Field\+Value}}$\ast$ get\+Static (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm,  }\item[{const char $\ast$}]{class\+\_\+name,  }\item[{const char $\ast$}]{field\+\_\+name,  }\item[{const char $\ast$}]{type\+\_\+name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_accf569ec4003176f4f7e9d8138a0fd0d}\label{jvm_8c_accf569ec4003176f4f7e9d8138a0fd0d}} 
+\index{jvm.c@{jvm.c}!methodName@{methodName}}
+\index{methodName@{methodName}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{methodName()}{methodName()}}
+{\footnotesize\ttfamily char$\ast$ method\+Name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$}]{method,  }\item[{\mbox{\hyperlink{structClassFile}{Class\+File}} $\ast$}]{classfile }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_a7730c0b0699d1709f16e3d3160dd4c1a}\label{jvm_8c_a7730c0b0699d1709f16e3d3160dd4c1a}} 
+\index{jvm.c@{jvm.c}!popFrame@{popFrame}}
+\index{popFrame@{popFrame}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{popFrame()}{popFrame()}}
+{\footnotesize\ttfamily void pop\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm }\end{DoxyParamCaption})}
+
+
+
+Pop frame from jvm frames. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em jvm} & Pointer to jvm structure \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{jvm_8c_a446f56eac6d00fd56b3f1215304b8d16}\label{jvm_8c_a446f56eac6d00fd56b3f1215304b8d16}} 
+\index{jvm.c@{jvm.c}!pushFrame@{pushFrame}}
+\index{pushFrame@{pushFrame}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{pushFrame()}{pushFrame()}}
+{\footnotesize\ttfamily void push\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm,  }\item[{const char $\ast$}]{classname,  }\item[{const char $\ast$}]{method\+\_\+name }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_a12c02b207ccfdba1ecddc5d49766eb29}\label{jvm_8c_a12c02b207ccfdba1ecddc5d49766eb29}} 
+\index{jvm.c@{jvm.c}!runJVM@{runJVM}}
+\index{runJVM@{runJVM}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{runJVM()}{runJVM()}}
+{\footnotesize\ttfamily void run\+JVM (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_ae03bceece1925cab2f7a040ab1929290}\label{jvm_8c_ae03bceece1925cab2f7a040ab1929290}} 
+\index{jvm.c@{jvm.c}!startJVM@{startJVM}}
+\index{startJVM@{startJVM}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{startJVM()}{startJVM()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structJVM}{JVM}}$\ast$ start\+JVM (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\begin{DoxyReturn}{Returns}
+JVM$\ast$ 
+\end{DoxyReturn}
+\mbox{\Hypertarget{jvm_8c_ac5bdbec4aefc0a3460b8c6c11e9376b2}\label{jvm_8c_ac5bdbec4aefc0a3460b8c6c11e9376b2}} 
+\index{jvm.c@{jvm.c}!topFrame@{topFrame}}
+\index{topFrame@{topFrame}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{topFrame()}{topFrame()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFrame}{Frame}}$\ast$ top\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{jvm_8c_a802b7574aa3a9e591418b713b63e0adb}\label{jvm_8c_a802b7574aa3a9e591418b713b63e0adb}} 
+\index{jvm.c@{jvm.c}!verifyClinit@{verifyClinit}}
+\index{verifyClinit@{verifyClinit}!jvm.c@{jvm.c}}
+\doxysubsubsection{\texorpdfstring{verifyClinit()}{verifyClinit()}}
+{\footnotesize\ttfamily void verify\+Clinit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structJVM}{JVM}} $\ast$}]{jvm }\end{DoxyParamCaption})}
+

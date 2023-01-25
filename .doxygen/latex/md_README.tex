@@ -1,0 +1,58 @@
+Projeto destinado para confeção dos trabalhos da turma de Software Básico relacionados à JVM.
+
+Atualmente o software é capaz de ler arquivos {\ttfamily .class} e exibir o seu conteúdo em formato JSON, de modo que seja possível a visualização dos dados contidos no arquivo.\hypertarget{md_README_autotoc_md1}{}\doxysection{Requisitos}\label{md_README_autotoc_md1}
+
+\begin{DoxyItemize}
+\item g++ 11.\+3.\+0
+\item make 4.\+3
+\item cppcheck 2.\+7 ou maior
+\item valgrind 3.\+19.\+0 ou maior
+\item yajl-\/tools
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md2}{}\doxysection{Como executar}\label{md_README_autotoc_md2}
+Para executar o software, é necessário primeiro compilar o mesmo. Para isso, basta executar o comando {\ttfamily make} na raiz do projeto. Após a compilação, basta executar o comando {\ttfamily ./build/sb.exe $<$arquivo .class$>$}
+
+Dessa forma, ele irá exibir na saída padrão o conteúdo do arquivo {\ttfamily .class} em formato JSON.\hypertarget{md_README_autotoc_md3}{}\doxysubsection{Exemplo}\label{md_README_autotoc_md3}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make run file="{}assets/test-\/class/SimpleClass.class"{}}
+\DoxyCodeLine{> \{}
+\DoxyCodeLine{    "{}\_\_cls"{}: "{}ClassFile"{},}
+\DoxyCodeLine{    "{}magic\_number"{}: "{}0xCAFEBABE"{},}
+\DoxyCodeLine{    ...}
+
+\end{DoxyCode}
+\hypertarget{md_README_autotoc_md4}{}\doxysection{Como contribuir}\label{md_README_autotoc_md4}
+Os arquivos fontes do projeto estão localizados na pasta {\ttfamily src}. Contribuiodores podem criar arquivos de extensão {\ttfamily .c} e {\ttfamily .h} para implementar novas funcionalidades. Depois, basta criar um Pull Request para que o código seja revisado e, caso aprovado, será adicionado ao projeto.\hypertarget{md_README_autotoc_md5}{}\doxysubsection{Como testar}\label{md_README_autotoc_md5}
+Para adicionar testes ao projeto, basta criar um arquivo de extensão {\ttfamily test.\+c} na pasta {\ttfamily test}. Após isso, basta executar o comando {\ttfamily make test} para que os testes sejam executados.
+
+Este projeto utiliza o Catch2 para testes unitários. Para mais informações sobre o Catch2, acesse o \href{https://github.com/catchorg/Catch2}{\texttt{ repositório oficial}}. Caso seja necessário adicionar arquivos com dados necessários para os testes, você pode adicioná-\/los dentro da pasta {\ttfamily assets}.\hypertarget{md_README_autotoc_md6}{}\doxysubsection{Análise Estática e Dinâmica}\label{md_README_autotoc_md6}
+\hypertarget{md_README_autotoc_md7}{}\doxysubsubsection{Instalação}\label{md_README_autotoc_md7}
+Em sistemas Linux\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{sudo apt install cppcheck}
+\DoxyCodeLine{sudo apt install valgrind}
+\DoxyCodeLine{sudo apt install yajl-\/tools}
+
+\end{DoxyCode}
+
+
+Em sistemas Windows o seguinte \href{https://github.com/danmar/cppcheck/releases/download/2.9/cppcheck-2.9-x64-Setup.msi}{\texttt{ link}} disponibiliza instalador.\hypertarget{md_README_autotoc_md8}{}\doxysubsubsection{Utilização}\label{md_README_autotoc_md8}
+Para realizar uma análise estática basta executar\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make lint}
+
+\end{DoxyCode}
+
+
+Para realizar uma análise dinâmica basta executar\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{make valgrind command="{}read"{} file="{}path para .class"{}}
+
+\end{DoxyCode}
+ 

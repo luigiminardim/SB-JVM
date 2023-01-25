@@ -1,0 +1,59 @@
+\hypertarget{Method_8h}{}\doxysection{src/\+Method.h File Reference}
+\label{Method_8h}\index{src/Method.h@{src/Method.h}}
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}java-\/bytes.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Attribute\+Info.\+h\char`\"{}}\newline
+Include dependency graph for Method.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structMethodInfo}{Method\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structMethodInfo}{Method\+Info}} \mbox{\hyperlink{Method_8h_a30930f95e01d69abd4637f1d8bf28079}{Method\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$ \mbox{\hyperlink{Method_8h_a87da749752f174e74f7cb422e197ff78}{Method\+Info\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} methods\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+void \mbox{\hyperlink{Method_8h_a5d04873fbfd71d3564a2ccc9bb315576}{Method\+Info\+\_\+free}} (\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$method\+\_\+infos, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} methods\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Method_8h_a941625b2ccae8ebb2ca4b8a24cbf9f03}{Method\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$method\+\_\+infos, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} methods\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{Method_8h_a30930f95e01d69abd4637f1d8bf28079}\label{Method_8h_a30930f95e01d69abd4637f1d8bf28079}} 
+\index{Method.h@{Method.h}!MethodInfo@{MethodInfo}}
+\index{MethodInfo@{MethodInfo}!Method.h@{Method.h}}
+\doxysubsubsection{\texorpdfstring{MethodInfo}{MethodInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structMethodInfo}{Method\+Info}} \mbox{\hyperlink{structMethodInfo}{Method\+Info}}}
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Method_8h_a5d04873fbfd71d3564a2ccc9bb315576}\label{Method_8h_a5d04873fbfd71d3564a2ccc9bb315576}} 
+\index{Method.h@{Method.h}!MethodInfo\_free@{MethodInfo\_free}}
+\index{MethodInfo\_free@{MethodInfo\_free}!Method.h@{Method.h}}
+\doxysubsubsection{\texorpdfstring{MethodInfo\_free()}{MethodInfo\_free()}}
+{\footnotesize\ttfamily void Method\+Info\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$}]{method\+\_\+infos,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{methods\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Method_8h_a87da749752f174e74f7cb422e197ff78}\label{Method_8h_a87da749752f174e74f7cb422e197ff78}} 
+\index{Method.h@{Method.h}!MethodInfo\_read@{MethodInfo\_read}}
+\index{MethodInfo\_read@{MethodInfo\_read}!Method.h@{Method.h}}
+\doxysubsubsection{\texorpdfstring{MethodInfo\_read()}{MethodInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structMethodInfo}{Method\+Info}}$\ast$ Method\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{methods\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Method_8h_a941625b2ccae8ebb2ca4b8a24cbf9f03}\label{Method_8h_a941625b2ccae8ebb2ca4b8a24cbf9f03}} 
+\index{Method.h@{Method.h}!MethodInfo\_to\_string@{MethodInfo\_to\_string}}
+\index{MethodInfo\_to\_string@{MethodInfo\_to\_string}!Method.h@{Method.h}}
+\doxysubsubsection{\texorpdfstring{MethodInfo\_to\_string()}{MethodInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Method\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structMethodInfo}{Method\+Info}} $\ast$}]{method\+\_\+infos,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{methods\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+

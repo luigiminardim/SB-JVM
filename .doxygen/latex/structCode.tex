@@ -1,0 +1,126 @@
+\hypertarget{structCode}{}\doxysection{Code Struct Reference}
+\label{structCode}\index{Code@{Code}}
+
+
+{\ttfamily \#include $<$Code.\+h$>$}
+
+
+
+Collaboration diagram for Code\+:
+% FIG 0
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{Code_8h_a2112dbdb049f53df83b3ba6fcbf13dc7}{Opcode}} \mbox{\hyperlink{structCode_a4f53e189e022e765898a2a37942dda11}{opcode}}
+\item 
+char $\ast$ \mbox{\hyperlink{structCode_ada66abfee2640d5b3df5adb638d71b8f}{mnemonic}}
+\item 
+enum \mbox{\hyperlink{Code_8h_aa4b9b8291a90b1a586c468110fb346a4}{Operand\+Type}} \mbox{\hyperlink{structCode_abc34913398f45843a506f38e2176717b}{operand\+\_\+type}}
+\item 
+void($\ast$ \mbox{\hyperlink{structCode_a9b2f49b6de6819372ab0902b01ffbe98}{exec}} )(\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+union \{\\
+\>\mbox{\hyperlink{structByteOperands}{ByteOperands}} \mbox{\hyperlink{structCode_a7f314104b4ea8b759c389b2b095a477c}{byte\_operands}}\\
+\>\mbox{\hyperlink{structShortOperands}{ShortOperands}} \mbox{\hyperlink{structCode_a26abd4b118c38d6ac0c7ae9f72e31528}{short\_operands}}\\
+\>\mbox{\hyperlink{structCpindexOperands}{CpindexOperands}} \mbox{\hyperlink{structCode_a7d7a47161f1d81e3cd36e76488e21dba}{cpindex\_operands}}\\
+\>\mbox{\hyperlink{structByteByteOperands}{ByteByteOperands}} \mbox{\hyperlink{structCode_a3335aeb5776892fd5e44584a58a8191d}{byte\_byte\_operands}}\\
+\>\mbox{\hyperlink{structCpindexByteOperands}{CpindexByteOperands}} \mbox{\hyperlink{structCode_a3ca2f37a7ce95c476ba580039675116f}{cpindex\_byte\_operands}}\\
+\>\mbox{\hyperlink{structIntOperands}{IntOperands}} \mbox{\hyperlink{structCode_a3a294d8e126925fa0cc39c67b099acdb}{int\_operands}}\\
+\>\mbox{\hyperlink{structTableswitchOperands}{TableswitchOperands}} \mbox{\hyperlink{structCode_abafedb09e542a4fbcdd93e0728831216}{tableswitch\_operands}}\\
+\>\mbox{\hyperlink{structLookupswitchOperands}{LookupswitchOperands}} \mbox{\hyperlink{structCode_ad95b7ceb0f1713dc0eab37b652f9f94f}{lookupswitch\_operands}}\\
+\>\mbox{\hyperlink{structCpindexByteByteOperands}{CpindexByteByteOperands}} \mbox{\hyperlink{structCode_a859613c2b33d2897c583c0c9531c293c}{cpindex\_byte\_byte\_operands}}\\
+\}; \\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{structCode_a96ae144d47e752797bb1de19796fe600}\label{structCode_a96ae144d47e752797bb1de19796fe600}} 
+\doxysubsubsection{\texorpdfstring{}{}}
+{\footnotesize\ttfamily union \{ ... \} }
+
+\mbox{\Hypertarget{structCode_a3335aeb5776892fd5e44584a58a8191d}\label{structCode_a3335aeb5776892fd5e44584a58a8191d}} 
+\index{Code@{Code}!byte\_byte\_operands@{byte\_byte\_operands}}
+\index{byte\_byte\_operands@{byte\_byte\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{byte\_byte\_operands}{byte\_byte\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structByteByteOperands}{Byte\+Byte\+Operands}} Code\+::byte\+\_\+byte\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_a7f314104b4ea8b759c389b2b095a477c}\label{structCode_a7f314104b4ea8b759c389b2b095a477c}} 
+\index{Code@{Code}!byte\_operands@{byte\_operands}}
+\index{byte\_operands@{byte\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{byte\_operands}{byte\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structByteOperands}{Byte\+Operands}} Code\+::byte\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_a859613c2b33d2897c583c0c9531c293c}\label{structCode_a859613c2b33d2897c583c0c9531c293c}} 
+\index{Code@{Code}!cpindex\_byte\_byte\_operands@{cpindex\_byte\_byte\_operands}}
+\index{cpindex\_byte\_byte\_operands@{cpindex\_byte\_byte\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{cpindex\_byte\_byte\_operands}{cpindex\_byte\_byte\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCpindexByteByteOperands}{Cpindex\+Byte\+Byte\+Operands}} Code\+::cpindex\+\_\+byte\+\_\+byte\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_a3ca2f37a7ce95c476ba580039675116f}\label{structCode_a3ca2f37a7ce95c476ba580039675116f}} 
+\index{Code@{Code}!cpindex\_byte\_operands@{cpindex\_byte\_operands}}
+\index{cpindex\_byte\_operands@{cpindex\_byte\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{cpindex\_byte\_operands}{cpindex\_byte\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCpindexByteOperands}{Cpindex\+Byte\+Operands}} Code\+::cpindex\+\_\+byte\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_a7d7a47161f1d81e3cd36e76488e21dba}\label{structCode_a7d7a47161f1d81e3cd36e76488e21dba}} 
+\index{Code@{Code}!cpindex\_operands@{cpindex\_operands}}
+\index{cpindex\_operands@{cpindex\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{cpindex\_operands}{cpindex\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCpindexOperands}{Cpindex\+Operands}} Code\+::cpindex\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_a9b2f49b6de6819372ab0902b01ffbe98}\label{structCode_a9b2f49b6de6819372ab0902b01ffbe98}} 
+\index{Code@{Code}!exec@{exec}}
+\index{exec@{exec}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{exec}{exec}}
+{\footnotesize\ttfamily void($\ast$ Code\+::exec) (\mbox{\hyperlink{structFrame}{Frame}} $\ast$, \mbox{\hyperlink{structCode}{Code}} $\ast$)}
+
+\mbox{\Hypertarget{structCode_a3a294d8e126925fa0cc39c67b099acdb}\label{structCode_a3a294d8e126925fa0cc39c67b099acdb}} 
+\index{Code@{Code}!int\_operands@{int\_operands}}
+\index{int\_operands@{int\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{int\_operands}{int\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structIntOperands}{Int\+Operands}} Code\+::int\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_ad95b7ceb0f1713dc0eab37b652f9f94f}\label{structCode_ad95b7ceb0f1713dc0eab37b652f9f94f}} 
+\index{Code@{Code}!lookupswitch\_operands@{lookupswitch\_operands}}
+\index{lookupswitch\_operands@{lookupswitch\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{lookupswitch\_operands}{lookupswitch\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structLookupswitchOperands}{Lookupswitch\+Operands}} Code\+::lookupswitch\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_ada66abfee2640d5b3df5adb638d71b8f}\label{structCode_ada66abfee2640d5b3df5adb638d71b8f}} 
+\index{Code@{Code}!mnemonic@{mnemonic}}
+\index{mnemonic@{mnemonic}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{mnemonic}{mnemonic}}
+{\footnotesize\ttfamily char$\ast$ Code\+::mnemonic}
+
+\mbox{\Hypertarget{structCode_a4f53e189e022e765898a2a37942dda11}\label{structCode_a4f53e189e022e765898a2a37942dda11}} 
+\index{Code@{Code}!opcode@{opcode}}
+\index{opcode@{opcode}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{opcode}{opcode}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Code_8h_a2112dbdb049f53df83b3ba6fcbf13dc7}{Opcode}} Code\+::opcode}
+
+\mbox{\Hypertarget{structCode_abc34913398f45843a506f38e2176717b}\label{structCode_abc34913398f45843a506f38e2176717b}} 
+\index{Code@{Code}!operand\_type@{operand\_type}}
+\index{operand\_type@{operand\_type}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{operand\_type}{operand\_type}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{Code_8h_aa4b9b8291a90b1a586c468110fb346a4}{Operand\+Type}} Code\+::operand\+\_\+type}
+
+\mbox{\Hypertarget{structCode_a26abd4b118c38d6ac0c7ae9f72e31528}\label{structCode_a26abd4b118c38d6ac0c7ae9f72e31528}} 
+\index{Code@{Code}!short\_operands@{short\_operands}}
+\index{short\_operands@{short\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{short\_operands}{short\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structShortOperands}{Short\+Operands}} Code\+::short\+\_\+operands}
+
+\mbox{\Hypertarget{structCode_abafedb09e542a4fbcdd93e0728831216}\label{structCode_abafedb09e542a4fbcdd93e0728831216}} 
+\index{Code@{Code}!tableswitch\_operands@{tableswitch\_operands}}
+\index{tableswitch\_operands@{tableswitch\_operands}!Code@{Code}}
+\doxysubsubsection{\texorpdfstring{tableswitch\_operands}{tableswitch\_operands}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structTableswitchOperands}{Tableswitch\+Operands}} Code\+::tableswitch\+\_\+operands}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Code_8h}{Code.\+h}}\end{DoxyCompactItemize}

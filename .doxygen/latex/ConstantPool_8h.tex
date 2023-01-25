@@ -1,0 +1,258 @@
+\hypertarget{ConstantPool_8h}{}\doxysection{src/\+Constant\+Pool.h File Reference}
+\label{ConstantPool_8h}\index{src/ConstantPool.h@{src/ConstantPool.h}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdint.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}java-\/bytes.\+h\char`\"{}}\newline
+Include dependency graph for Constant\+Pool.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}}
+\item 
+struct \mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}}
+\item 
+struct \mbox{\hyperlink{structCpInfo}{Cp\+Info}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}} \mbox{\hyperlink{ConstantPool_8h_ab9588e173d01b7019480c078cd51cdf1}{Constant\+Methodref\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}} \mbox{\hyperlink{ConstantPool_8h_a9be1b63e7417b45e3580d3dbe6611b0c}{Constant\+Fieldref\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}} \mbox{\hyperlink{ConstantPool_8h_a314571d57baed61d6c6597eca711221b}{Constant\+Float\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}} \mbox{\hyperlink{ConstantPool_8h_a6dc210c7f91e63151ee14c013152bbe9}{Constant\+Long\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}} \mbox{\hyperlink{ConstantPool_8h_a8fe1debe4b93508630fd67ecc1268fdb}{Constant\+Double\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}} \mbox{\hyperlink{ConstantPool_8h_a6131ffd5c1629723830aa8ee386d2567}{Constant\+String\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}} \mbox{\hyperlink{ConstantPool_8h_a04085f6877edfe3cb17e6fd66e4f2465}{Constant\+Class\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}} \mbox{\hyperlink{ConstantPool_8h_ae8451e28e666c10d524cc1c61d0afbef}{Constant\+Interface\+Methodref\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}} \mbox{\hyperlink{ConstantPool_8h_af6301772fbe3a10f6ff0c657378e7fb8}{Constant\+Utf8\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}} \mbox{\hyperlink{ConstantPool_8h_a7fdc69794f8eab379f01ad5c3aa8123f}{Constant\+Integer\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}} \mbox{\hyperlink{ConstantPool_8h_a3f9ef469f4fa24614a567ecab387ea23}{Constant\+Name\+And\+Type\+Info}}
+\item 
+typedef struct \mbox{\hyperlink{structCpInfo}{Cp\+Info}} \mbox{\hyperlink{ConstantPool_8h_aedc04a264dbc6ae9f1174f6beb993043}{Cp\+Info}}
+\item 
+typedef \mbox{\hyperlink{structCpInfo}{Cp\+Info}} $\ast$ \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926}{Constant\+Type}} \{ \newline
+\mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2c9d34d1eec873ec8084755d2d136db8}{CONSTANT\+\_\+\+UTF8}} = 1
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a7eef64ac3d5afa737e54a00a79d964cb}{CONSTANT\+\_\+\+INTEGER}} = 3
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a43068ad3f590a6fd1cbb4f7e15bc4ed3}{CONSTANT\+\_\+\+FLOAT}} = 4
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a6a9b46bbd3be42c160b5df5b5c71e0f1}{CONSTANT\+\_\+\+LONG}} = 5
+, \newline
+\mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926acaeaf30a5adcca03cba92f572c2e7cd8}{CONSTANT\+\_\+\+DOUBLE}} = 6
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2ba49ce8e3c1e3ae7c7a31c2c61fc68e}{CONSTANT\+\_\+\+CLASS}} = 7
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a004b97f9233ec4843984a7322c98347d}{CONSTANT\+\_\+\+STRING}} = 8
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926aad3087b99dd234ced1c7866fb7e19b01}{CONSTANT\+\_\+\+FIELDREF}} = 9
+, \newline
+\mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2cdd6cf7a3b0f724b6b2016fcff1731d}{CONSTANT\+\_\+\+METHODREF}} = 10
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a21d71c3debc6d2dbf7e8b11d88147530}{CONSTANT\+\_\+\+INTERFACE\+\_\+\+METHOD\+\_\+\+REF}} = 11
+, \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a70c17a79babda28acff41971b9a78758}{CONSTANT\+\_\+\+NAME\+\_\+\+AND\+\_\+\+TYPE}} = 12
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} \mbox{\hyperlink{ConstantPool_8h_a3c0881fa2e157c8dd80744165356b6af}{Constant\+Pool\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} constant\+\_\+pool\+\_\+count)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8h_acadca93cf33cb67b3d5dac2e2e4eb1bc}{Constant\+Pool\+\_\+to\+\_\+string}} (\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} constant\+\_\+pool\+\_\+count)
+\item 
+char $\ast$ \mbox{\hyperlink{ConstantPool_8h_a22ce7a9cba3c3f5c010b62ca901a28ad}{Constant\+Pool\+\_\+get\+\_\+utf8}} (\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} index)
+\item 
+void \mbox{\hyperlink{ConstantPool_8h_ad296d1703021d8359effeaf452641821}{Constant\+Pool\+\_\+free}} (\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} cp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} constant\+\_\+pool\+\_\+count)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{ConstantPool_8h_a04085f6877edfe3cb17e6fd66e4f2465}\label{ConstantPool_8h_a04085f6877edfe3cb17e6fd66e4f2465}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantClassInfo@{ConstantClassInfo}}
+\index{ConstantClassInfo@{ConstantClassInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantClassInfo}{ConstantClassInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}} \mbox{\hyperlink{structConstantClassInfo}{Constant\+Class\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_a8fe1debe4b93508630fd67ecc1268fdb}\label{ConstantPool_8h_a8fe1debe4b93508630fd67ecc1268fdb}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantDoubleInfo@{ConstantDoubleInfo}}
+\index{ConstantDoubleInfo@{ConstantDoubleInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantDoubleInfo}{ConstantDoubleInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}} \mbox{\hyperlink{structConstantDoubleInfo}{Constant\+Double\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_a9be1b63e7417b45e3580d3dbe6611b0c}\label{ConstantPool_8h_a9be1b63e7417b45e3580d3dbe6611b0c}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantFieldrefInfo@{ConstantFieldrefInfo}}
+\index{ConstantFieldrefInfo@{ConstantFieldrefInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantFieldrefInfo}{ConstantFieldrefInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}} \mbox{\hyperlink{structConstantFieldrefInfo}{Constant\+Fieldref\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_a314571d57baed61d6c6597eca711221b}\label{ConstantPool_8h_a314571d57baed61d6c6597eca711221b}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantFloatInfo@{ConstantFloatInfo}}
+\index{ConstantFloatInfo@{ConstantFloatInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantFloatInfo}{ConstantFloatInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}} \mbox{\hyperlink{structConstantFloatInfo}{Constant\+Float\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_a7fdc69794f8eab379f01ad5c3aa8123f}\label{ConstantPool_8h_a7fdc69794f8eab379f01ad5c3aa8123f}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantIntegerInfo@{ConstantIntegerInfo}}
+\index{ConstantIntegerInfo@{ConstantIntegerInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantIntegerInfo}{ConstantIntegerInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}} \mbox{\hyperlink{structConstantIntegerInfo}{Constant\+Integer\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_ae8451e28e666c10d524cc1c61d0afbef}\label{ConstantPool_8h_ae8451e28e666c10d524cc1c61d0afbef}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantInterfaceMethodrefInfo@{ConstantInterfaceMethodrefInfo}}
+\index{ConstantInterfaceMethodrefInfo@{ConstantInterfaceMethodrefInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantInterfaceMethodrefInfo}{ConstantInterfaceMethodrefInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}} \mbox{\hyperlink{structConstantInterfaceMethodrefInfo}{Constant\+Interface\+Methodref\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_a6dc210c7f91e63151ee14c013152bbe9}\label{ConstantPool_8h_a6dc210c7f91e63151ee14c013152bbe9}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantLongInfo@{ConstantLongInfo}}
+\index{ConstantLongInfo@{ConstantLongInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantLongInfo}{ConstantLongInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}} \mbox{\hyperlink{structConstantLongInfo}{Constant\+Long\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_ab9588e173d01b7019480c078cd51cdf1}\label{ConstantPool_8h_ab9588e173d01b7019480c078cd51cdf1}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantMethodrefInfo@{ConstantMethodrefInfo}}
+\index{ConstantMethodrefInfo@{ConstantMethodrefInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantMethodrefInfo}{ConstantMethodrefInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}} \mbox{\hyperlink{structConstantMethodrefInfo}{Constant\+Methodref\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_a3f9ef469f4fa24614a567ecab387ea23}\label{ConstantPool_8h_a3f9ef469f4fa24614a567ecab387ea23}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantNameAndTypeInfo@{ConstantNameAndTypeInfo}}
+\index{ConstantNameAndTypeInfo@{ConstantNameAndTypeInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantNameAndTypeInfo}{ConstantNameAndTypeInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}} \mbox{\hyperlink{structConstantNameAndTypeInfo}{Constant\+Name\+And\+Type\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}\label{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantPool@{ConstantPool}}
+\index{ConstantPool@{ConstantPool}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantPool}{ConstantPool}}
+{\footnotesize\ttfamily typedef \mbox{\hyperlink{structCpInfo}{Cp\+Info}}$\ast$ \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_a6131ffd5c1629723830aa8ee386d2567}\label{ConstantPool_8h_a6131ffd5c1629723830aa8ee386d2567}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantStringInfo@{ConstantStringInfo}}
+\index{ConstantStringInfo@{ConstantStringInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantStringInfo}{ConstantStringInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}} \mbox{\hyperlink{structConstantStringInfo}{Constant\+String\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_af6301772fbe3a10f6ff0c657378e7fb8}\label{ConstantPool_8h_af6301772fbe3a10f6ff0c657378e7fb8}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantUtf8Info@{ConstantUtf8Info}}
+\index{ConstantUtf8Info@{ConstantUtf8Info}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantUtf8Info}{ConstantUtf8Info}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}} \mbox{\hyperlink{structConstantUtf8Info}{Constant\+Utf8\+Info}}}
+
+\mbox{\Hypertarget{ConstantPool_8h_aedc04a264dbc6ae9f1174f6beb993043}\label{ConstantPool_8h_aedc04a264dbc6ae9f1174f6beb993043}} 
+\index{ConstantPool.h@{ConstantPool.h}!CpInfo@{CpInfo}}
+\index{CpInfo@{CpInfo}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{CpInfo}{CpInfo}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{structCpInfo}{Cp\+Info}} \mbox{\hyperlink{structCpInfo}{Cp\+Info}}}
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantType@{ConstantType}}
+\index{ConstantType@{ConstantType}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantType}{ConstantType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926}{Constant\+Type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_UTF8@{CONSTANT\_UTF8}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_UTF8@{CONSTANT\_UTF8}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2c9d34d1eec873ec8084755d2d136db8}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2c9d34d1eec873ec8084755d2d136db8}} 
+CONSTANT\+\_\+\+UTF8&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_INTEGER@{CONSTANT\_INTEGER}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_INTEGER@{CONSTANT\_INTEGER}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a7eef64ac3d5afa737e54a00a79d964cb}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a7eef64ac3d5afa737e54a00a79d964cb}} 
+CONSTANT\+\_\+\+INTEGER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_FLOAT@{CONSTANT\_FLOAT}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_FLOAT@{CONSTANT\_FLOAT}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a43068ad3f590a6fd1cbb4f7e15bc4ed3}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a43068ad3f590a6fd1cbb4f7e15bc4ed3}} 
+CONSTANT\+\_\+\+FLOAT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_LONG@{CONSTANT\_LONG}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_LONG@{CONSTANT\_LONG}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a6a9b46bbd3be42c160b5df5b5c71e0f1}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a6a9b46bbd3be42c160b5df5b5c71e0f1}} 
+CONSTANT\+\_\+\+LONG&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_DOUBLE@{CONSTANT\_DOUBLE}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_DOUBLE@{CONSTANT\_DOUBLE}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926acaeaf30a5adcca03cba92f572c2e7cd8}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926acaeaf30a5adcca03cba92f572c2e7cd8}} 
+CONSTANT\+\_\+\+DOUBLE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_CLASS@{CONSTANT\_CLASS}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_CLASS@{CONSTANT\_CLASS}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2ba49ce8e3c1e3ae7c7a31c2c61fc68e}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2ba49ce8e3c1e3ae7c7a31c2c61fc68e}} 
+CONSTANT\+\_\+\+CLASS&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_STRING@{CONSTANT\_STRING}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_STRING@{CONSTANT\_STRING}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a004b97f9233ec4843984a7322c98347d}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a004b97f9233ec4843984a7322c98347d}} 
+CONSTANT\+\_\+\+STRING&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_FIELDREF@{CONSTANT\_FIELDREF}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_FIELDREF@{CONSTANT\_FIELDREF}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926aad3087b99dd234ced1c7866fb7e19b01}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926aad3087b99dd234ced1c7866fb7e19b01}} 
+CONSTANT\+\_\+\+FIELDREF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_METHODREF@{CONSTANT\_METHODREF}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_METHODREF@{CONSTANT\_METHODREF}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2cdd6cf7a3b0f724b6b2016fcff1731d}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a2cdd6cf7a3b0f724b6b2016fcff1731d}} 
+CONSTANT\+\_\+\+METHODREF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_INTERFACE\_METHOD\_REF@{CONSTANT\_INTERFACE\_METHOD\_REF}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_INTERFACE\_METHOD\_REF@{CONSTANT\_INTERFACE\_METHOD\_REF}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a21d71c3debc6d2dbf7e8b11d88147530}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a21d71c3debc6d2dbf7e8b11d88147530}} 
+CONSTANT\+\_\+\+INTERFACE\+\_\+\+METHOD\+\_\+\+REF&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{CONSTANT\_NAME\_AND\_TYPE@{CONSTANT\_NAME\_AND\_TYPE}!ConstantPool.h@{ConstantPool.h}}\index{ConstantPool.h@{ConstantPool.h}!CONSTANT\_NAME\_AND\_TYPE@{CONSTANT\_NAME\_AND\_TYPE}}}\mbox{\Hypertarget{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a70c17a79babda28acff41971b9a78758}\label{ConstantPool_8h_a455cdd942ce73c87e99cb3f9d6a01926a70c17a79babda28acff41971b9a78758}} 
+CONSTANT\+\_\+\+NAME\+\_\+\+AND\+\_\+\+TYPE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ConstantPool_8h_ad296d1703021d8359effeaf452641821}\label{ConstantPool_8h_ad296d1703021d8359effeaf452641821}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantPool\_free@{ConstantPool\_free}}
+\index{ConstantPool\_free@{ConstantPool\_free}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_free()}{ConstantPool\_free()}}
+{\footnotesize\ttfamily void Constant\+Pool\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{constant\+\_\+pool\+\_\+count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8h_a22ce7a9cba3c3f5c010b62ca901a28ad}\label{ConstantPool_8h_a22ce7a9cba3c3f5c010b62ca901a28ad}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantPool\_get\_utf8@{ConstantPool\_get\_utf8}}
+\index{ConstantPool\_get\_utf8@{ConstantPool\_get\_utf8}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_get\_utf8()}{ConstantPool\_get\_utf8()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Pool\+\_\+get\+\_\+utf8 (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{index }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8h_a3c0881fa2e157c8dd80744165356b6af}\label{ConstantPool_8h_a3c0881fa2e157c8dd80744165356b6af}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantPool\_read@{ConstantPool\_read}}
+\index{ConstantPool\_read@{ConstantPool\_read}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_read()}{ConstantPool\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} Constant\+Pool\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{constant\+\_\+pool\+\_\+count }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ConstantPool_8h_acadca93cf33cb67b3d5dac2e2e4eb1bc}\label{ConstantPool_8h_acadca93cf33cb67b3d5dac2e2e4eb1bc}} 
+\index{ConstantPool.h@{ConstantPool.h}!ConstantPool\_to\_string@{ConstantPool\_to\_string}}
+\index{ConstantPool\_to\_string@{ConstantPool\_to\_string}!ConstantPool.h@{ConstantPool.h}}
+\doxysubsubsection{\texorpdfstring{ConstantPool\_to\_string()}{ConstantPool\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Pool\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{cp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{constant\+\_\+pool\+\_\+count }\end{DoxyParamCaption})}
+

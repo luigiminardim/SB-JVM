@@ -1,0 +1,65 @@
+\hypertarget{ClassFile_8c}{}\doxysection{src/\+Class\+File.c File Reference}
+\label{ClassFile_8c}\index{src/ClassFile.c@{src/ClassFile.c}}
+{\ttfamily \#include \char`\"{}Method.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Field.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Class\+File.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}java-\/bytes.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Class\+File.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structClassFile}{Class\+File}} \mbox{\hyperlink{ClassFile_8c_a66cd9feb8adfe5810a99f12868c63ae5}{Class\+File\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{ClassFile_8c_a289b4e1597ad6856ab0b45a80388ee5a}{Class\+File\+\_\+major\+\_\+version\+\_\+to\+\_\+string}} (\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} major\+\_\+version)
+\item 
+char $\ast$ \mbox{\hyperlink{ClassFile_8c_a863832cdda7492c20b8a287b1cb278e5}{Class\+File\+\_\+access\+\_\+flags\+\_\+to\+\_\+string}} (\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} access\+\_\+flags)
+\item 
+char $\ast$ \mbox{\hyperlink{ClassFile_8c_aafeb59f161ac5acfd38541254c82014b}{Class\+File\+\_\+intefarces\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structClassFile}{Class\+File}} c)
+\item 
+char $\ast$ \mbox{\hyperlink{ClassFile_8c_a21995db7240709784d29eb58dacf09fe}{Class\+File\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structClassFile}{Class\+File}} c)
+\item 
+void \mbox{\hyperlink{ClassFile_8c_a6330ad056d12f6714e0e1c1655c90771}{Class\+File\+\_\+free}} (\mbox{\hyperlink{structClassFile}{Class\+File}} c)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{ClassFile_8c_a863832cdda7492c20b8a287b1cb278e5}\label{ClassFile_8c_a863832cdda7492c20b8a287b1cb278e5}} 
+\index{ClassFile.c@{ClassFile.c}!ClassFile\_access\_flags\_to\_string@{ClassFile\_access\_flags\_to\_string}}
+\index{ClassFile\_access\_flags\_to\_string@{ClassFile\_access\_flags\_to\_string}!ClassFile.c@{ClassFile.c}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_access\_flags\_to\_string()}{ClassFile\_access\_flags\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Class\+File\+\_\+access\+\_\+flags\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{access\+\_\+flags }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ClassFile_8c_a6330ad056d12f6714e0e1c1655c90771}\label{ClassFile_8c_a6330ad056d12f6714e0e1c1655c90771}} 
+\index{ClassFile.c@{ClassFile.c}!ClassFile\_free@{ClassFile\_free}}
+\index{ClassFile\_free@{ClassFile\_free}!ClassFile.c@{ClassFile.c}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_free()}{ClassFile\_free()}}
+{\footnotesize\ttfamily void Class\+File\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}}}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ClassFile_8c_aafeb59f161ac5acfd38541254c82014b}\label{ClassFile_8c_aafeb59f161ac5acfd38541254c82014b}} 
+\index{ClassFile.c@{ClassFile.c}!ClassFile\_intefarces\_to\_string@{ClassFile\_intefarces\_to\_string}}
+\index{ClassFile\_intefarces\_to\_string@{ClassFile\_intefarces\_to\_string}!ClassFile.c@{ClassFile.c}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_intefarces\_to\_string()}{ClassFile\_intefarces\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Class\+File\+\_\+intefarces\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}}}]{c }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ClassFile_8c_a289b4e1597ad6856ab0b45a80388ee5a}\label{ClassFile_8c_a289b4e1597ad6856ab0b45a80388ee5a}} 
+\index{ClassFile.c@{ClassFile.c}!ClassFile\_major\_version\_to\_string@{ClassFile\_major\_version\_to\_string}}
+\index{ClassFile\_major\_version\_to\_string@{ClassFile\_major\_version\_to\_string}!ClassFile.c@{ClassFile.c}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_major\_version\_to\_string()}{ClassFile\_major\_version\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Class\+File\+\_\+major\+\_\+version\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{major\+\_\+version }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ClassFile_8c_a66cd9feb8adfe5810a99f12868c63ae5}\label{ClassFile_8c_a66cd9feb8adfe5810a99f12868c63ae5}} 
+\index{ClassFile.c@{ClassFile.c}!ClassFile\_read@{ClassFile\_read}}
+\index{ClassFile\_read@{ClassFile\_read}!ClassFile.c@{ClassFile.c}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_read()}{ClassFile\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structClassFile}{Class\+File}} Class\+File\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{ClassFile_8c_a21995db7240709784d29eb58dacf09fe}\label{ClassFile_8c_a21995db7240709784d29eb58dacf09fe}} 
+\index{ClassFile.c@{ClassFile.c}!ClassFile\_to\_string@{ClassFile\_to\_string}}
+\index{ClassFile\_to\_string@{ClassFile\_to\_string}!ClassFile.c@{ClassFile.c}}
+\doxysubsubsection{\texorpdfstring{ClassFile\_to\_string()}{ClassFile\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Class\+File\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structClassFile}{Class\+File}}}]{c }\end{DoxyParamCaption})}
+

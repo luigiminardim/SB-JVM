@@ -1,0 +1,141 @@
+\hypertarget{AttributeInfo_8c}{}\doxysection{src/\+Attribute\+Info.c File Reference}
+\label{AttributeInfo_8c}\index{src/AttributeInfo.c@{src/AttributeInfo.c}}
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Attribute\+Info.\+h\char`\"{}}\newline
+Include dependency graph for Attribute\+Info.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}} \mbox{\hyperlink{AttributeInfo_8c_acfdcec67e5e27acffd882f3e9c8ed882}{Constant\+Value\+Attribute\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8c_a3d7a7bf1bd775006c4f847abeaf87739}{Constant\+Value\+Attribute\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}} constant\+\_\+value\+\_\+attribute, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+\mbox{\hyperlink{structExceptionTable}{Exception\+Table}} $\ast$ \mbox{\hyperlink{AttributeInfo_8c_abb0e5c4768b9ed59c74f26a5ed31a686}{Exception\+Table\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} exception\+\_\+table\+\_\+length)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8c_a99a067b7413dc8ecf791de021d0bf13f}{Exception\+Table\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structExceptionTable}{Exception\+Table}} $\ast$table, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} exception\+\_\+table\+\_\+length)
+\item 
+\mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} \mbox{\hyperlink{AttributeInfo_8c_ad6357bce2083e18e1de52221bb9c351e}{Code\+Attribute\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+void \mbox{\hyperlink{AttributeInfo_8c_af488633d9925f452cdde435224b212a8}{Code\+Attribute\+\_\+free}} (\mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} code\+\_\+attribute, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8c_a6cba598efcdc7273a10020d375fb0c98}{Code\+Attribute\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} code\+\_\+attribute, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+\mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} \mbox{\hyperlink{AttributeInfo_8c_a923bcd0e400c6682cf7a925d58855622}{Exceptions\+Attribute\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8c_a4091d9b0ccd8300ededd7bbabd27081d}{Exceptions\+Attribute\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} exceptions\+\_\+attribute)
+\item 
+\mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}} \mbox{\hyperlink{AttributeInfo_8c_a65b8e0d71964c534ed4b2293adca152a}{Source\+File\+Attribute\+\_\+read}} (FILE $\ast$fp)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8c_acec0be694c5c1cecffd6eeeb17569173}{Source\+File\+Attribute\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}} source\+\_\+file\+\_\+attribute, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+\mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}} \mbox{\hyperlink{AttributeInfo_8c_ae35d6504d9a3d01ba71bfd1ba20d4fa5}{Unknown\+Attribute\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} attribute\+\_\+length)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8c_a9979b23c3163a027cf9f9c783dc4d94a}{Unknown\+Attribute\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}} unknown\+\_\+attribute, \mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}} attribute\+\_\+length)
+\item 
+\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$ \mbox{\hyperlink{AttributeInfo_8c_a62c716a07a974075cd37cae002c1f792}{Attribute\+Info\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} attributes\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+void \mbox{\hyperlink{AttributeInfo_8c_a067efbe3bba7ae6b6c41745266d22aee}{Attribute\+Info\+\_\+free}} (\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$attributes, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} attributes\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{AttributeInfo_8c_a897f315f62efbf216c726aef5e5b3d2a}{Attribute\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$attribute\+\_\+infos, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} attributes\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{AttributeInfo_8c_a067efbe3bba7ae6b6c41745266d22aee}\label{AttributeInfo_8c_a067efbe3bba7ae6b6c41745266d22aee}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!AttributeInfo\_free@{AttributeInfo\_free}}
+\index{AttributeInfo\_free@{AttributeInfo\_free}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{AttributeInfo\_free()}{AttributeInfo\_free()}}
+{\footnotesize\ttfamily void Attribute\+Info\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$}]{attributes,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{attributes\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a62c716a07a974075cd37cae002c1f792}\label{AttributeInfo_8c_a62c716a07a974075cd37cae002c1f792}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!AttributeInfo\_read@{AttributeInfo\_read}}
+\index{AttributeInfo\_read@{AttributeInfo\_read}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{AttributeInfo\_read()}{AttributeInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}}$\ast$ Attribute\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{attributes\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a897f315f62efbf216c726aef5e5b3d2a}\label{AttributeInfo_8c_a897f315f62efbf216c726aef5e5b3d2a}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!AttributeInfo\_to\_string@{AttributeInfo\_to\_string}}
+\index{AttributeInfo\_to\_string@{AttributeInfo\_to\_string}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{AttributeInfo\_to\_string()}{AttributeInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Attribute\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structAttributeInfo}{Attribute\+Info}} $\ast$}]{attribute\+\_\+infos,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{attributes\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_af488633d9925f452cdde435224b212a8}\label{AttributeInfo_8c_af488633d9925f452cdde435224b212a8}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!CodeAttribute\_free@{CodeAttribute\_free}}
+\index{CodeAttribute\_free@{CodeAttribute\_free}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{CodeAttribute\_free()}{CodeAttribute\_free()}}
+{\footnotesize\ttfamily void Code\+Attribute\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}}}]{code\+\_\+attribute,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_ad6357bce2083e18e1de52221bb9c351e}\label{AttributeInfo_8c_ad6357bce2083e18e1de52221bb9c351e}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!CodeAttribute\_read@{CodeAttribute\_read}}
+\index{CodeAttribute\_read@{CodeAttribute\_read}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{CodeAttribute\_read()}{CodeAttribute\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}} Code\+Attribute\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a6cba598efcdc7273a10020d375fb0c98}\label{AttributeInfo_8c_a6cba598efcdc7273a10020d375fb0c98}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!CodeAttribute\_to\_string@{CodeAttribute\_to\_string}}
+\index{CodeAttribute\_to\_string@{CodeAttribute\_to\_string}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{CodeAttribute\_to\_string()}{CodeAttribute\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Code\+Attribute\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structCodeAttribute}{Code\+Attribute}}}]{code\+\_\+attribute,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_acfdcec67e5e27acffd882f3e9c8ed882}\label{AttributeInfo_8c_acfdcec67e5e27acffd882f3e9c8ed882}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!ConstantValueAttribute\_read@{ConstantValueAttribute\_read}}
+\index{ConstantValueAttribute\_read@{ConstantValueAttribute\_read}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{ConstantValueAttribute\_read()}{ConstantValueAttribute\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}} Constant\+Value\+Attribute\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a3d7a7bf1bd775006c4f847abeaf87739}\label{AttributeInfo_8c_a3d7a7bf1bd775006c4f847abeaf87739}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!ConstantValueAttribute\_to\_string@{ConstantValueAttribute\_to\_string}}
+\index{ConstantValueAttribute\_to\_string@{ConstantValueAttribute\_to\_string}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{ConstantValueAttribute\_to\_string()}{ConstantValueAttribute\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Constant\+Value\+Attribute\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structConstantValueAttribute}{Constant\+Value\+Attribute}}}]{constant\+\_\+value\+\_\+attribute,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a923bcd0e400c6682cf7a925d58855622}\label{AttributeInfo_8c_a923bcd0e400c6682cf7a925d58855622}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!ExceptionsAttribute\_read@{ExceptionsAttribute\_read}}
+\index{ExceptionsAttribute\_read@{ExceptionsAttribute\_read}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{ExceptionsAttribute\_read()}{ExceptionsAttribute\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}} Exceptions\+Attribute\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a4091d9b0ccd8300ededd7bbabd27081d}\label{AttributeInfo_8c_a4091d9b0ccd8300ededd7bbabd27081d}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!ExceptionsAttribute\_to\_string@{ExceptionsAttribute\_to\_string}}
+\index{ExceptionsAttribute\_to\_string@{ExceptionsAttribute\_to\_string}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{ExceptionsAttribute\_to\_string()}{ExceptionsAttribute\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Exceptions\+Attribute\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structExceptionsAttribute}{Exceptions\+Attribute}}}]{exceptions\+\_\+attribute }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_abb0e5c4768b9ed59c74f26a5ed31a686}\label{AttributeInfo_8c_abb0e5c4768b9ed59c74f26a5ed31a686}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!ExceptionTable\_read@{ExceptionTable\_read}}
+\index{ExceptionTable\_read@{ExceptionTable\_read}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{ExceptionTable\_read()}{ExceptionTable\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structExceptionTable}{Exception\+Table}}$\ast$ Exception\+Table\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{exception\+\_\+table\+\_\+length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a99a067b7413dc8ecf791de021d0bf13f}\label{AttributeInfo_8c_a99a067b7413dc8ecf791de021d0bf13f}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!ExceptionTable\_to\_string@{ExceptionTable\_to\_string}}
+\index{ExceptionTable\_to\_string@{ExceptionTable\_to\_string}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{ExceptionTable\_to\_string()}{ExceptionTable\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Exception\+Table\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structExceptionTable}{Exception\+Table}} $\ast$}]{table,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{exception\+\_\+table\+\_\+length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a65b8e0d71964c534ed4b2293adca152a}\label{AttributeInfo_8c_a65b8e0d71964c534ed4b2293adca152a}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!SourceFileAttribute\_read@{SourceFileAttribute\_read}}
+\index{SourceFileAttribute\_read@{SourceFileAttribute\_read}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{SourceFileAttribute\_read()}{SourceFileAttribute\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}} Source\+File\+Attribute\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_acec0be694c5c1cecffd6eeeb17569173}\label{AttributeInfo_8c_acec0be694c5c1cecffd6eeeb17569173}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!SourceFileAttribute\_to\_string@{SourceFileAttribute\_to\_string}}
+\index{SourceFileAttribute\_to\_string@{SourceFileAttribute\_to\_string}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{SourceFileAttribute\_to\_string()}{SourceFileAttribute\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Source\+File\+Attribute\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structSourceFileAttribute}{Source\+File\+Attribute}}}]{source\+\_\+file\+\_\+attribute,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_ae35d6504d9a3d01ba71bfd1ba20d4fa5}\label{AttributeInfo_8c_ae35d6504d9a3d01ba71bfd1ba20d4fa5}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!UnknownAttribute\_read@{UnknownAttribute\_read}}
+\index{UnknownAttribute\_read@{UnknownAttribute\_read}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{UnknownAttribute\_read()}{UnknownAttribute\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}} Unknown\+Attribute\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{attribute\+\_\+length }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{AttributeInfo_8c_a9979b23c3163a027cf9f9c783dc4d94a}\label{AttributeInfo_8c_a9979b23c3163a027cf9f9c783dc4d94a}} 
+\index{AttributeInfo.c@{AttributeInfo.c}!UnknownAttribute\_to\_string@{UnknownAttribute\_to\_string}}
+\index{UnknownAttribute\_to\_string@{UnknownAttribute\_to\_string}!AttributeInfo.c@{AttributeInfo.c}}
+\doxysubsubsection{\texorpdfstring{UnknownAttribute\_to\_string()}{UnknownAttribute\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Unknown\+Attribute\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structUnknownAttribute}{Unknown\+Attribute}}}]{unknown\+\_\+attribute,  }\item[{\mbox{\hyperlink{java-bytes_8h_ae5be1f726785414dd1b77d60df074c9d}{u4}}}]{attribute\+\_\+length }\end{DoxyParamCaption})}
+

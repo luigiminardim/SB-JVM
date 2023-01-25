@@ -1,0 +1,48 @@
+\hypertarget{Field_8c}{}\doxysection{src/\+Field.c File Reference}
+\label{Field_8c}\index{src/Field.c@{src/Field.c}}
+{\ttfamily \#include \char`\"{}Field.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Class\+File.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}java-\/bytes.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Field.\+c\+:
+% FIG 0
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{structFieldInfo}{Field\+Info}} $\ast$ \mbox{\hyperlink{Field_8c_a71effbf4ed0e6fbb316466d890da3883}{Field\+Info\+\_\+read}} (FILE $\ast$fp, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} fields\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+void \mbox{\hyperlink{Field_8c_a94c6ed489c1ee4bdab982e02b77279ba}{Field\+Info\+\_\+free}} (\mbox{\hyperlink{structFieldInfo}{Field\+Info}} $\ast$field\+\_\+infos, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} fields\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\item 
+char $\ast$ \mbox{\hyperlink{Field_8c_a25b09a926bd8c4e508ab31ab71ed32ee}{Field\+Info\+\_\+access\+\_\+flags\+\_\+to\+\_\+string}} (\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} access\+\_\+flags)
+\item 
+char $\ast$ \mbox{\hyperlink{Field_8c_aa97c4198ab832a48d42b8df1c88d86fc}{Field\+Info\+\_\+to\+\_\+string}} (\mbox{\hyperlink{structFieldInfo}{Field\+Info}} $\ast$field\+\_\+infos, \mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}} fields\+\_\+count, \mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}} constant\+\_\+pool)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{Field_8c_a25b09a926bd8c4e508ab31ab71ed32ee}\label{Field_8c_a25b09a926bd8c4e508ab31ab71ed32ee}} 
+\index{Field.c@{Field.c}!FieldInfo\_access\_flags\_to\_string@{FieldInfo\_access\_flags\_to\_string}}
+\index{FieldInfo\_access\_flags\_to\_string@{FieldInfo\_access\_flags\_to\_string}!Field.c@{Field.c}}
+\doxysubsubsection{\texorpdfstring{FieldInfo\_access\_flags\_to\_string()}{FieldInfo\_access\_flags\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Field\+Info\+\_\+access\+\_\+flags\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{access\+\_\+flags }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Field_8c_a94c6ed489c1ee4bdab982e02b77279ba}\label{Field_8c_a94c6ed489c1ee4bdab982e02b77279ba}} 
+\index{Field.c@{Field.c}!FieldInfo\_free@{FieldInfo\_free}}
+\index{FieldInfo\_free@{FieldInfo\_free}!Field.c@{Field.c}}
+\doxysubsubsection{\texorpdfstring{FieldInfo\_free()}{FieldInfo\_free()}}
+{\footnotesize\ttfamily void Field\+Info\+\_\+free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFieldInfo}{Field\+Info}} $\ast$}]{field\+\_\+infos,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{fields\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Field_8c_a71effbf4ed0e6fbb316466d890da3883}\label{Field_8c_a71effbf4ed0e6fbb316466d890da3883}} 
+\index{Field.c@{Field.c}!FieldInfo\_read@{FieldInfo\_read}}
+\index{FieldInfo\_read@{FieldInfo\_read}!Field.c@{Field.c}}
+\doxysubsubsection{\texorpdfstring{FieldInfo\_read()}{FieldInfo\_read()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{structFieldInfo}{Field\+Info}}$\ast$ Field\+Info\+\_\+read (\begin{DoxyParamCaption}\item[{FILE $\ast$}]{fp,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{fields\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{Field_8c_aa97c4198ab832a48d42b8df1c88d86fc}\label{Field_8c_aa97c4198ab832a48d42b8df1c88d86fc}} 
+\index{Field.c@{Field.c}!FieldInfo\_to\_string@{FieldInfo\_to\_string}}
+\index{FieldInfo\_to\_string@{FieldInfo\_to\_string}!Field.c@{Field.c}}
+\doxysubsubsection{\texorpdfstring{FieldInfo\_to\_string()}{FieldInfo\_to\_string()}}
+{\footnotesize\ttfamily char$\ast$ Field\+Info\+\_\+to\+\_\+string (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{structFieldInfo}{Field\+Info}} $\ast$}]{field\+\_\+infos,  }\item[{\mbox{\hyperlink{java-bytes_8h_a732cde1300aafb73b0ea6c2558a7a54f}{u2}}}]{fields\+\_\+count,  }\item[{\mbox{\hyperlink{ConstantPool_8h_af32459fe17b770a6ff56910f2ea4574a}{Constant\+Pool}}}]{constant\+\_\+pool }\end{DoxyParamCaption})}
+
