@@ -11,13 +11,15 @@ public class SumNumber {
     {System.out.println("100");}
 
     public static void main(String[] args) {
-        System.out.println(SumNumber.Soma(3,6));
-        SumNumber somaClasse = new SumNumber();
-        int teste_var = somaClasse.fifth_attribute;
-        somaClasse.fifth_attribute = somaClasse.fifth_attribute + teste_var;
-        System.out.println(somaClasse.second_attribute);
-        somaClasse.Subtracao(20, 10);
-        System.out.println(SumNumber.sixth_attribute);
+        //System.out.println(SumNumber.Soma(3,6));
+        //SumNumber somaClasse = new SumNumber();
+        //int teste_var = somaClasse.fifth_attribute;
+        //somaClasse.fifth_attribute = somaClasse.fifth_attribute + teste_var;
+        //System.out.println(somaClasse.second_attribute);
+        //somaClasse.Subtracao(20, 10);
+        int a = 10000;
+        int b = 25;
+        System.out.println("teste teste teste" + (a+b));
     }   
 
     public static boolean TestaExcecao(){

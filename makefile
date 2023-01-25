@@ -25,10 +25,13 @@ VALGRIND = valgrind --leak-check=full --track-origins=yes -s
 build: $(TARGET)
 
 command ?= read
-file ?= assets/test-ConstantPool/AllConstanPoolCases.class
+file ?= assets/test-JVM/Soma.class
 .PHONY: run
-run: $(TARGET)
-	@./$(TARGET) $(command) $(file)
+exec: $(TARGET)
+	@./$(TARGET) exec $(file)
+
+read: $(TARGET)
+	@./$(TARGET) read $(file) | json_reformat
 
 .PHONY: test
 test: build/test.exe
@@ -48,7 +51,8 @@ lint:
 
 .PHONY: valgrind
 valgrind:
-	@$(VALGRIND) $(TARGET) $(file)
+	@$(VALGRIND) $(TARGET) exec $(file)
+	@$(VALGRIND) $(TARGET) read $(file)
 
 # Build Rules
 
