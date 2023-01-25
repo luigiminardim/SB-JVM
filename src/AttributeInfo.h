@@ -6,6 +6,10 @@
 
 struct AttributeInfo;
 
+/**
+ * @brief É atributo
+ * 
+ */
 typedef struct ConstantValueAttribute
 {
   u2 constantvalue_index;
