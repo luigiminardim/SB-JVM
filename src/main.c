@@ -2,8 +2,7 @@
 #include <string.h>
 #include <stdlib.h> // exit
 #include "read_classfile_usecase.h"
-#include "jvm.h"
-#include <libgen.h>
+#include "exec_classfile_usecase.h"
 
 int main(int argc, char **argv)
 {
@@ -15,17 +14,7 @@ int main(int argc, char **argv)
     read_classfile_usecase(file_name);
   }
   else if (!strcmp(command, "exec") != 0){
-    // Tratamento da entrada
-    char *classe = basename(file_name);
-    char *dot = strrchr(classe, '.');
-    *dot = '\0';
-
-    JVM* jvm = startJVM();
-    loadClass(jvm, file_name);
-    pushFrame(jvm, classe, "main");
-    verifyClinit(jvm);
-    runJVM(jvm);
-    freeJVM(jvm);
+    exec_classfile_usecase(file_name);
   }
   else
   {
