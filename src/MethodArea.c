@@ -95,6 +95,7 @@ MethodArea* loadClass(JVM* jvm, const char* classname){
     loadStatic(ma);
 
     free(copy);
+    fclose(fp);
 
     return ma;
 }

@@ -18,7 +18,7 @@ TEST_OBJECTS = $(addprefix build/objs/, $(notdir $(TEST_SOURCES:%.c=%.o)))
 CPPCHECK = cppcheck
 CPPCHECK_TARGET = ./src/*
 
-VALGRIND = valgrind --leak-check=full --track-origins=yes -s
+VALGRIND = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes -s
 
 # Commands
 
