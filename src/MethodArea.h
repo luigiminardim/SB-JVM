@@ -24,7 +24,7 @@ typedef struct Instance
 
 typedef struct MethodArea
 {
-  ClassFile* classfile;
+  ClassFile classfile;
   u2 instances_count;
   Instance* instances;
   u2 static_fields_count;
@@ -33,7 +33,7 @@ typedef struct MethodArea
 
 struct JVM;
 
-MethodArea* initMethodArea();
+void initMethodArea(MethodArea* new_ma);
 
 MethodInfo *getMethod(ClassFile* method_class, const char* method_name);
 

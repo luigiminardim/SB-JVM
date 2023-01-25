@@ -18,31 +18,12 @@ MethodInfo *getMethod(ClassFile* method_class, const char* method_name){
     return NULL;
 }
 
-MethodArea *getClassMethodArea(JVM* jvm, const char* classname){
-    MethodArea* method_area = jvm->method_area;
-    u2 n_classes = jvm->method_area_count;
-    MethodArea* ma;
-    for(ma=method_area; ma< method_area + n_classes; ma++){
-        // Fazer uma função de acesso a valores do CP pode ser interessante
-        CpInfo cp_record = ma->classfile->constant_pool[ma->classfile->this_class];
-        cp_record = ma->classfile->constant_pool[cp_record.constant_class_info.name_index];
-        char* name = cp_record.constant_utf8_info.bytes;
-        if (strcmp(name, classname) == 0){
-            return ma;
-        }
-    }
-
-    ma = loadClass(jvm, classname);
-
-    return ma;
-}
-
 void loadStatic(MethodArea* method_area){
     // iterar sobre os fields
     int contador = 0;
     FieldInfo *f;
-    FieldInfo * field_infos = method_area->classfile->fields;
-    u2 fields_count = method_area->classfile->fields_count;
+    FieldInfo * field_infos = method_area->classfile.fields;
+    u2 fields_count = method_area->classfile.fields_count;
     for (f = field_infos; f < field_infos + fields_count; f++){
         // verifica se static
         if (f->access_flags >= 8 && f->access_flags <= 12){
@@ -50,13 +31,13 @@ void loadStatic(MethodArea* method_area){
         }
     }
     
-    FieldValue *field_values = (FieldValue *)malloc(contador * sizeof(FieldValue));
+    FieldValue *field_values = (FieldValue *)realloc(method_area->static_fields,sizeof(FieldValue) * (contador));
     FieldValue *fv_iter = field_values;
     for (f = field_infos; f < field_infos + fields_count; f++){
         // verifica se static
         if (f->access_flags >= 8 && f->access_flags <= 12){
-            fv_iter->name_cpinfo = method_area->classfile->constant_pool[f->name_index].constant_utf8_info;
-            fv_iter->type_cpinfo = method_area->classfile->constant_pool[f->descriptor_index].constant_utf8_info;
+            fv_iter->name_cpinfo = method_area->classfile.constant_pool[f->name_index].constant_utf8_info;
+            fv_iter->type_cpinfo = method_area->classfile.constant_pool[f->descriptor_index].constant_utf8_info;
             fv_iter++;
         }
     }
@@ -78,10 +59,26 @@ FieldValue *getstatic(JVM* jvm, const char* class_name, const char* field_name, 
     return NULL;
 }
 
+MethodArea *getClassMethodArea(JVM* jvm, const char* classname){
+    MethodArea* method_area = jvm->method_area;
+    u2 n_classes = jvm->method_area_count;
+    for(MethodArea* ma=method_area; ma< method_area + n_classes; ma++){
+        // Fazer uma função de acesso a valores do CP pode ser interessante
+        CpInfo cp_record = ma->classfile.constant_pool[ma->classfile.this_class];
+        cp_record = ma->classfile.constant_pool[cp_record.constant_class_info.name_index];
+        char* name = cp_record.constant_utf8_info.bytes;
+        if (strcmp(name, classname) == 0){
+            return ma;
+        }
+    }
+
+    return loadClass(jvm, classname);
+}
+
 MethodArea* loadClass(JVM* jvm, const char* classname){
 
     // +1 pelo '\0' no final
-    char * copy = (char *)malloc(strlen(classname) + 1); 
+    char * copy = (char *)malloc(sizeof(char) *(strlen(classname) + 7)); 
     strcpy(copy, classname);
     strcat(copy, ".class");
 
@@ -89,34 +86,30 @@ MethodArea* loadClass(JVM* jvm, const char* classname){
     ClassFile cf = ClassFile_read(fp);
 
     jvm->method_area_count++;
-    jvm->method_area = (MethodArea *)realloc(jvm->method_area, jvm->method_area_count*sizeof(MethodArea));
+    MethodArea* new_ma_ptr = (MethodArea *)realloc(jvm->method_area, sizeof(MethodArea)*(jvm->method_area_count));
+    jvm->method_area = new_ma_ptr;
 
-    MethodArea* new_ma = initMethodArea();
-    new_ma->classfile = &cf;
-    loadStatic(new_ma);
-
-    jvm->method_area[jvm->method_area_count-1] = *new_ma;
+    MethodArea* ma = &(jvm->method_area[jvm->method_area_count - 1]);
+    initMethodArea(ma);
+    ma->classfile = cf;
+    loadStatic(ma);
 
     free(copy);
 
-    return new_ma;
+    return ma;
 }
 
 
-MethodArea* initMethodArea(){
-    MethodArea *new_ma = (MethodArea *)malloc(sizeof(MethodArea));
+void initMethodArea(MethodArea* new_ma){
     new_ma->instances_count = 0;
     new_ma->static_fields_count = 0;
-    new_ma->classfile = (ClassFile *)malloc(sizeof(ClassFile));
     new_ma->instances = (Instance *)malloc(sizeof(Instance));
     new_ma->static_fields = (FieldValue *)malloc(sizeof(FieldValue));
-    
-    return new_ma;
 }
 
 void freeMethodArea(MethodArea* ma){
     free(ma->static_fields);
     free(ma->instances);
-    ClassFile_free(*(ma->classfile));
+    ClassFile_free(ma->classfile);
     free(ma);
 }

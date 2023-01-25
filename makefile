@@ -28,7 +28,7 @@ command ?= read
 file ?= assets/test-ConstantPool/AllConstanPoolCases.class
 .PHONY: run
 run: $(TARGET)
-	@./$(TARGET) $(command) $(file) | json_reformat
+	@./$(TARGET) $(command) $(file)
 
 .PHONY: test
 test: build/test.exe

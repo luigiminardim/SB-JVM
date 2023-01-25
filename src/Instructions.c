@@ -11,6 +11,12 @@ void bipush(Frame *frame, Code *code)
     pushOperandStack(frame, code->byte_operands.byte);
 }
 
+void istore_1(Frame *frame, Code *code)
+{
+    int32_t val = popOperandStack(frame);
+    frame->local_variables[1] = val;
+}
+
 void istore_2(Frame *frame, Code *code)
 {
     int32_t val = popOperandStack(frame);
@@ -20,6 +26,11 @@ void istore_2(Frame *frame, Code *code)
 void iload_1(Frame *frame, Code *code)
 {
     pushOperandStack(frame, frame->local_variables[1]);
+}
+
+void iload_2(Frame *frame, Code *code)
+{
+    pushOperandStack(frame, frame->local_variables[2]);
 }
 
 void iadd(Frame *frame, Code *code)
@@ -97,7 +108,6 @@ void dload(Frame *frame, Code *code) { return; }
 void aload(Frame *frame, Code *code) { return; }
 
 void iload_0(Frame *frame, Code *code) { return; }
-void iload_2(Frame *frame, Code *code) { return; }
 void iload_3(Frame *frame, Code *code) { return; }
 
 void lload_0(Frame *frame, Code *code) { return; }
@@ -136,7 +146,6 @@ void dstore(Frame *frame, Code *code) { return; }
 void astore(Frame *frame, Code *code) { return; }
 
 void istore_0(Frame *frame, Code *code) { return; }
-void istore_1(Frame *frame, Code *code) { return; }
 void istore_3(Frame *frame, Code *code) { return; }
 
 void lstore_0(Frame *frame, Code *code) { return; }

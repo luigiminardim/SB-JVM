@@ -16,25 +16,23 @@ void popFrame(JVM *jvm)
 {
     Frame *f = topFrame(jvm);
     jvm->frame_count--;
+    freeFrame(f);
     Frame *new_frame_stack = (Frame *)realloc(jvm->frames, sizeof(Frame) * jvm->frame_count);
     jvm->frames = new_frame_stack;
-
-    freeFrame(f);
 }
 
 void pushFrame(JVM *jvm, const char *classname, const char *method_name)
 {
     MethodArea *ma = getClassMethodArea(jvm, classname);
-    ClassFile *new_current_class = ma->classfile;
-    MethodInfo *new_current_method = getMethod(new_current_class, method_name);
+    ClassFile new_current_class = ma->classfile;
+    MethodInfo *new_current_method = getMethod(&new_current_class, method_name);
 
     jvm->frame_count++;
-    Frame *new_frame_stack = (Frame *)realloc(jvm->frames, sizeof(Frame) * jvm->frame_count);
-    Frame *new_frame = createFrame(new_current_class, new_current_method);
+    Frame *new_frame_stack = (Frame *)realloc(jvm->frames, sizeof(Frame) * (jvm->frame_count));
 
-    new_frame_stack[jvm->frame_count - 1] = *new_frame;
     jvm->frames = new_frame_stack;
-    // jvm->pc = 0;
+
+    createFrame(topFrame(jvm), new_current_class, new_current_method);
 }
 
 Frame *topFrame(JVM* jvm){
@@ -44,12 +42,12 @@ Frame *topFrame(JVM* jvm){
 
 void verifyClinit(JVM *jvm)
 {
-    MethodInfo *clinit = getMethod(topFrame(jvm)->frame_class, "clinit");
+    MethodInfo *clinit = getMethod(&topFrame(jvm)->frame_class, "clinit");
     if (clinit == NULL)
     {
         return;
     }
-    pushFrame(jvm, className(topFrame(jvm)->frame_class), "clinit");
+    pushFrame(jvm, className(&topFrame(jvm)->frame_class), "clinit");
 }
 
 char *methodName(MethodInfo *method, ClassFile *classfile)
@@ -91,12 +89,19 @@ void runJVM(JVM *jvm)
         Frame *current_frame = topFrame(jvm);
         Code code = fetchCode(current_frame);
 
+        //printf("OPCODE: %s, %d \n", code.mnemonic, current_frame->stack_count);
+        //for(int i=0; i< current_frame->stack_count; i++){
+        //    printf("%u ", current_frame->operand_stack[i]);
+        //}
+        //printf("PILHA DE OPERANDOS %d %d %d \n", current_frame->local_variables[0], current_frame->local_variables[1], current_frame->local_variables[2]);
+        //printf("\n---\n");
         if (code.opcode == OPCODE_NONE)
         {
             current_frame->pc++;
             continue;
         } else if (code.opcode == OPCODE_RETURN){
             popFrame(jvm);
+            continue;
         } else {
             code.exec(current_frame, &code);
         }
@@ -113,4 +118,6 @@ void freeJVM(JVM* jvm){
     for(ma=method_area; ma< method_area + n_classes; ma++){
         freeMethodArea(ma);
     }
+    free(jvm->frames);
+    free(jvm);
 }
