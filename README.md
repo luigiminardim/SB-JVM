@@ -88,7 +88,7 @@ Para executar uma análise dinâmica de todos os casos de uso com o valgrind
 basta executar:
 
 ```sh
-make valgrind command="read" file="path para .class"
+make valgrind  file=<caminho/do.class>
 ```
 
 ## Participantes
